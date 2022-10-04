@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>0.0.2-alpha</Version>
+    <Authors>RemarkableSolutions</Authors>
+    <PackageProjectUrl></PackageProjectUrl>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/RemarkableSolutionsAdmin/RemarkableSolutions.Anticaptcha</RepositoryUrl>
+    <PackageTags>RemarkableSolutions AntiCaptcha Captcha</PackageTags>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>RemarkableSolutions.Anticaptcha.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>
