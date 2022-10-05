@@ -2,14 +2,14 @@
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
 using RemarkableSolutions.Anticaptcha.Requests;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers;
 
-internal sealed class RecaptchaV2RequestPayloadBuilder : RecaptchaV2ProxylessRequestPayloadBuilder
+internal sealed class RecaptchaV2RequestSerializer : RecaptchaV2ProxylessRequestSerializer
 {        
     public override string TypeName => "RecaptchaV2Task";
-    public override JObject Build(RecaptchaV2ProxylessRequest request)
+    public override JObject Serialize(RecaptchaV2ProxylessRequest request)
     {
-        return base.Build(request)
+        return base.Serialize(request)
             .With(((RecaptchaV2Request)request).ProxyConfig)
             .WithUserAgent(((RecaptchaV2Request)request).UserAgent)
             .WithCookies(((RecaptchaV2Request)request).Cookies);

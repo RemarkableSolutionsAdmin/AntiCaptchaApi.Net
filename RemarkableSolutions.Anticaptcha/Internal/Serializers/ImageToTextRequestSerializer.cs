@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json.Linq;
 using RemarkableSolutions.Anticaptcha.Enums;
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
-using RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders.Base;
+using RemarkableSolutions.Anticaptcha.Internal.Serializers.Base;
 using RemarkableSolutions.Anticaptcha.Requests;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers;
 
-internal sealed class ImageToTextRequestPayloadBuilder : CaptchaRequestPayloadBuilder<ImageToTextRequest>
+internal sealed class ImageToTextRequestSerializer : CaptchaRequestSerializer<ImageToTextRequest>
 {
     public override string TypeName => "ImageToTextTask";
-    public override JObject Build(ImageToTextRequest request) =>
-        base.Build(request)
+    public override JObject Serialize(ImageToTextRequest request) =>
+        base.Serialize(request)
             .With("websiteURL", request.WebsiteUrl)
             .With("comment", request.Comment)
             .With("body", request.BodyBase64.Replace("\r", "").Replace("\n", ""))

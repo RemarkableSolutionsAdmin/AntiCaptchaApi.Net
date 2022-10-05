@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json.Linq;
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
-using RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders.Base;
+using RemarkableSolutions.Anticaptcha.Internal.Serializers.Base;
 using RemarkableSolutions.Anticaptcha.Requests;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers;
 
-internal class RecaptchaV2EnterpriseProxylessRequestPayloadBuilder: WebsiteCaptchaRequestPayloadBuilder<RecaptchaV2EnterpriseProxylessRequest>
+internal class RecaptchaV2EnterpriseProxylessRequestSerializer: WebsiteCaptchaRequestSerializer<RecaptchaV2EnterpriseProxylessRequest>
 {
     public override string TypeName => "RecaptchaV2EnterpriseTaskProxyless";
-    public override JObject Build(RecaptchaV2EnterpriseProxylessRequest request)
+    public override JObject Serialize(RecaptchaV2EnterpriseProxylessRequest request)
     {            
-        var payload = base.Build(request)
+        var payload = base.Serialize(request)
             .With("apiDomain", request.ApiDomain);
         if (request.EnterprisePayload.Count > 0)
         {

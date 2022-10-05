@@ -9,14 +9,14 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
 
 public abstract class AnticaptchaTestBase
 {
-    protected readonly AnticaptchaManager _anticaptchaManager = new(TestEnvironment.ClientKey);
+    protected readonly AnticaptchaClient AnticaptchaClient = new(TestEnvironment.ClientKey);
     
     protected async Task TestCaptchaRequestAsync<T>(T captchaRequest) where T : CaptchaRequest
     {
-        var creationTaskResult = await _anticaptchaManager.CreateCaptchaTaskAsync(captchaRequest);
+        var creationTaskResult = await AnticaptchaClient.CreateCaptchaTaskAsync(captchaRequest);
         AssertHelper.Assert(creationTaskResult);
         Assert.NotNull(creationTaskResult.TaskId);
-        var taskResult = await _anticaptchaManager.WaitForTaskRawResultAsync<RawSolution>(creationTaskResult.TaskId.Value);
+        var taskResult = await AnticaptchaClient.WaitForTaskRawResultAsync<RawSolution>(creationTaskResult.TaskId.Value);
         AssertHelper.Assert(taskResult);
     }
 
@@ -38,10 +38,10 @@ public abstract class AnticaptchaTestBase
         where TRequest : CaptchaRequest
         where TSolution : BaseSolution, new()
     {
-        creationTaskResult = _anticaptchaManager.CreateCaptchaTask(captchaRequest);
+        creationTaskResult = AnticaptchaClient.CreateCaptchaTask(captchaRequest);
         AssertHelper.Assert(creationTaskResult);
         Assert.NotNull(creationTaskResult.TaskId);
-        rawTaskResult = _anticaptchaManager.WaitForRawTaskResult<TSolution>(creationTaskResult.TaskId.Value, 1800);
+        rawTaskResult = AnticaptchaClient.WaitForRawTaskResult<TSolution>(creationTaskResult.TaskId.Value, 1800);
         AssertHelper.Assert(rawTaskResult);
     }
     

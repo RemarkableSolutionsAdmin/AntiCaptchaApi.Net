@@ -2,14 +2,14 @@
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
 using RemarkableSolutions.Anticaptcha.Requests;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers;
 
-internal sealed class HCaptchaRequestPayloadBuilder : HCaptchaProxylessRequestPayloadBuilder
+internal sealed class HCaptchaRequestSerializer : HCaptchaProxylessRequestSerializer
 {        
     public override string TypeName => "HCaptchaTask";
-    public override JObject Build(HCaptchaProxylessRequest request)
+    public override JObject Serialize(HCaptchaProxylessRequest request)
     {
-        return base.Build(request)
+        return base.Serialize(request)
             .With(((HCaptchaRequest)request).ProxyConfig);
     }
 }

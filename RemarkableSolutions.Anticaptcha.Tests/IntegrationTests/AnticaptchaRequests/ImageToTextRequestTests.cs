@@ -33,7 +33,7 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         public void ShouldReturnFalseWithCorrectException_WhenCallingWithIncorrectFilePath()
         {
             var request = CreateImageToTextRequest(filePath: "dsa.png");
-            var result = _anticaptchaManager.CreateCaptchaTask(request);
+            var result = AnticaptchaClient.CreateCaptchaTask(request);
             Assert.NotEmpty(result.ErrorDescription);
             Assert.Contains(nameof(ImageToTextRequest.BodyBase64), result.ErrorDescription);
         }

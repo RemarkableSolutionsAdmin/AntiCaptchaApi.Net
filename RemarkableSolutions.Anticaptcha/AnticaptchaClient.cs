@@ -13,14 +13,14 @@ using RemarkableSolutions.Anticaptcha.Responses;
 
 namespace RemarkableSolutions.Anticaptcha
 {
-    public class AnticaptchaManager
+    public class AnticaptchaClient
     {
-        private readonly PostRequestPayloadBuilder postRequestPayloadBuilder;
-        public string ClientKey => postRequestPayloadBuilder.ClientKey;
+        private readonly PostRequestPayloadBuilder _postRequestPayloadBuilder;
+        public string ClientKey => _postRequestPayloadBuilder.ClientKey;
 
-        public AnticaptchaManager(string clientKey)
+        public AnticaptchaClient(string clientKey)
         {
-            postRequestPayloadBuilder = new PostRequestPayloadBuilder(clientKey);
+            _postRequestPayloadBuilder = new PostRequestPayloadBuilder(clientKey);
         }
         
         public BalanceResponse GetBalance()
@@ -75,14 +75,14 @@ namespace RemarkableSolutions.Anticaptcha
 
         private async Task<BalanceResponse> GetBalanceLogic(bool isAsync)
         {
-            var payload = postRequestPayloadBuilder.BuildBasePayload();
+            var payload = _postRequestPayloadBuilder.BuildBasePayload();
             return isAsync ? await AnticaptchaApi.GetBalanceAsync(payload) : AnticaptchaApi.GetBalance(payload);
         }
 
         private async Task<TaskResultResponse<TSolution>> GetCurrentTaskResultLogic<TSolution>(bool isAsync, int taskId)
             where TSolution : BaseSolution, new()
         {
-            var payload = postRequestPayloadBuilder.BuildGetTaskPayload(taskId);
+            var payload = _postRequestPayloadBuilder.BuildGetTaskPayload(taskId);
             return isAsync ? await AnticaptchaApi.GetTaskResultAsync<TSolution>(payload) : AnticaptchaApi.GetTaskResult<TSolution>(payload);
         }
 
@@ -151,7 +151,7 @@ namespace RemarkableSolutions.Anticaptcha
             if (requestPayload == null)
                return new CreateTaskResponse(HttpStatusCode.BadRequest.ToString(), ErrorMessages.AnticaptchaPayloadBuildValidationFailedError);
 
-            var payload = postRequestPayloadBuilder.BuildTaskCreationPayload(requestPayload);
+            var payload = _postRequestPayloadBuilder.BuildTaskCreationPayload(requestPayload);
             return isAsync ? await AnticaptchaApi.CreateTaskAsync(payload) : AnticaptchaApi.CreateTask(payload);
         }
     }

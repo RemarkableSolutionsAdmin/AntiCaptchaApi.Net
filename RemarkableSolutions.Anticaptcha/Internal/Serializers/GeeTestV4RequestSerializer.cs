@@ -2,16 +2,16 @@
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
 using RemarkableSolutions.Anticaptcha.Requests;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers;
 
-internal sealed class GeeTestV4RequestPayloadBuilder : GeeTestV4ProxylessRequestPayloadBuilder
+internal sealed class GeeTestV4RequestSerializer : GeeTestV4ProxylessRequestSerializer
 {
     public override string TypeName => "GeeTestTask";
 
-    public override JObject Build(GeeTestV4ProxylessRequest request)
+    public override JObject Serialize(GeeTestV4ProxylessRequest request)
     {
         var proxyRequest = (GeeTestV4Request)request;
-        var payload = base.Build(request)
+        var payload = base.Serialize(request)
                 .With(proxyRequest.ProxyConfig)
                 .WithUserAgent(proxyRequest.UserAgent);
         

@@ -9,7 +9,7 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests
         [Fact]
         public void ShouldReturnCorrectBalance_WhenCallingAuthenticRequest()
         {
-            var balance = _anticaptchaManager.GetBalance();
+            var balance = AnticaptchaClient.GetBalance();
             Assert.NotNull(balance);
             Assert.NotNull(balance.Balance);
         }

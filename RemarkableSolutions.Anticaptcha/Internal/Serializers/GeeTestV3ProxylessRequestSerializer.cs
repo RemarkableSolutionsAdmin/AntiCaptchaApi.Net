@@ -1,17 +1,17 @@
 ﻿using Newtonsoft.Json.Linq;
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
-using RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders.Base;
+using RemarkableSolutions.Anticaptcha.Internal.Serializers.Base;
 using RemarkableSolutions.Anticaptcha.Requests;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers;
 
-internal class GeeTestV3ProxylessRequestPayloadBuilder : CaptchaRequestPayloadBuilder<GeeTestV3ProxylessRequest>
+internal class GeeTestV3ProxylessRequestSerializer : CaptchaRequestSerializer<GeeTestV3ProxylessRequest>
 {
     public override string TypeName => "GeeTestTaskProxyless";
     
-    public override JObject Build(GeeTestV3ProxylessRequest request)
+    public override JObject Serialize(GeeTestV3ProxylessRequest request)
     {            
-        var payload = base.Build(request)
+        var payload = base.Serialize(request)
             .With("websiteURL", request.WebsiteUrl)
             .With("gt", request.Gt)
             .With("geetestGetLib", request.GeetestGetLib)

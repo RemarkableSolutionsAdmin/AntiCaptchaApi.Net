@@ -2,14 +2,14 @@
 using RemarkableSolutions.Anticaptcha.Internal.Extensions;
 using RemarkableSolutions.Anticaptcha.Requests.Abstractions;
 
-namespace RemarkableSolutions.Anticaptcha.Internal.RequestPayloadBuilders.Base;
+namespace RemarkableSolutions.Anticaptcha.Internal.Serializers.Base;
 
-internal abstract class WebsiteCaptchaRequestPayloadBuilder<TRequest> : CaptchaRequestPayloadBuilder<TRequest>
+internal abstract class WebsiteCaptchaRequestSerializer<TRequest> : CaptchaRequestSerializer<TRequest>
     where TRequest : WebsiteCaptchaRequest
 {
-    public override JObject Build(TRequest request)
+    public override JObject Serialize(TRequest request)
     {
-        return base.Build(request)
+        return base.Serialize(request)
             .With("websiteURL", request.WebsiteUrl)
             .With("websiteKey", request.WebsiteKey);
     }

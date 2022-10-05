@@ -36,7 +36,7 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
             request.EnterprisePayload.Add("test", "qwerty");
             request.EnterprisePayload.Add("secret", "AB_12345");
 
-            var result = _anticaptchaManager.SolveCaptchaRaw<RecaptchaV2EnterpriseProxylessRequest, RecaptchaSolution>(request);
+            var result = AnticaptchaClient.SolveCaptchaRaw<RecaptchaV2EnterpriseProxylessRequest, RecaptchaSolution>(request);
             Assert.NotNull(result);
             Assert.True(result.Solution.CreateTaskResponse.HasNoErrors);
             Assert.NotNull(result.Solution.CreateTaskResponse);
