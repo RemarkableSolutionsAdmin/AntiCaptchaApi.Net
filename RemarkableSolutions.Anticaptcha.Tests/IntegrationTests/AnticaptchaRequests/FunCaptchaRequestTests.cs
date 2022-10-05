@@ -13,7 +13,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         private static FunCaptchaRequest CreateAuthenticFunCaptchaRequest() =>
             new()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = FunCaptchaUriExample,
                 WebsitePublicKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
                 UserAgent = TestEnvironment.UserAgent,

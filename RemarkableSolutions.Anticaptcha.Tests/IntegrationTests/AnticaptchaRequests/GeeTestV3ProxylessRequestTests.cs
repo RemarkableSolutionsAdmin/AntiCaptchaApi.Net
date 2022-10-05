@@ -14,7 +14,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
             var (gt, websiteChallenge) = GetTokens();
             var request = new GeeTestV3ProxylessRequest()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "http://www.supremenewyork.com",
                 Gt = gt,
                 Challenge = websiteChallenge

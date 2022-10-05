@@ -14,7 +14,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             var request = new RecaptchaV2EnterpriseProxylessRequest()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "http://http.myjino.ru/recaptcha/test-get.php",
                 WebsiteKey = "6Lc_aCMTAAAAABx7u2W0WPXnVbI_v6ZdbM6rYf16"
             };

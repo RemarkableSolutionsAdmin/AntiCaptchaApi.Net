@@ -15,7 +15,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         private static AntiGateRequest CreateAuthenticRequest() =>
             new()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = UriExample,
                 TemplateName = "CloudFlare cookies for a proxy",
                 Variables = new JObject(),

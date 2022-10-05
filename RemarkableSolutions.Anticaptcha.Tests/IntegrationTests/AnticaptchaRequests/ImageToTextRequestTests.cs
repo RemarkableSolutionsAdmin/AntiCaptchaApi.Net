@@ -11,11 +11,10 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
     {
         private const string ExpectedCaptchaResult = "W68HP";
 
-        private static ImageToTextRequest CreateImageToTextRequest(string? clientKey, string filePath = "")
+        private static ImageToTextRequest CreateImageToTextRequest(string filePath = "")
         {
             return new ImageToTextRequest
             {
-                ClientKey = clientKey ?? TestEnvironment.ClientKey,
                 FilePath = filePath
             };
         }
@@ -23,16 +22,17 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         [Fact]
         public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
         {
-            var request = CreateImageToTextRequest(null, filePath: "Resources\\captchaexample.png");
+            var request = CreateImageToTextRequest(filePath: "Resources\\captchaexample.png");
             TestCaptchaRequest(request, out TaskResultResponse<ImageToTextSolution> taskResult);
             AssertHelper.NotNullNotEmpty(taskResult.Solution.Url);
             AssertHelper.NotNullNotEmpty(taskResult.Solution.Text);
+            Assert.Equal(ExpectedCaptchaResult, taskResult.Solution.Text);
         }
 
         [Fact]
         public void ShouldReturnFalseWithCorrectException_WhenCallingWithIncorrectFilePath()
         {
-            var request = CreateImageToTextRequest(null, filePath: "dsa.png");
+            var request = CreateImageToTextRequest(filePath: "dsa.png");
             var result = _anticaptchaManager.CreateCaptchaTask(request);
             Assert.NotEmpty(result.ErrorDescription);
             Assert.Contains(nameof(ImageToTextRequest.BodyBase64), result.ErrorDescription);

@@ -14,7 +14,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             var request = new HCaptchaProxylessRequest()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "https://entwickler.ebay.de/signin?tab=register",
                 WebsiteKey = "195eeb9f-8f50-4a9c-abfc-a78ceaa3cdde",
                 UserAgent = TestEnvironment.UserAgent

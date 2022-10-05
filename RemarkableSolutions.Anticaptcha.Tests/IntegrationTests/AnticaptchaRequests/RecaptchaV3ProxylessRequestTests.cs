@@ -14,7 +14,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             var request = new RecaptchaV3ProxylessRequest()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "https://www.netflix.com/login",
                 WebsiteKey = "6Lf8hrcUAAAAAIpQAFW2VFjtiYnThOjZOA5xvLyR",
                 IsEnterprise = true
@@ -30,7 +29,6 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             var request = new RecaptchaV3ProxylessRequest()
             {
-                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "https://www.netflix.com/login",
                 WebsiteKey = "6Lf8hrcUAAAAAIpQAFW2VFjtiYnThOjZOA5xvLyR",
                 IsEnterprise = true
