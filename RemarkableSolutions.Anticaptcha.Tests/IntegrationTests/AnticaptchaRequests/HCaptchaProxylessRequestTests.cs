@@ -14,10 +14,10 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             var request = new HCaptchaProxylessRequest()
             {
-                ClientKey = TestConfig.ClientKey,
+                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "https://entwickler.ebay.de/signin?tab=register",
                 WebsiteKey = "195eeb9f-8f50-4a9c-abfc-a78ceaa3cdde",
-                UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116"
+                UserAgent = TestEnvironment.UserAgent
             };
             
             TestCaptchaRequest(request, out TaskResultResponse<HCaptchaSolution> taskResultResponse);

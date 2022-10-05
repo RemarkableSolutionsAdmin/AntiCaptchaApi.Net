@@ -13,7 +13,7 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         private static FunCaptchaRequestProxyless CreateAuthenticFunCaptchaRequest() =>
             new()
             {
-                ClientKey = TestConfig.ClientKey,
+                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = FunCaptchaUriExample,
                 WebsitePublicKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
                 FunCaptchaApiJsSubdomain = "test",

@@ -13,20 +13,20 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         private static FunCaptchaRequest CreateAuthenticFunCaptchaRequest() =>
             new()
             {
-                ClientKey = TestConfig.ClientKey,
+                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = FunCaptchaUriExample,
                 WebsitePublicKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
-                UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116",
+                UserAgent = TestEnvironment.UserAgent,
                 FunCaptchaApiJsSubdomain = "test",
                 Data = "test",
-                ProxyConfig = TestHelper.GetCurrentTestProxyConfig()
+                ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig()
             };
 
         [Fact]
         public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
         {
-            if (!TestConfig.IsProxyDefined)
-                Assert.True(TestConfig.IsProxyDefined);
+            if (!TestEnvironment.IsProxyDefined)
+                Assert.True(TestEnvironment.IsProxyDefined);
 
             var captchaRequest = CreateAuthenticFunCaptchaRequest();
             TestCaptchaRequest(captchaRequest, out TaskResultResponse<FunCaptchaSolution> response);
@@ -38,8 +38,8 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         [Fact]
         public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequestAsync()
         {
-            if(!TestConfig.IsProxyDefined)
-                Assert.True(TestConfig.IsProxyDefined);
+            if(!TestEnvironment.IsProxyDefined)
+                Assert.True(TestEnvironment.IsProxyDefined);
 
             var captchaRequest = CreateAuthenticFunCaptchaRequest();
             await TestCaptchaRequestAsync(captchaRequest);

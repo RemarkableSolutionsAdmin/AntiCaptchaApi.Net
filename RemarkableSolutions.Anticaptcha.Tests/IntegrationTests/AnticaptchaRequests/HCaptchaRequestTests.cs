@@ -14,11 +14,11 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             var request = new HCaptchaRequest()
             {
-                ClientKey = TestConfig.ClientKey,
+                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "https://democaptcha.com/demo-form-eng/hcaptcha.html/",
                 WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc",
-                UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116",
-                ProxyConfig = TestHelper.GetCurrentTestProxyConfig()
+                UserAgent = TestEnvironment.UserAgent,
+                ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig()
             };
             
             TestCaptchaRequest(request, out TaskResultResponse<HCaptchaSolution> taskResultResponse);

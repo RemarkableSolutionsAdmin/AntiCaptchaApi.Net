@@ -9,28 +9,8 @@ using Xunit;
 
 namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class GeeTestV4ProxylessRequestTests : AnticaptchaTestBase
+    public class GeeTestV4ProxylessRequestTests : GeeTestsBase
     {
-        private class GeeTestModel
-        {
-            public GeeTestData Data { get; set; }
-            public string Status { get; set; }
-            [JsonProperty("err_msg")] public string ErrorMessage { get; set; }
-        }
-
-        private class GeeTestData
-        {
-            [JsonProperty("gt")] public string WebsiteKey { get; set; }
-            [JsonProperty("challenge")] public string WebsiteChallenge { get; set; }
-        }
-
-        private (string websiteKey, string websiteChallenge) GetTokens()
-        {
-            var response = new WebClient().DownloadString("https://auth.geetest.com/api/init_captcha?time=1561554686474");
-            var model = JsonConvert.DeserializeObject<GeeTestModel>(response);
-            return (model.Data.WebsiteKey, model.Data.WebsiteChallenge);
-        }
-
         [Fact]
         public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
         {
@@ -40,7 +20,7 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
             var (websiteKey, websiteChallenge) = GetTokens();
             var request = new GeeTestV4ProxylessRequest()
             {
-                ClientKey = TestConfig.ClientKey,
+                ClientKey = TestEnvironment.ClientKey,
                 WebsiteUrl = "http://www.supremenewyork.com",
                 Gt = websiteKey,
                 Challenge = websiteChallenge

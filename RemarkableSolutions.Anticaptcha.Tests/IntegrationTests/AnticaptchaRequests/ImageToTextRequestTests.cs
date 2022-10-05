@@ -15,7 +15,7 @@ namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequ
         {
             return new ImageToTextRequest
             {
-                ClientKey = clientKey ?? TestConfig.ClientKey,
+                ClientKey = clientKey ?? TestEnvironment.ClientKey,
                 FilePath = filePath
             };
         }
