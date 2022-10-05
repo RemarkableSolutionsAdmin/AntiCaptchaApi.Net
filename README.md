@@ -1,16 +1,16 @@
-# DotNet.Anticaptcha
-DotNet.Anticaptcha - A .NET Standard 2.1 library that implements Anticaptcha.com API
-=======
+# DotNet.Anticaptcha 
+
+### DotNet.Anticaptcha - A .NET Standard 2.1 library that implements Anticaptcha.com API
 
 DotNet.Anticaptcha is a framework written using the .NET Standard. Framework wraps all captcha methods provided by anticaptcha for use in your application.
 
-# LICENSE
+## LICENSE
 
 MIT - see LICENSE
 
-# INFO
+## INFO
 
-## Adding DotNet.Anticaptcha to your project
+### Adding DotNet.Anticaptcha to your project
 
 Simply install the nuget package via
 
@@ -40,7 +40,7 @@ To run the build, a Visual Studio 2022 compatible environment should be setup.
 var client = new AntiCaptchaClient("API_KEY");
 ```
 
-1. Create your request:
+2. Create your request:
 ```csharp
 var request = new HCaptchaRequest()
             {
@@ -51,12 +51,12 @@ var request = new HCaptchaRequest()
             }; 
 ```
 
-1. Create your captcha task:
+3. Create your captcha task:
 ```csharp
 client.CreateCaptchaTask(request);
 ```
 
-1. Get your captcha solution:
+4. Get your captcha solution:
 ```csharp
 client.WaitForRawTaskResult(creationTaskResult.TaskId.Value);
 ```
