@@ -3,13 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.0.2-alpha</Version>
+    <Version>1.0.0.1</Version>
     <Authors>RemarkableSolutions</Authors>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/RemarkableSolutionsAdmin/RemarkableSolutions.Anticaptcha</PackageProjectUrl>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/RemarkableSolutionsAdmin/RemarkableSolutions.Anticaptcha</RepositoryUrl>
     <PackageTags>RemarkableSolutions AntiCaptcha Captcha</PackageTags>
     <LangVersion>10</LangVersion>
+    <Title>RemarkableSolutions.Anticaptcha</Title>
+    <Description>Library for captcha solving using anticaptcha.com api</Description>
+    <Copyright>Copyright (c) Remarkable Solutions 2022</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
