@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
+using RemarkableSolutions.Anticaptcha.Tests.IntegrationTests.AnticaptchaRequests;
 using Xunit;
 
 namespace RemarkableSolutions.Anticaptcha.Tests.IntegrationTests
 {
-    public class AnticaptchaGetBalanceTests
+    public class AnticaptchaGetBalanceTests : AnticaptchaTestBase
     {
         [Fact]
         public void ShouldReturnCorrectBalance_WhenCallingAuthenticRequest()
         {
-            var balance = AnticaptchaManager.GetBalance(clientKey: TestEnvironment.ClientKey);
+            var balance = _anticaptchaManager.GetBalance();
             Assert.NotNull(balance);
             Assert.NotNull(balance.Balance);
         }

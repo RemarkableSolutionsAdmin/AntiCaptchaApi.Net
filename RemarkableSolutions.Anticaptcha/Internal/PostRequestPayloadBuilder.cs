@@ -5,27 +5,33 @@ namespace RemarkableSolutions.Anticaptcha.Internal
     internal class PostRequestPayloadBuilder
     {
         private const int SoftId = 1023;
-        
-        internal JObject BuildBasePayload(string clientKey)
+        public string ClientKey { get; }
+
+        internal PostRequestPayloadBuilder(string clientKey)
         {
-            var resultPayload = new JObject();;
-            resultPayload.Add("softId", SoftId);
-            resultPayload.Add("clientKey", clientKey);
-            return resultPayload;
+            ClientKey = clientKey;
+        }
+
+        internal JObject BuildBasePayload()
+        {
+            var payload = new JObject();;
+            payload.Add("softId", SoftId);
+            payload.Add("clientKey", ClientKey);
+            return payload;
         }
         
-        internal JObject BuildTaskCreationPayload(JObject requestPayload, string clientKey)
+        internal JObject BuildTaskCreationPayload(JObject requestPayload)
         {
-            var resultPayload = BuildBasePayload(clientKey);
-            resultPayload.Add("task", requestPayload);
-            return resultPayload;
+            var payload = BuildBasePayload();
+            payload.Add("task", requestPayload);
+            return payload;
         }
         
-        internal JObject BuildGetTaskPayload(int taskId, string clientKey)
+        internal JObject BuildGetTaskPayload(int taskId)
         {
-            var resultPayload = BuildBasePayload(clientKey);
-            resultPayload.Add("taskId", taskId);
-            return resultPayload;
+            var payload = BuildBasePayload();
+            payload.Add("taskId", taskId);
+            return payload;
         }
     }
 }

@@ -13,82 +13,88 @@ using RemarkableSolutions.Anticaptcha.Responses;
 
 namespace RemarkableSolutions.Anticaptcha
 {
-    public static class AnticaptchaManager
+    public class AnticaptchaManager
     {
-        private static readonly PostRequestPayloadBuilder PostRequestPayloadBuilder = new();
+        private readonly PostRequestPayloadBuilder postRequestPayloadBuilder;
+        public string ClientKey => postRequestPayloadBuilder.ClientKey;
 
-        public static BalanceResponse GetBalance(string clientKey)
+        public AnticaptchaManager(string clientKey)
         {
-            return GetBalanceLogic(false,  clientKey).Result;
+            postRequestPayloadBuilder = new PostRequestPayloadBuilder(clientKey);
+        }
+        
+        public BalanceResponse GetBalance()
+        {
+            return GetBalanceLogic(false).Result;
         }
 
-        public static async Task<BalanceResponse> GetBalanceAsync(string clientKey)
+        public async Task<BalanceResponse> GetBalanceAsync()
         {
-            return await GetBalanceLogic(true, clientKey);
+            return await GetBalanceLogic(true);
         }
 
-        public static async Task<TaskResultResponse<TSolution>> GetCurrentRawTaskResultAsync<TSolution>(int taskId, string clientKey)
+        public async Task<TaskResultResponse<TSolution>> GetCurrentRawTaskResultAsync<TSolution>(int taskId)
             where TSolution : BaseSolution, new()
         {
-            return await GetCurrentTaskResultLogic<TSolution>(true, taskId, clientKey);
+            return await GetCurrentTaskResultLogic<TSolution>(true, taskId);
         }
 
-        public static TaskResultResponse<TSolution> GetCurrentRawTaskResult<TSolution>(int taskId, string clientKey)
+        public TaskResultResponse<TSolution> GetCurrentRawTaskResult<TSolution>(int taskId)
             where TSolution : BaseSolution, new()
         {
-            return GetCurrentTaskResultLogic<TSolution>(false, taskId, clientKey).Result;
+            return GetCurrentTaskResultLogic<TSolution>(false, taskId).Result;
         }
 
-        public static TaskResultResponse<TSolution> SolveCaptchaRaw<TRequest, TSolution>(TRequest request)
+        public TaskResultResponse<TSolution> SolveCaptchaRaw<TRequest, TSolution>(TRequest request)
             where TRequest : CaptchaRequest
             where TSolution : BaseSolution, new()
         {
             return SolveCaptchaLogic<TRequest, TSolution>(false, request).Result;
         }
         
-        public static async Task<TaskResultResponse<TSolution>> WaitForTaskRawResultAsync<TSolution>(int taskId, string clientKey, int maxSeconds = 120)
+        public async Task<TaskResultResponse<TSolution>> WaitForTaskRawResultAsync<TSolution>(int taskId, int maxSeconds = 120)
             where TSolution : BaseSolution, new()
         {
-            return await WaitForTaskResultLogic<TSolution>(true, taskId, maxSeconds, 0, clientKey);
+            return await WaitForTaskResultLogic<TSolution>(true, taskId, maxSeconds, 0);
         }
 
-        public static TaskResultResponse<TSolution> WaitForRawTaskResult<TSolution>(int taskId, string clientKey, int maxSeconds = 120)
+        public TaskResultResponse<TSolution> WaitForRawTaskResult<TSolution>(int taskId, int maxSeconds = 120)
             where TSolution : BaseSolution, new()
         {
-            return WaitForTaskResultLogic<TSolution>(false, taskId, maxSeconds, 0, clientKey).Result;
+            return WaitForTaskResultLogic<TSolution>(false, taskId, maxSeconds, 0).Result;
         }
-        public static CreateTaskResponse CreateCaptchaTask<T>(T request) where T : CaptchaRequest
+        public CreateTaskResponse CreateCaptchaTask<T>(T request) where T : CaptchaRequest
         {
-            return CreateCaptchaTaskLogic(request, false, request.ClientKey).Result;
-        }
-
-        public static async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(T request) where T : CaptchaRequest
-        {
-            return await CreateCaptchaTaskLogic(request, true, request.ClientKey);
+            return CreateCaptchaTaskLogic(request, false).Result;
         }
 
-        private static async Task<BalanceResponse> GetBalanceLogic(bool isAsync, string clientKey)
+        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(T request) where T : CaptchaRequest
         {
-            var payload = PostRequestPayloadBuilder.BuildBasePayload(clientKey);
+            return await CreateCaptchaTaskLogic(request, true);
+        }
+
+        private async Task<BalanceResponse> GetBalanceLogic(bool isAsync)
+        {
+            var payload = postRequestPayloadBuilder.BuildBasePayload();
             return isAsync ? await AnticaptchaApi.GetBalanceAsync(payload) : AnticaptchaApi.GetBalance(payload);
         }
 
-        private static async Task<TaskResultResponse<TSolution>> GetCurrentTaskResultLogic<TSolution>(bool isAsync, int taskId, string clientKey)
+        private async Task<TaskResultResponse<TSolution>> GetCurrentTaskResultLogic<TSolution>(bool isAsync, int taskId)
             where TSolution : BaseSolution, new()
         {
-            var payload = PostRequestPayloadBuilder.BuildGetTaskPayload(taskId, clientKey);
+            var payload = postRequestPayloadBuilder.BuildGetTaskPayload(taskId);
             return isAsync ? await AnticaptchaApi.GetTaskResultAsync<TSolution>(payload) : AnticaptchaApi.GetTaskResult<TSolution>(payload);
         }
 
-        private static async Task<TaskResultResponse<TSolution>> SolveCaptchaLogic<TRequest, TSolution>(bool isAsync, TRequest request, int maxSeconds = 120, int currentSecond = 0) 
+        private async Task<TaskResultResponse<TSolution>> SolveCaptchaLogic<TRequest, TSolution>(bool isAsync, TRequest request, int maxSeconds = 120, int currentSecond = 0) 
             where TRequest : CaptchaRequest
             where TSolution : BaseSolution, new()
         
         {
-            var createTaskResponse = await CreateCaptchaTaskLogic(request, isAsync, request.ClientKey);
+            var createTaskResponse = await CreateCaptchaTaskLogic(request, isAsync);
             if (createTaskResponse.HasNoErrors && createTaskResponse.TaskId.HasValue)
             {
-                var taskResult = await WaitForTaskResultLogic<TSolution>(isAsync, createTaskResponse.TaskId.Value, maxSeconds, currentSecond, request.ClientKey);
+                var taskResult = await WaitForTaskResultLogic<TSolution>(isAsync, createTaskResponse.TaskId.Value, maxSeconds, currentSecond);
                 var solution = taskResult.Solution;
                 solution.CreateTaskResponse = createTaskResponse;
                 return taskResult;   
@@ -100,7 +106,7 @@ namespace RemarkableSolutions.Anticaptcha
             };
         }
         
-        private static async Task<TaskResultResponse<TSolution>> WaitForTaskResultLogic<TSolution>(bool isAsync, int taskId, int maxSeconds, int currentSecond, string clientKey)
+        private async Task<TaskResultResponse<TSolution>> WaitForTaskResultLogic<TSolution>(bool isAsync, int taskId, int maxSeconds, int currentSecond)
             where TSolution : BaseSolution, new()
         {
             if (currentSecond >= maxSeconds)
@@ -110,14 +116,14 @@ namespace RemarkableSolutions.Anticaptcha
 
             await Waiter.Wait(isAsync, currentSecond);
 
-            var taskResult = await GetCurrentTaskResultLogic<TSolution>(isAsync, taskId, clientKey);
+            var taskResult = await GetCurrentTaskResultLogic<TSolution>(isAsync, taskId);
 
             switch (taskResult.Status)
             {
                 case TaskStatusType.Processing:
                     if (isAsync)
-                        return await WaitForTaskResultLogic<TSolution>(isAsync, taskId, maxSeconds, currentSecond + 1, clientKey);
-                    return WaitForTaskResultLogic<TSolution>(isAsync, taskId, maxSeconds, currentSecond + 1, clientKey).Result;
+                        return await WaitForTaskResultLogic<TSolution>(isAsync, taskId, maxSeconds, currentSecond + 1);
+                    return WaitForTaskResultLogic<TSolution>(isAsync, taskId, maxSeconds, currentSecond + 1).Result;
                 case TaskStatusType.Ready when !taskResult.Solution.IsValid():
                     return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.Conflict.ToString(), ErrorMessages.AnticaptchaNoSolutionFromAPIError);
                 case TaskStatusType.Ready:
@@ -134,7 +140,7 @@ namespace RemarkableSolutions.Anticaptcha
             }
         }
         
-        private static async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(T request, bool isAsync, string clientKey) where T : CaptchaRequest
+        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(T request, bool isAsync) where T : CaptchaRequest
         {
             var validationResult = request.Validate();
             if (!validationResult.IsValid)
@@ -145,7 +151,7 @@ namespace RemarkableSolutions.Anticaptcha
             if (requestPayload == null)
                return new CreateTaskResponse(HttpStatusCode.BadRequest.ToString(), ErrorMessages.AnticaptchaPayloadBuildValidationFailedError);
 
-            var payload = PostRequestPayloadBuilder.BuildTaskCreationPayload(requestPayload, clientKey);
+            var payload = postRequestPayloadBuilder.BuildTaskCreationPayload(requestPayload);
             return isAsync ? await AnticaptchaApi.CreateTaskAsync(payload) : AnticaptchaApi.CreateTask(payload);
         }
     }
