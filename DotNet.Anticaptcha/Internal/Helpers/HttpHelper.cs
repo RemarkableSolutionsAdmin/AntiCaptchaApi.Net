@@ -25,6 +25,7 @@ namespace DotNet.Anticaptcha.Internal.Helpers
                 new TaskResultConverter<HCaptchaSolution>(),
                 new TaskResultConverter<RecaptchaSolution>(),
                 new TaskResultConverter<ImageToTextSolution>(),
+                new GetAppStatsResponseConverter(),
             });
         }
         

@@ -32,6 +32,7 @@ namespace DotNet.Anticaptcha.Tests
             };
         }
 
+        internal const int SoftId = 1023;
         internal const string UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116";
     }
 }

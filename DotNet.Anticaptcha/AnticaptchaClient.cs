@@ -22,7 +22,51 @@ namespace DotNet.Anticaptcha
         {
             _postRequestPayloadBuilder = new PostRequestPayloadBuilder(clientKey);
         }
-        
+        public async Task<GetQueueStatsResponse> GetQueueStatsAsync(QueueType queueType)
+        {
+            var payload = _postRequestPayloadBuilder.BuildGetQueueStatsPayload(queueType);
+            return await AnticaptchaApi.CallApiMethodAsync<GetQueueStatsResponse>(AnticaptchaApi.ApiMethod.GetQueueStats, payload);
+        }
+
+        public async Task<GetAppStatsResponse> GetAppStatsAsync(int softId, AppStatsMode? mode = null)
+        {
+            var payload = _postRequestPayloadBuilder.BuildGetAppStatsPayload(softId, mode);
+            return await AnticaptchaApi.CallApiMethodAsync<GetAppStatsResponse>(AnticaptchaApi.ApiMethod.GetAppStats, payload);
+        }
+
+        public async Task<GetSpendingStatsResponse> GetSpendingStatsAsync(int date, string queue, int? softId = null, string ip = null)
+        {
+            var payload = _postRequestPayloadBuilder.BuildGetSpendingStatsPayload(date, queue, softId, ip);
+            return await AnticaptchaApi.CallApiMethodAsync<GetSpendingStatsResponse>(AnticaptchaApi.ApiMethod.GetSpendingStats, payload);
+        }
+
+        public async Task<ActionResponse> PushAntiGateVariableAsync(int taskId, string name, object value)
+        {
+            var payload = _postRequestPayloadBuilder.BuildPushAntiGateVariablePayload(taskId, name, value);
+            return await AnticaptchaApi.CallApiMethodAsync<ActionResponse>(AnticaptchaApi.ApiMethod.PushAntiGateVariable, payload);
+        }
+    
+        public async Task<ActionResponse> ReportIncorrectImageCaptchaAsync(int taskId) =>
+            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportIncorrectImageCaptcha);
+
+        public async Task<ActionResponse> ReportIncorrectImageRecaptchaAsync(int taskId) => 
+            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportIncorrectRecaptcha);
+
+
+        public async Task<ActionResponse> ReportCorrectRecaptchaAsync(int taskId) => 
+            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportCorrectRecaptcha);
+
+
+        public async Task<ActionResponse> ReportIncorrectImageHCaptchaAsync(int taskId) => 
+            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportIncorrectHCaptcha);
+
+
+        private async Task<ActionResponse> ReportCaptcha(int taskId, AnticaptchaApi.ApiMethod method)
+        {
+            var payload = _postRequestPayloadBuilder.BuildGetTaskPayload(taskId);
+            return await AnticaptchaApi.CallApiMethodAsync<ActionResponse>(method, payload);
+        }
+
         public BalanceResponse GetBalance()
         {
             return GetBalanceLogic(false).Result;

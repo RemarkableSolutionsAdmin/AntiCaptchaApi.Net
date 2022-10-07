@@ -17,7 +17,15 @@ namespace DotNet.Anticaptcha
         {
             CreateTask,
             GetTaskResult,
-            GetBalance
+            GetBalance,
+            GetQueueStats,
+            ReportIncorrectImageCaptcha,
+            ReportIncorrectRecaptcha,
+            ReportCorrectRecaptcha,
+            ReportIncorrectHCaptcha,
+            PushAntiGateVariable,
+            GetSpendingStats,
+            GetAppStats,
         }
         public static CreateTaskResponse CreateTask(JObject jsonPostData)
         {
@@ -56,7 +64,7 @@ namespace DotNet.Anticaptcha
             return await CallApiMethodAsync<BalanceResponse>(ApiMethod.GetBalance, payload);
         }
 
-        private static async Task<TResponse> CallApiMethodAsync<TResponse>(ApiMethod methodName, JObject payload)
+        public static async Task<TResponse> CallApiMethodAsync<TResponse>(ApiMethod methodName, JObject payload)
             where TResponse : BaseResponse, new()
         {
             return await CallApiMethodLogic<TResponse>(true, methodName, payload);

@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
+using DotNet.Anticaptcha;
 using DotNet.Anticaptcha.Models.Solutions;
 using DotNet.Anticaptcha.Requests.Abstractions;
 using DotNet.Anticaptcha.Responses;
+using DotNet.Anticaptcha.Tests;
 using DotNet.Anticaptcha.Tests.Helpers;
 using Xunit;
 
