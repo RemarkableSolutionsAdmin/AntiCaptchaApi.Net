@@ -1,8 +1,8 @@
-# DotNet.Anticaptcha 
+# AntiCaptchaApi.Net 
 
-### DotNet.Anticaptcha - A .NET Standard 2.1 library that implements Anticaptcha.com API
+### AntiCaptchaApi.Net - A .NET Standard 2.1 library that implements Anticaptcha.com API
 
-DotNet.Anticaptcha is a framework written using the .NET Standard. Framework wraps all captcha methods provided by anticaptcha for use in your application.
+AntiCaptchaApi.Net is a framework written using the .NET Standard. Framework wraps all captcha methods provided by anticaptcha for use in your application.
 
 ## LICENSE
 
@@ -10,11 +10,11 @@ MIT - see LICENSE
 
 ## INFO
 
-### Adding DotNet.Anticaptcha to your project
+### Adding AntiCaptchaApi.Net to your project
 
 Simply install the nuget package via
 
-`Install-Package DotNet.Anticaptcha`
+`Install-Package AntiCaptchaApi.Net`
 
 ### Contributing
 
@@ -27,7 +27,7 @@ Simply install the nuget package via
 ### Source
 
 1. Clone the source down to your machine.
-   `git clone https://github.com/RemarkableSolutionsAdmin/DotNet.Anticaptcha.git`
+   `git clone https://github.com/RemarkableSolutionsAdmin/AntiCaptchaApi.Net.git`
    
 # REQUIREMENTS
 
