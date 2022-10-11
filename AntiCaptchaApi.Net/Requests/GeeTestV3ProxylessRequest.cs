@@ -1,6 +1,6 @@
-﻿using AntiCaptchaApi.Requests.Abstractions;
+﻿using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     /// <summary>
     /// Solve GeeTest captcha automatically without proxy

@@ -1,7 +1,7 @@
-﻿using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Responses;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses;
 
-namespace AntiCaptchaApi.Internal.Helpers;
+namespace AntiCaptchaApi.Net.Internal.Helpers;
 
 public static class BaseTaskResultResponseBuilder
 {

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace AntiCaptchaApi.Tests.Models;
+﻿namespace AntiCaptchaApi.Net.Tests.Models;
 
 
 public class GeeTestData

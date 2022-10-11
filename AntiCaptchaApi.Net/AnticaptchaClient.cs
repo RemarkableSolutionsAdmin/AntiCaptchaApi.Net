@@ -2,16 +2,16 @@
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Internal.Common;
-using AntiCaptchaApi.Internal.Helpers;
-using AntiCaptchaApi.Internal;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Requests.Abstractions;
-using AntiCaptchaApi.Responses;
-using AntiCaptchaApi.Internal.Extensions;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Internal;
+using AntiCaptchaApi.Net.Internal.Common;
+using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Internal.Helpers;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Responses;
 
-namespace AntiCaptchaApi
+namespace AntiCaptchaApi.Net
 {
     public class AnticaptchaClient
     {
@@ -139,14 +139,13 @@ namespace AntiCaptchaApi
             if (createTaskResponse.HasNoErrors && createTaskResponse.TaskId.HasValue)
             {
                 var taskResult = await WaitForTaskResultLogic<TSolution>(isAsync, createTaskResponse.TaskId.Value, maxSeconds, currentSecond);
-                var solution = taskResult.Solution;
-                solution.CreateTaskResponse = createTaskResponse;
+                taskResult.Solution.CreateTaskResponse = createTaskResponse; //TODO should be done in serializer.
                 return taskResult;
             }
 
             return new TaskResultResponse<TSolution>()
             {
-                Solution = { CreateTaskResponse = createTaskResponse }
+                Solution = new TSolution { CreateTaskResponse = createTaskResponse }
             };
         }
 

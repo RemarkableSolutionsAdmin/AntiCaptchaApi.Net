@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AntiCaptchaApi.Internal.Validation.ValidationErrors;
+using AntiCaptchaApi.Net.Internal.Validation.ValidationErrors;
 
-namespace AntiCaptchaApi.Internal.Validation;
+namespace AntiCaptchaApi.Net.Internal.Validation;
 
 public class ValidationResult
 {

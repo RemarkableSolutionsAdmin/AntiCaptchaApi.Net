@@ -1,7 +1,7 @@
-﻿using AntiCaptchaApi.Internal.Validation.Validators.Base;
-using AntiCaptchaApi.Requests;
+﻿using AntiCaptchaApi.Net.Internal.Validation.Validators.Base;
+using AntiCaptchaApi.Net.Requests;
 
-namespace AntiCaptchaApi.Internal.Validation.Validators;
+namespace AntiCaptchaApi.Net.Internal.Validation.Validators;
 
 public class RecaptchaV2EnterpriseProxylessRequestValidator : WebsiteCaptchaRequestValidator<RecaptchaV2EnterpriseProxylessRequest>
 {

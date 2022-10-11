@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Requests.Abstractions
+﻿namespace AntiCaptchaApi.Net.Requests.Abstractions
 {
     public abstract class WebsiteCaptchaRequest : CaptchaRequest
     {

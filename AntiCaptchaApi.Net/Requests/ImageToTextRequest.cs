@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Internal.Helpers;
-using AntiCaptchaApi.Requests.Abstractions;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Internal.Helpers;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     
     /// <summary>

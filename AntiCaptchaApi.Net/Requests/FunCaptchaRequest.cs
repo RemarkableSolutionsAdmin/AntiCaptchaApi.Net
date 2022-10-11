@@ -1,6 +1,6 @@
-﻿using AntiCaptchaApi.Models;
+﻿using AntiCaptchaApi.Net.Models;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     /// <summary>
     /// Bypass Arkose Labs captcha (aka Funcaptcha) with proxy

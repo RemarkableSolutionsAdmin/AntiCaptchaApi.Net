@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Models.Solutions
+namespace AntiCaptchaApi.Net.Models.Solutions
 {
     public class RawSolution : BaseSolution
     {

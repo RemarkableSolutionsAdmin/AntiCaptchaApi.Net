@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace AntiCaptchaApi.Internal
+namespace AntiCaptchaApi.Net.Internal
 {
     internal static class Waiter
     {

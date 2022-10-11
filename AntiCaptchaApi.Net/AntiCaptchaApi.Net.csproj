@@ -8,7 +8,7 @@
     <PackageProjectUrl>https://github.com/RemarkableSolutionsAdmin/AntiCaptchaApi.Net</PackageProjectUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/RemarkableSolutionsAdmin/AntiCaptchaApi.Net</RepositoryUrl>
-    <PackageTags>RemarkableSolutions DotNet AntiCaptcha Captcha</PackageTags>
+    <PackageTags>DotNet AntiCaptcha Captcha Recaptcha GeeCaptcha RecaptchaV2 Anti-captcha RemarkableSolutions </PackageTags>
     <LangVersion>10</LangVersion>
     <Title>Anticaptcha.NetStandard</Title>
     <Description>Library for captcha solving using anticaptcha.com api</Description>
@@ -17,6 +17,7 @@
     <PublishRepositoryUrl>True</PublishRepositoryUrl>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageVersion>1.0.0.4</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

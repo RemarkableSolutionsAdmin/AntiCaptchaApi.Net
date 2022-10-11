@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AntiCaptchaApi.Net.Internal.Helpers;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses;
+using AntiCaptchaApi.Net.Responses.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Responses.Abstractions;
-using AntiCaptchaApi.Internal.Helpers;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Responses;
 
-namespace AntiCaptchaApi
+namespace AntiCaptchaApi.Net
 {
     public static class AnticaptchaApi
     {

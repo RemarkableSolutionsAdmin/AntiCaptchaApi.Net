@@ -1,6 +1,6 @@
-﻿using AntiCaptchaApi.Requests.Abstractions;
+﻿using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     /// <summary>
     /// Solve Arkose Labs captcha (aka Funcaptcha) automatically without proxy - FuncaptchaTaskProxyless

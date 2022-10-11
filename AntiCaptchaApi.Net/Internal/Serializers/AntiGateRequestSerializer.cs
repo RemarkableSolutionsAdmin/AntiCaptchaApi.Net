@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Internal.Extensions;
-using AntiCaptchaApi.Internal.Serializers.Base;
-using AntiCaptchaApi.Requests;
+﻿using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Internal.Serializers.Base;
+using AntiCaptchaApi.Net.Requests;
+using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Serializers;
+namespace AntiCaptchaApi.Net.Internal.Serializers;
 
 internal sealed  class AntiGateRequestSerializer : CaptchaRequestSerializer<AntiGateRequest>
 {

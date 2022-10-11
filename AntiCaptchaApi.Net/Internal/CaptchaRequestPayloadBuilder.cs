@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using AntiCaptchaApi.Net.Internal.Serializers;
+using AntiCaptchaApi.Net.Internal.Validation;
+using AntiCaptchaApi.Net.Internal.Validation.Validators;
+using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Internal.Serializers;
-using AntiCaptchaApi.Internal.Validation;
-using AntiCaptchaApi.Internal.Validation.Validators;
-using AntiCaptchaApi.Requests;
-using AntiCaptchaApi.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Internal;
+namespace AntiCaptchaApi.Net.Internal;
 
 internal static class CaptchaRequestPayloadBuilder
 {

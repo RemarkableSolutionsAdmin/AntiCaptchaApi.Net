@@ -1,8 +1,8 @@
-﻿using AntiCaptchaApi.Enums;
+﻿using AntiCaptchaApi.Net.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal
+namespace AntiCaptchaApi.Net.Internal
 {
     internal class PostRequestPayloadBuilder
     {

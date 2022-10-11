@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Models;
+﻿using AntiCaptchaApi.Net.Models;
+using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Extensions
+namespace AntiCaptchaApi.Net.Internal.Extensions
 {
     internal static class JObjectExtensions
     {

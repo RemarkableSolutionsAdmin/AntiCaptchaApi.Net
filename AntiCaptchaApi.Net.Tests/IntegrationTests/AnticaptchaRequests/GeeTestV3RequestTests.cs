@@ -1,10 +1,10 @@
-﻿using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Requests;
-using AntiCaptchaApi.Responses;
-using AntiCaptchaApi.Tests.Helpers;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Responses;
+using AntiCaptchaApi.Net.Tests.Helpers;
 using Xunit;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
     public class GeeTestV3RequestTests : GeeTestsBase
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 using Xunit;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests
 {
     public class AnticaptchaGetQueueStatsTests : AnticaptchaTestBase
     {

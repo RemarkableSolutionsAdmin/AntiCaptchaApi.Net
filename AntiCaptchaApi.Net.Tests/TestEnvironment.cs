@@ -1,8 +1,8 @@
 ﻿using System;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Models;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Models;
 
-namespace AntiCaptchaApi.Tests
+namespace AntiCaptchaApi.Net.Tests
 {
     public static class TestEnvironment
     {

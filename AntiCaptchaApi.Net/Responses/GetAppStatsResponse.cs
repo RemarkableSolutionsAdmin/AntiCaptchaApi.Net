@@ -1,8 +1,8 @@
-﻿using AntiCaptchaApi.Responses.Abstractions;
+﻿using AntiCaptchaApi.Net.Responses.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Responses;
+namespace AntiCaptchaApi.Net.Responses;
 
 public class GetAppStatsResponse : BaseResponse
 {

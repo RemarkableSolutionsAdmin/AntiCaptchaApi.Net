@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AntiCaptchaApi.Internal.Validation.ValidationErrors;
+namespace AntiCaptchaApi.Net.Internal.Validation.ValidationErrors;
 
 internal record MustBeOneOfTheValuesError(string PropertyName, List<string> correctValues) : ValidationError(PropertyName, "do not have correct value.")
 {

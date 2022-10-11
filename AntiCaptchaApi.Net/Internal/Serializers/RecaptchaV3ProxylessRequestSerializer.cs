@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Internal.Extensions;
-using AntiCaptchaApi.Internal.Serializers.Base;
-using AntiCaptchaApi.Requests;
+﻿using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Internal.Serializers.Base;
+using AntiCaptchaApi.Net.Requests;
+using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Serializers;
+namespace AntiCaptchaApi.Net.Internal.Serializers;
 
 internal sealed class RecaptchaV3ProxylessRequestSerializer: WebsiteCaptchaRequestSerializer<RecaptchaV3ProxylessRequest>
 {       

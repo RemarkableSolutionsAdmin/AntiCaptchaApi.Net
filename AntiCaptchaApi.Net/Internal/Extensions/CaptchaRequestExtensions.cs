@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Internal.Validation;
-using AntiCaptchaApi.Requests.Abstractions;
+﻿using AntiCaptchaApi.Net.Internal.Validation;
+using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Extensions
+namespace AntiCaptchaApi.Net.Internal.Extensions
 {
     internal static class CaptchaRequestExtensions
     {

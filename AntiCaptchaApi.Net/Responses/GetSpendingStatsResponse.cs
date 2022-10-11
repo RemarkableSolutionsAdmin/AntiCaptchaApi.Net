@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using AntiCaptchaApi.Models;
-using AntiCaptchaApi.Responses.Abstractions;
+using AntiCaptchaApi.Net.Models;
+using AntiCaptchaApi.Net.Responses.Abstractions;
 
-namespace AntiCaptchaApi.Responses;
+namespace AntiCaptchaApi.Net.Responses;
 
 public class GetSpendingStatsResponse : BaseResponse
 {

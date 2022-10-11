@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using AntiCaptchaApi.Responses.Abstractions;
+﻿using AntiCaptchaApi.Net.Responses.Abstractions;
+using Newtonsoft.Json;
 
-namespace AntiCaptchaApi.Responses
+namespace AntiCaptchaApi.Net.Responses
 {
     public sealed class CreateTaskResponse : BaseResponse
     {

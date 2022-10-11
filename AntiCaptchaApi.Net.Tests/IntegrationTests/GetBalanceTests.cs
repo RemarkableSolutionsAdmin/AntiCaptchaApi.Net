@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests;
+﻿using AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 using Xunit;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests
 {
     public class AnticaptchaGetBalanceTests : AnticaptchaTestBase
     {

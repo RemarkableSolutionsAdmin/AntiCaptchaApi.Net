@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Internal.Common
+﻿namespace AntiCaptchaApi.Net.Internal.Common
 {
     internal static class ErrorMessages
     {

@@ -1,6 +1,6 @@
-﻿using AntiCaptchaApi.Responses.Abstractions;
+﻿using AntiCaptchaApi.Net.Responses.Abstractions;
 
-namespace AntiCaptchaApi.Responses;
+namespace AntiCaptchaApi.Net.Responses;
 
 public class ActionResponse : BaseResponse
 {

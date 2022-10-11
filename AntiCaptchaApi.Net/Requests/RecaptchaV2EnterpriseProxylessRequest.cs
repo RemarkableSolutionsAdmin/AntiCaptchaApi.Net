@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AntiCaptchaApi.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     /// <summary>
     /// Bypass Google Recaptcha V2 Enterprise without proxy - RecaptchaV2EnterpriseTaskProxyless

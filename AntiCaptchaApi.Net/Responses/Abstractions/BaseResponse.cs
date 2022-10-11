@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Responses.Abstractions
+﻿namespace AntiCaptchaApi.Net.Responses.Abstractions
 {
     public abstract class BaseResponse
     {

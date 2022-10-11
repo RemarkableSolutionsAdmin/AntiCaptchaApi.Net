@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Models.Solutions;
+﻿namespace AntiCaptchaApi.Net.Models.Solutions;
 
 public class FunCaptchaSolution : BaseSolution
 {

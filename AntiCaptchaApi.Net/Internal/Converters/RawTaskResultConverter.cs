@@ -1,11 +1,11 @@
 ﻿using System;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Responses;
 
-namespace AntiCaptchaApi.Internal.Converters;
+namespace AntiCaptchaApi.Net.Internal.Converters;
 
 public class RawTaskResultConverter : TaskResultConverter<RawSolution>
 {

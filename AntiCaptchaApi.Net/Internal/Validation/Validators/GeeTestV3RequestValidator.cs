@@ -1,7 +1,7 @@
-﻿using AntiCaptchaApi.Internal.Extensions;
-using AntiCaptchaApi.Requests;
+﻿using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Requests;
 
-namespace AntiCaptchaApi.Internal.Validation.Validators;
+namespace AntiCaptchaApi.Net.Internal.Validation.Validators;
 
 internal class GeeTestV3RequestValidator : GeeTestV3ProxylessRequestValidator
 {

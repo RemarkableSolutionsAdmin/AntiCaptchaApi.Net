@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Internal.Extensions;
-using AntiCaptchaApi.Requests;
+﻿using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Requests;
+using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Serializers;
+namespace AntiCaptchaApi.Net.Internal.Serializers;
 
 internal sealed class GeeTestV4RequestSerializer : GeeTestV4ProxylessRequestSerializer
 {

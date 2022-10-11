@@ -1,9 +1,9 @@
 ﻿using System;
-using AntiCaptchaApi.Enums;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Responses.Abstractions;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses.Abstractions;
 
-namespace AntiCaptchaApi.Responses;
+namespace AntiCaptchaApi.Net.Responses;
 
 public class TaskResultResponse<T> : BaseResponse where T : BaseSolution
 {

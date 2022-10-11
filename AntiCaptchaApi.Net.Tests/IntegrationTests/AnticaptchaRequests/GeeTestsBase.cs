@@ -1,8 +1,8 @@
 ﻿using System.Net;
+using AntiCaptchaApi.Net.Tests.Models;
 using Newtonsoft.Json;
-using AntiCaptchaApi.Tests.Models;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests;
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 
 public abstract class GeeTestsBase : AnticaptchaTestBase
 {

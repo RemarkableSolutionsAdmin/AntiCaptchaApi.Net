@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Internal.Extensions;
-using AntiCaptchaApi.Requests.Abstractions;
+﻿using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Serializers.Base;
+namespace AntiCaptchaApi.Net.Internal.Serializers.Base;
 
 internal abstract class WebsiteCaptchaRequestSerializer<TRequest> : CaptchaRequestSerializer<TRequest>
     where TRequest : WebsiteCaptchaRequest

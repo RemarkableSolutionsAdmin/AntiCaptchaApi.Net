@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Internal.Validation.ValidationErrors;
+﻿namespace AntiCaptchaApi.Net.Internal.Validation.ValidationErrors;
 
 internal record MustNotBeNullWithSpecialMessageError(string PropertyName, string Message) : MustNotBeNullError(PropertyName)
 {

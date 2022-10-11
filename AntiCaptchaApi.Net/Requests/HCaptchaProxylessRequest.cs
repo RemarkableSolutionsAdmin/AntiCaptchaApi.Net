@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AntiCaptchaApi.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     /// <summary>
     ///  This type of task to solve HCaptcha automatically without proxy.

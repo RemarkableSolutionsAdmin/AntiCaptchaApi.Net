@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Enums
+﻿namespace AntiCaptchaApi.Net.Enums
 {
     public enum ProxyTypeOption
     {

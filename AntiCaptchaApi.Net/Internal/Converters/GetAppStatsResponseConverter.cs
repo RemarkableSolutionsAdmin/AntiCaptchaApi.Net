@@ -1,9 +1,9 @@
 ﻿using System;
-using AntiCaptchaApi.Responses;
+using AntiCaptchaApi.Net.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AntiCaptchaApi.Internal.Converters;
+namespace AntiCaptchaApi.Net.Internal.Converters;
 
 public class GetAppStatsResponseConverter : JsonConverter<GetAppStatsResponse>
 {

@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Models;
+﻿namespace AntiCaptchaApi.Net.Models;
 
 public class DailySpendingStats
 {

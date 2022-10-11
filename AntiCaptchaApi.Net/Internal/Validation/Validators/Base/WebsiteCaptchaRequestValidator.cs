@@ -1,7 +1,7 @@
-﻿using AntiCaptchaApi.Internal.Extensions;
-using AntiCaptchaApi.Requests.Abstractions;
+﻿using AntiCaptchaApi.Net.Internal.Extensions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Internal.Validation.Validators.Base;
+namespace AntiCaptchaApi.Net.Internal.Validation.Validators.Base;
 
 public abstract class WebsiteCaptchaRequestValidator<T> : CaptchaRequestValidator<T> where T : WebsiteCaptchaRequest
 {

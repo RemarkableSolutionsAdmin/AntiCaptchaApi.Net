@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 
-namespace AntiCaptchaApi.Internal.Helpers
+namespace AntiCaptchaApi.Net.Internal.Helpers
 {
     internal static class StringHelper
     {

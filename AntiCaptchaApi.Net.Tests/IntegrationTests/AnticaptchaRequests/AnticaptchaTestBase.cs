@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Requests.Abstractions;
-using AntiCaptchaApi.Responses;
-using AntiCaptchaApi.Tests.Helpers;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Responses;
+using AntiCaptchaApi.Net.Tests.Helpers;
 using Xunit;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests;
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 
 public abstract class AnticaptchaTestBase
 {

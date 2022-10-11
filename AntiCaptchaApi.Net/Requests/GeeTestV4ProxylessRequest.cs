@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AntiCaptchaApi.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 
-namespace AntiCaptchaApi.Requests
+namespace AntiCaptchaApi.Net.Requests
 {
     /// <summary>
     /// Solve GeeTest captcha V4 automatically without proxy

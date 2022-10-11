@@ -1,6 +1,6 @@
-﻿using AntiCaptchaApi.Enums;
+﻿using AntiCaptchaApi.Net.Enums;
 
-namespace AntiCaptchaApi.Models
+namespace AntiCaptchaApi.Net.Models
 {
     public class ProxyConfig 
     {

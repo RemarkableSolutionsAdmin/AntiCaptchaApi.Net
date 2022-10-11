@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AntiCaptchaApi.Internal.Validation;
-using AntiCaptchaApi.Internal.Validation.ValidationErrors;
-using AntiCaptchaApi.Models;
+using AntiCaptchaApi.Net.Internal.Validation;
+using AntiCaptchaApi.Net.Internal.Validation.ValidationErrors;
+using AntiCaptchaApi.Net.Models;
 
-namespace AntiCaptchaApi.Internal.Extensions;
+namespace AntiCaptchaApi.Net.Internal.Extensions;
 
 public static class ValidationResultExtensions
 {

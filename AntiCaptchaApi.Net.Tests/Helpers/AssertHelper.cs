@@ -1,8 +1,8 @@
-﻿using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Responses;
-using AntiCaptchaApi.Responses.Abstractions;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses;
+using AntiCaptchaApi.Net.Responses.Abstractions;
 
-namespace AntiCaptchaApi.Tests.Helpers;
+namespace AntiCaptchaApi.Net.Tests.Helpers;
 
 public static class AssertHelper
 {

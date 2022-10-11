@@ -1,6 +1,6 @@
-﻿using AntiCaptchaApi.Responses;
+﻿using AntiCaptchaApi.Net.Responses;
 
-namespace AntiCaptchaApi.Models.Solutions;
+namespace AntiCaptchaApi.Net.Models.Solutions;
 
 public abstract class BaseSolution
 {

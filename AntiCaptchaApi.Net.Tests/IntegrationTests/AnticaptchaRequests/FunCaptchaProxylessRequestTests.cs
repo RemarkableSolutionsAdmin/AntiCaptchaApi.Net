@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Requests;
-using AntiCaptchaApi.Responses;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Responses;
 using Xunit;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
     public class FunCaptchaProxylessRequestTests : AnticaptchaTestBase
     {

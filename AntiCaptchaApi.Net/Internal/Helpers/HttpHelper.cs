@@ -4,12 +4,12 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AntiCaptchaApi.Net.Internal.Converters;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses.Abstractions;
 using Newtonsoft.Json;
-using AntiCaptchaApi.Internal.Converters;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Responses.Abstractions;
 
-namespace AntiCaptchaApi.Internal.Helpers
+namespace AntiCaptchaApi.Net.Internal.Helpers
 {
     internal static class HttpHelper
     {

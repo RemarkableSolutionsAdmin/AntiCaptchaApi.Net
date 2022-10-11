@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Responses;
 using Newtonsoft.Json.Linq;
-using AntiCaptchaApi.Models.Solutions;
-using AntiCaptchaApi.Requests;
-using AntiCaptchaApi.Responses;
 using Xunit;
 
-namespace AntiCaptchaApi.Tests.IntegrationTests.AnticaptchaRequests
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
     public class AntiGateCaptchaRequestTests : AnticaptchaTestBase
     {
