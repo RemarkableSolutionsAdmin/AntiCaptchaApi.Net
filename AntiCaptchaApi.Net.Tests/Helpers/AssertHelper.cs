@@ -13,7 +13,7 @@ public static class AssertHelper
             Xunit.Assert.Null(baseResponse.ErrorDescription);
             Xunit.Assert.Empty(baseResponse.ErrorDescription);
         }
-        Xunit.Assert.True(baseResponse.HasNoErrors);
+        Xunit.Assert.False(baseResponse.IsErrorResponse);
     }
     
     public static void Assert(CreateTaskResponse createTaskResponse)

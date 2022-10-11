@@ -19,7 +19,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// You must use a modern-browser signature; otherwise, Google will ask you to "update your browser".
         /// </summary>
         public string UserAgent { internal get; set; }
-        
+
         /// <summary>
         /// [Required] ProxyConfig.ProxyType : Automatically changed to https.
         /// [Required] ProxyConfig.proxyAddress : Proxy IP address ipv4/ipv6. No host names or IP addresses from local networks.
@@ -28,13 +28,5 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
         public ProxyConfig ProxyConfig { get; set; } = new();
-        
-        
-        
-        /// <summary>
-        /// [Optional
-        /// Additional initialization parameters
-        /// </summary>
-        public Dictionary<string, string> InitParameters = new();
     }
 }

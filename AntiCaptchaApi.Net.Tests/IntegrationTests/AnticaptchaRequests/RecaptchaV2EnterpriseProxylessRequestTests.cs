@@ -35,11 +35,11 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             request.EnterprisePayload.Add("test", "qwerty");
             request.EnterprisePayload.Add("secret", "AB_12345");
 
-            var result = AnticaptchaClient.SolveCaptchaRaw<RecaptchaV2EnterpriseProxylessRequest, RecaptchaSolution>(request);
+            var result = AnticaptchaClient.SolveCaptcha<RecaptchaV2EnterpriseProxylessRequest, RecaptchaSolution>(request);
             Assert.NotNull(result);
-            Assert.True(result.Solution.CreateTaskResponse.HasNoErrors);
-            Assert.NotNull(result.Solution.CreateTaskResponse);
-            Assert.Null(result.Solution.CreateTaskResponse.ErrorCode);
+            Assert.False(result.CreateTaskResponse.IsErrorResponse);
+            Assert.NotNull(result.CreateTaskResponse);
+            Assert.Null(result.CreateTaskResponse.ErrorCode);
             AssertHelper.NotNullNotEmpty(result.Solution.GRecaptchaResponse);
         }
     }

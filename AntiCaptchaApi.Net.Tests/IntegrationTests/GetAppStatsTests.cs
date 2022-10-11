@@ -12,6 +12,6 @@ public class GetAppStatsTests : AnticaptchaTestBase
     {
         var appStats = await AnticaptchaClient.GetAppStatsAsync(TestEnvironment.SoftId, AppStatsMode.Errors);
         Assert.NotNull(appStats);
-        Assert.True(appStats.HasNoErrors);
+        Assert.False(appStats.IsErrorResponse);
     }
 }

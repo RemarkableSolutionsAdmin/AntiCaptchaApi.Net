@@ -89,20 +89,20 @@ namespace AntiCaptchaApi.Net
             return GetCurrentTaskResultLogic<TSolution>(false, taskId).Result;
         }
 
-        public TaskResultResponse<TSolution> SolveCaptchaRaw<TRequest, TSolution>(TRequest request)
+        public TaskResultResponse<TSolution> SolveCaptcha<TRequest, TSolution>(TRequest request)
             where TRequest : CaptchaRequest
             where TSolution : BaseSolution, new()
         {
             return SolveCaptchaLogic<TRequest, TSolution>(false, request).Result;
         }
 
-        public async Task<TaskResultResponse<TSolution>> WaitForTaskRawResultAsync<TSolution>(int taskId, int maxSeconds = 120)
+        public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120)
             where TSolution : BaseSolution, new()
         {
             return await WaitForTaskResultLogic<TSolution>(true, taskId, maxSeconds, 0);
         }
 
-        public TaskResultResponse<TSolution> WaitForRawTaskResult<TSolution>(int taskId, int maxSeconds = 120)
+        public TaskResultResponse<TSolution> WaitForTaskResult<TSolution>(int taskId, int maxSeconds = 120)
             where TSolution : BaseSolution, new()
         {
             return WaitForTaskResultLogic<TSolution>(false, taskId, maxSeconds, 0).Result;
@@ -136,16 +136,16 @@ namespace AntiCaptchaApi.Net
 
         {
             var createTaskResponse = await CreateCaptchaTaskLogic(request, isAsync);
-            if (createTaskResponse.HasNoErrors && createTaskResponse.TaskId.HasValue)
+            if (!createTaskResponse.IsErrorResponse && createTaskResponse.TaskId.HasValue)
             {
                 var taskResult = await WaitForTaskResultLogic<TSolution>(isAsync, createTaskResponse.TaskId.Value, maxSeconds, currentSecond);
-                taskResult.Solution.CreateTaskResponse = createTaskResponse; //TODO should be done in serializer.
+                taskResult.CreateTaskResponse = createTaskResponse; //TODO should be done in serializer.
                 return taskResult;
             }
 
-            return new TaskResultResponse<TSolution>()
+            return new TaskResultResponse<TSolution>
             {
-                Solution = new TSolution { CreateTaskResponse = createTaskResponse }
+                CreateTaskResponse = createTaskResponse
             };
         }
 
@@ -167,8 +167,6 @@ namespace AntiCaptchaApi.Net
                     if (isAsync)
                         return await WaitForTaskResultLogic<TSolution>(isAsync, taskId, maxSeconds, currentSecond + 1);
                     return WaitForTaskResultLogic<TSolution>(isAsync, taskId, maxSeconds, currentSecond + 1).Result;
-                case TaskStatusType.Ready when !taskResult.Solution.IsValid():
-                    return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.Conflict.ToString(), ErrorMessages.AnticaptchaNoSolutionFromAPIError);
                 case TaskStatusType.Ready:
                     return taskResult;
                 case TaskStatusType.Error:

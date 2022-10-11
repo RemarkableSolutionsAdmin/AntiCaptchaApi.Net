@@ -11,7 +11,8 @@ public static class BaseTaskResultResponseBuilder
         return new TaskResultResponse<TSolution>()
         {
             ErrorCode = errorCode,
-            ErrorDescription = errorMessage
+            ErrorDescription = errorMessage,
+            Solution = new TSolution()
         };
     }
 }

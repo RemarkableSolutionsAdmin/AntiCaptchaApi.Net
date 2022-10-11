@@ -17,7 +17,7 @@ public class GetAppStatsResponseConverter : JsonConverter<GetAppStatsResponse>
     {
         var jObject = JObject.Load(reader);
         var response = jObject.ToObject<GetAppStatsResponse>();
-        if (response is { HasNoErrors: true })
+        if (response is { IsErrorResponse: false })
         {
             response.ChartData = ParseChartData(jObject);   
         }

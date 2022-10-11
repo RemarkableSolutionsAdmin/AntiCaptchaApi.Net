@@ -21,6 +21,7 @@ public class RawTaskResultConverter : TaskResultConverter<RawSolution>
         
         if (rawTaskResultResponse is { Status: TaskStatusType.Ready })
         {
+            rawTaskResultResponse.Solution ??= new RawSolution();
             ParseJObjects(jObject, rawTaskResultResponse);
         }
         

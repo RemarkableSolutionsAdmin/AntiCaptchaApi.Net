@@ -19,8 +19,8 @@
             ErrorDescription = errorDescription;
         }
         
-        public bool HasNoErrors => string.IsNullOrEmpty(ErrorDescription) && 
+        public bool IsErrorResponse => string.IsNullOrEmpty(ErrorDescription) && 
                                    string.IsNullOrEmpty(ErrorCode) &&
-                                   ErrorId is null or 0;
+                                   ErrorId is null or not 0;
     }
 }

@@ -22,4 +22,6 @@ public class TaskResultResponse<T> : BaseResponse where T : BaseSolution
     public DateTime? EndTimeUtc { get; set; }
     public int? SolveCount { get; set; }
     public  T Solution { get; set; }
+    
+    public CreateTaskResponse CreateTaskResponse { get; set; }
 }

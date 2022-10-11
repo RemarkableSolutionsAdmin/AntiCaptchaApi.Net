@@ -21,6 +21,7 @@ public class AntiGateTaskResultConverter : TaskResultConverter<AntiGateSolution>
         
         if (AntiGateTaskResultResponse is { Status: TaskStatusType.Ready })
         {
+            AntiGateTaskResultResponse.Solution ??= new AntiGateSolution();
             ParseJObjects(jObject, AntiGateTaskResultResponse);
         }
         
