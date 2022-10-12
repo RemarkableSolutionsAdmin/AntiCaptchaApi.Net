@@ -1,11 +1,13 @@
 ﻿using AntiCaptchaApi.Net.Internal.Extensions;
 using AntiCaptchaApi.Net.Internal.Serializers.Base;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Internal.Serializers;
 
-internal class GeeTestV3ProxylessRequestSerializer : CaptchaRequestSerializer<GeeTestV3ProxylessRequest>
+internal class GeeTestV3ProxylessRequestSerializer : CaptchaRequestSerializer<GeeTestV3ProxylessRequest, GeeTestV3Solution>
 {
     public override string TypeName => "GeeTestTaskProxyless";
     

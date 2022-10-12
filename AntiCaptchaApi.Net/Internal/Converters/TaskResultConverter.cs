@@ -21,18 +21,18 @@ public class TaskResultConverter<T> : JsonConverter<TaskResultResponse<T>>
         JsonSerializer serializer)
     {
         jObject = JObject.Load(reader);
-        var rawTaskResultResponse = jObject.ToObject<TaskResultResponse<T>>();
+        var taskResultResponse = jObject.ToObject<TaskResultResponse<T>>();
 
 
-        if (rawTaskResultResponse is { Status: TaskStatusType.Ready })
+        if (taskResultResponse is { Status: TaskStatusType.Ready })
         {
             var createTime = (double?)jObject["createTime"];
             var endTime = (double?)jObject["endTime"];
-            rawTaskResultResponse.CreateTimeUtc = UnixTimeStampToDateTime(createTime);
-            rawTaskResultResponse.EndTimeUtc = UnixTimeStampToDateTime(endTime);
+            taskResultResponse.CreateTimeUtc = UnixTimeStampToDateTime(createTime);
+            taskResultResponse.EndTimeUtc = UnixTimeStampToDateTime(endTime);
         }
         
-        return rawTaskResultResponse;
+        return taskResultResponse;
     }
 
 

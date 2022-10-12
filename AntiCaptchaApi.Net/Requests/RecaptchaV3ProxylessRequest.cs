@@ -1,4 +1,5 @@
-﻿using AntiCaptchaApi.Net.Requests.Abstractions;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 
 namespace AntiCaptchaApi.Net.Requests
 {
@@ -20,7 +21,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// 
     /// /// Example captcha: https://anti-captcha.com/_nuxt/img/recaptchav3.1b1650f.jpg
     /// </summary>
-    public class RecaptchaV3ProxylessRequest : WebsiteCaptchaRequest
+    public class RecaptchaV3ProxylessRequest : WebsiteCaptchaRequest<RecaptchaSolution>
     {
         /// <summary>
         /// [Required]

@@ -17,7 +17,6 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
         static HttpHelper()
         {
             Converters.AddRange(new JsonConverter[]{ 
-                new RawTaskResultConverter(),
                 new TaskResultConverter<FunCaptchaSolution>(),
                 new AntiGateTaskResultConverter(),
                 new TaskResultConverter<GeeTestV3Solution>(),
@@ -60,6 +59,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                     var rawResponse = await streamReader.ReadToEndAsync();
                     response = JsonConvert.DeserializeObject<T>(rawResponse, Converters.ToArray());
                     response.RawResponse = rawResponse;
+                    
                     webResponse.Close();
                     return response;
                 }

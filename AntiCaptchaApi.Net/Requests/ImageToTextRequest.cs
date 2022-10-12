@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Internal.Helpers;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -13,7 +14,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// GIF animations are supported, up to 500kb.
     /// Custom captchas like "find a cat in this series of images and enter its number" are not supported.
     /// </summary>
-    public class ImageToTextRequest : CaptchaRequest
+    public class ImageToTextRequest : CaptchaRequest<ImageToTextSolution>
     {
         /// <summary>
         /// [Required]

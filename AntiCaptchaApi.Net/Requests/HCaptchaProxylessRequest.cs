@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -11,7 +12,7 @@ namespace AntiCaptchaApi.Net.Requests
     ///
     /// Example captcha: https://anti-captcha.com/_nuxt/img/hcaptcha_example1.f7d96e5.png
     /// </summary>
-    public class HCaptchaProxylessRequest : WebsiteCaptchaRequest
+    public class HCaptchaProxylessRequest : WebsiteCaptchaRequest<HCaptchaSolution>
     {
         /// <summary>
         /// [Required]

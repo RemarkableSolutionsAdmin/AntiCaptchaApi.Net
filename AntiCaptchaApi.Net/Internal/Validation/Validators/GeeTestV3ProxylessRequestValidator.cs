@@ -1,10 +1,11 @@
 ﻿using AntiCaptchaApi.Net.Internal.Extensions;
 using AntiCaptchaApi.Net.Internal.Validation.Validators.Base;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
 
 namespace AntiCaptchaApi.Net.Internal.Validation.Validators;
 
-internal class GeeTestV3ProxylessRequestValidator : CaptchaRequestValidator<GeeTestV3ProxylessRequest>
+internal class GeeTestV3ProxylessRequestValidator : CaptchaRequestValidator<GeeTestV3ProxylessRequest, GeeTestV3Solution>
 {
     public override ValidationResult Validate(GeeTestV3ProxylessRequest request)
     {

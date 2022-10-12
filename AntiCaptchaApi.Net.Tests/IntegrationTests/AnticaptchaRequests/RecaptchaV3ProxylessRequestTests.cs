@@ -32,9 +32,9 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
                 WebsiteKey = "6Lf8hrcUAAAAAIpQAFW2VFjtiYnThOjZOA5xvLyR",
                 IsEnterprise = true
             };
-
+        
             
-            TestCaptchaRequest(request, out TaskResultResponse<RawSolution> taskResultResponse);
+            TestCaptchaRequest(request, out TaskResultResponse<RecaptchaSolution> taskResultResponse);
             AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.GRecaptchaResponse);
         }
     }

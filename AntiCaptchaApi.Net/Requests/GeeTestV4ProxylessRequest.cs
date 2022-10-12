@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -11,7 +12,7 @@ namespace AntiCaptchaApi.Net.Requests
     ///
     /// Example captcha: https://anti-captcha.com/_nuxt/img/geetest_example3.8c80ec3.png
     /// </summary>
-    public class GeeTestV4ProxylessRequest : CaptchaRequest
+    public class GeeTestV4ProxylessRequest : CaptchaRequest<GeeTestV4Solution>
     {
         /// <summary>
         /// [Required]

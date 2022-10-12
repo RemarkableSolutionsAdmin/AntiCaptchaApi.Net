@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -12,7 +13,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// and assigned to workers with the best Recaptcha V3 score.
     /// For more information about Recaptcha Enterprise please visit <see href="https://anti-captcha.com/faq/494_everything_about_recaptcha_enterprise">this</see> FAQ section.
     /// </summary>
-    public class RecaptchaV2EnterpriseProxylessRequest : WebsiteCaptchaRequest
+    public class RecaptchaV2EnterpriseProxylessRequest : WebsiteCaptchaRequest<RecaptchaSolution>
     {
         /// <summary>
         /// [Optional]

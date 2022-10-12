@@ -1,5 +1,6 @@
 ﻿using AntiCaptchaApi.Net.Internal.Extensions;
 using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Internal.Serializers;

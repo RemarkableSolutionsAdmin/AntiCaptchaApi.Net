@@ -11,31 +11,29 @@ public abstract class AnticaptchaTestBase
 {
     protected readonly AnticaptchaClient AnticaptchaClient = new(TestEnvironment.ClientKey);
     
-    protected async Task TestCaptchaRequestAsync<T>(T captchaRequest) where T : CaptchaRequest
+    protected async Task TestCaptchaRequestAsync<TSolution>(CaptchaRequest<TSolution> captchaRequest)
+        where TSolution : BaseSolution, new()
     {
         var creationTaskResult = await AnticaptchaClient.CreateCaptchaTaskAsync(captchaRequest);
         AssertHelper.Assert(creationTaskResult);
         Assert.NotNull(creationTaskResult.TaskId);
-        var taskResult = await AnticaptchaClient.WaitForTaskResultAsync<RawSolution>(creationTaskResult.TaskId.Value);
+        var taskResult = await AnticaptchaClient.WaitForTaskResultAsync<TSolution>(creationTaskResult.TaskId.Value);
         AssertHelper.Assert(taskResult);
     }
 
-    protected void TestCaptchaRequest<TRequest, TSolution>(TRequest captchaRequest)
-        where TRequest : CaptchaRequest
+    protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest)
         where TSolution : BaseSolution, new()
     {
-        TestCaptchaRequest<TRequest, TSolution>(captchaRequest, out var creationResult, out var taskResult);
+        TestCaptchaRequest(captchaRequest, out var creationResult, out var taskResult);
     }
     
-    protected void TestCaptchaRequest<TRequest, TSolution>(TRequest captchaRequest, out CreateTaskResponse creationTaskResult) 
-        where TRequest : CaptchaRequest
+    protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest, out CreateTaskResponse creationTaskResult) 
         where TSolution : BaseSolution, new()
     {
-        TestCaptchaRequest<TRequest, TSolution>(captchaRequest, out creationTaskResult, out var taskResult);
+        TestCaptchaRequest(captchaRequest, out creationTaskResult, out var taskResult);
     }
     
-    protected void TestCaptchaRequest<TRequest, TSolution>(TRequest captchaRequest, out CreateTaskResponse creationTaskResult, out TaskResultResponse<TSolution> rawTaskResult)
-        where TRequest : CaptchaRequest
+    protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest, out CreateTaskResponse creationTaskResult, out TaskResultResponse<TSolution> rawTaskResult)
         where TSolution : BaseSolution, new()
     {
         creationTaskResult = AnticaptchaClient.CreateCaptchaTask(captchaRequest);
@@ -44,9 +42,7 @@ public abstract class AnticaptchaTestBase
         rawTaskResult = AnticaptchaClient.WaitForTaskResult<TSolution>(creationTaskResult.TaskId.Value, 1800);
         AssertHelper.Assert(rawTaskResult);
     }
-    
-    protected void TestCaptchaRequest<TRequest, TSolution>(TRequest captchaRequest, out TaskResultResponse<TSolution> rawTaskResult) 
-        where TRequest : CaptchaRequest
+    protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest, out TaskResultResponse<TSolution> rawTaskResult)
         where TSolution : BaseSolution, new()
     {
         TestCaptchaRequest(captchaRequest, out var creationTaskResult, out rawTaskResult);

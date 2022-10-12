@@ -89,11 +89,10 @@ namespace AntiCaptchaApi.Net
             return GetCurrentTaskResultLogic<TSolution>(false, taskId).Result;
         }
 
-        public TaskResultResponse<TSolution> SolveCaptcha<TRequest, TSolution>(TRequest request)
-            where TRequest : CaptchaRequest
+        public TaskResultResponse<TSolution> SolveCaptcha<TSolution>(CaptchaRequest<TSolution> request)
             where TSolution : BaseSolution, new()
         {
-            return SolveCaptchaLogic<TRequest, TSolution>(false, request).Result;
+            return SolveCaptchaLogic<TSolution>(false, request).Result;
         }
 
         public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120)
@@ -107,12 +106,13 @@ namespace AntiCaptchaApi.Net
         {
             return WaitForTaskResultLogic<TSolution>(false, taskId, maxSeconds, 0).Result;
         }
-        public CreateTaskResponse CreateCaptchaTask<T>(T request) where T : CaptchaRequest
+        public CreateTaskResponse CreateCaptchaTask<T>(CaptchaRequest<T> request) 
+            where T : BaseSolution
         {
             return CreateCaptchaTaskLogic(request, false).Result;
         }
 
-        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(T request) where T : CaptchaRequest
+        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(CaptchaRequest<T> request) where T : BaseSolution
         {
             return await CreateCaptchaTaskLogic(request, true);
         }
@@ -130,8 +130,7 @@ namespace AntiCaptchaApi.Net
             return isAsync ? await AnticaptchaApi.GetTaskResultAsync<TSolution>(payload) : AnticaptchaApi.GetTaskResult<TSolution>(payload);
         }
 
-        private async Task<TaskResultResponse<TSolution>> SolveCaptchaLogic<TRequest, TSolution>(bool isAsync, TRequest request, int maxSeconds = 120, int currentSecond = 0)
-            where TRequest : CaptchaRequest
+        private async Task<TaskResultResponse<TSolution>> SolveCaptchaLogic<TSolution>(bool isAsync, CaptchaRequest<TSolution> request, int maxSeconds = 120, int currentSecond = 0)
             where TSolution : BaseSolution, new()
 
         {
@@ -181,7 +180,8 @@ namespace AntiCaptchaApi.Net
             }
         }
 
-        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(T request, bool isAsync) where T : CaptchaRequest
+        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(CaptchaRequest<T> request, bool isAsync) 
+            where T : BaseSolution
         {
             var validationResult = request.Validate();
             if (!validationResult.IsValid)

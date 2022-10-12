@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AntiCaptchaApi.Net.Internal.Serializers;
 using AntiCaptchaApi.Net.Internal.Validation;
 using AntiCaptchaApi.Net.Internal.Validation.Validators;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 using Newtonsoft.Json.Linq;
@@ -11,7 +12,7 @@ namespace AntiCaptchaApi.Net.Internal;
 
 internal static class CaptchaRequestPayloadBuilder
 {
-    private static Func<JObject> GetCaptchaRequestCreationHandler<T>(T request) where T : CaptchaRequest
+    private static Func<JObject> GetCaptchaRequestCreationHandler<T>(CaptchaRequest<T> request) where T : BaseSolution
     {
         var @switch = new Dictionary<Type, Func<JObject>> {
             { typeof(AntiGateRequest), () => new AntiGateRequestSerializer().Serialize(request as AntiGateRequest) },
@@ -30,11 +31,12 @@ internal static class CaptchaRequestPayloadBuilder
             { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestSerializer().Serialize(request as RecaptchaV2Request) },
             { typeof(RecaptchaV3ProxylessRequest), () => new RecaptchaV3ProxylessRequestSerializer().Serialize(request as RecaptchaV3ProxylessRequest) },
         };
-        return @switch[typeof(T)];
+        return @switch[request.GetType()];
     }
     
     
-    private static Func<ValidationResult> GetCaptchaRequestCreationValidator<T>(T request) where T : CaptchaRequest
+    private static Func<ValidationResult> GetCaptchaRequestCreationValidator<T>(CaptchaRequest<T> request) 
+        where T : BaseSolution
     {
         var @switch = new Dictionary<Type, Func<ValidationResult>> {
             { typeof(AntiGateRequest), () => new AntiGateRequestValidator().Validate(request as AntiGateRequest) },
@@ -53,15 +55,17 @@ internal static class CaptchaRequestPayloadBuilder
             { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestValidator().Validate(request as RecaptchaV2Request) },
             { typeof(RecaptchaV3ProxylessRequest), () => new RecaptchaV3ProxylessRequestValidator().Validate(request as RecaptchaV3ProxylessRequest) },
         };
-        return @switch[typeof(T)];
+        return @switch[request.GetType()];
     }
 
-    internal static ValidationResult Validate<T>(T request) where T : CaptchaRequest
+    internal static ValidationResult Validate<T>(CaptchaRequest<T> request)  
+        where T : BaseSolution
     {
         return GetCaptchaRequestCreationValidator(request).Invoke();
     }
 
-    internal static JObject Build<T>(T request) where T : CaptchaRequest
+    internal static JObject Build<T>(CaptchaRequest<T> request) 
+        where T : BaseSolution
     {
         if (request == null)
         {

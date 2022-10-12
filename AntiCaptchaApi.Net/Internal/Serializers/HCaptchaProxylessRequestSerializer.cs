@@ -1,11 +1,13 @@
 ﻿using AntiCaptchaApi.Net.Internal.Extensions;
 using AntiCaptchaApi.Net.Internal.Serializers.Base;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Internal.Serializers;
 
-internal class HCaptchaProxylessRequestSerializer : WebsiteCaptchaRequestSerializer<HCaptchaProxylessRequest>
+internal class HCaptchaProxylessRequestSerializer : WebsiteCaptchaRequestSerializer<HCaptchaProxylessRequest, HCaptchaSolution>
 {
     public override string TypeName => "HCaptchaTaskProxyless";
     public override JObject Serialize(HCaptchaProxylessRequest request)

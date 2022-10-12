@@ -7,22 +7,22 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
     public class RecaptchaV2EnterpriseProxylessRequestTests : AnticaptchaTestBase
     {
-        [Fact]
-        public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
-        {
-            var request = new RecaptchaV2EnterpriseProxylessRequest
-            {
-                WebsiteUrl = "https://store.steampowered.com/join",
-                WebsiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH"
-            };
-
-            request.EnterprisePayload.Add("test", "qwerty");
-            request.EnterprisePayload.Add("secret", "AB_12345");
-            
-            TestCaptchaRequest<RecaptchaV2EnterpriseProxylessRequest, RawSolution>(request);
-        }
+         [Fact]
+         public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
+         {
+             var request = new RecaptchaV2EnterpriseProxylessRequest
+             {
+                 WebsiteUrl = "https://store.steampowered.com/join",
+                 WebsiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH"
+             };
         
+             request.EnterprisePayload.Add("test", "qwerty");
+             request.EnterprisePayload.Add("secret", "AB_12345");
+             
+             TestCaptchaRequest(request);
+         }
         
+        //
         [Fact]
         public void ShouldReturnCorrectCaptchaResult_WhenCallingFactualAnticaptchaSolve()
         {
@@ -35,7 +35,7 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             request.EnterprisePayload.Add("test", "qwerty");
             request.EnterprisePayload.Add("secret", "AB_12345");
 
-            var result = AnticaptchaClient.SolveCaptcha<RecaptchaV2EnterpriseProxylessRequest, RecaptchaSolution>(request);
+            var result = AnticaptchaClient.SolveCaptcha(request);
             Assert.NotNull(result);
             Assert.False(result.CreateTaskResponse.IsErrorResponse);
             Assert.NotNull(result.CreateTaskResponse);

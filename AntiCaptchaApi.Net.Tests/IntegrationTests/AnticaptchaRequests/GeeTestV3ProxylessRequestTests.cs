@@ -27,37 +27,16 @@ public class GeeTestProxylessV3RequestTests : GeeTestsBase
         AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Validate);
         AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Seccode);
     }
-    string GetSiteKey(string pageSource)
-    {
-        var regex = new Regex("gt=(.*?)&");
-        var gt = regex.Match(pageSource).Groups[1].Value;
 
-        if (!string.IsNullOrEmpty(gt))
-            return gt;
-            
-            
-        regex = new Regex("captcha_id=(.*?)&");
-        var captchaRegexGroups = regex.Match(pageSource).Groups;
-
-        return captchaRegexGroups[1].Value;
-    }
-
-    private string GetChallenge(string pageSource)
-    {
-        var regex = new Regex("challenge=(.*?)&");
-        return regex.Match(pageSource).Groups[1].Value;
-    }
     [Fact]
     public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequestBySolveCaptcha()
     {
-        var uri = "https://www.geetest.com/en/adaptive-captcha-demo"; 
-        var response = new WebClient().DownloadString(uri);
-
+        var (gt, websiteChallenge) = GetTokens();
         var request = new GeeTestV3ProxylessRequest()
         {
-            WebsiteUrl = uri,
-            Challenge = GetChallenge(response),
-            Gt = GetSiteKey(response)
+            WebsiteUrl = "http://www.supremenewyork.com",
+            Gt = gt,
+            Challenge = websiteChallenge
         };
         
 

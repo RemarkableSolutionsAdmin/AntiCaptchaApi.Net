@@ -31,6 +31,7 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
                 Assert.True(TestEnvironment.IsProxyDefined);
 
             var captchaRequest = CreateAuthenticRequest();
+            
             TestCaptchaRequest(captchaRequest, out TaskResultResponse<AntiGateSolution> taskResult);
             Assert.NotNull(taskResult.Solution);
             Assert.NotNull(taskResult.Solution.Cookies);

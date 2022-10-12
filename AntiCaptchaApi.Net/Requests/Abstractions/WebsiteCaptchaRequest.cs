@@ -1,6 +1,9 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions
+﻿using AntiCaptchaApi.Net.Models.Solutions;
+
+namespace AntiCaptchaApi.Net.Requests.Abstractions
 {
-    public abstract class WebsiteCaptchaRequest : CaptchaRequest
+    public abstract class WebsiteCaptchaRequest<TSolution> : CaptchaRequest<TSolution>
+        where TSolution : BaseSolution  
     {
         /// <summary>
         /// [Required]

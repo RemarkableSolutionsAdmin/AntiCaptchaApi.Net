@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using AntiCaptchaApi.Net.Models;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Requests
 {
-    public class AntiGateRequest : CaptchaRequest
+    public class AntiGateRequest : CaptchaRequest<AntiGateSolution>
     {
         /// <summary>
         /// [Required]
