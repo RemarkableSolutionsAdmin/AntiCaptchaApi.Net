@@ -10,12 +10,10 @@ namespace AntiCaptchaApi.Net.Internal.Serializers;
 internal sealed class RecaptchaV3ProxylessRequestSerializer: WebsiteCaptchaRequestSerializer<RecaptchaV3ProxylessRequest, RecaptchaSolution>
 {       
     public override string TypeName => "RecaptchaV3TaskProxyless";
-    public override JObject Serialize(RecaptchaV3ProxylessRequest request)
-    {
-        return base.Serialize(request)
+    public override JObject Serialize(RecaptchaV3ProxylessRequest request) =>
+        base.Serialize(request)
             .With("apiDomain", request.ApiDomain)
             .With("pageAction", request.PageAction)
             .With("minScore", request.MinScore)
-            .With("isEnterprise", request.IsEnterprise);
-    }
+            .With("isEnterprise", request is RecaptchaV3EnterpriseRequest || request.IsEnterprise);
 }

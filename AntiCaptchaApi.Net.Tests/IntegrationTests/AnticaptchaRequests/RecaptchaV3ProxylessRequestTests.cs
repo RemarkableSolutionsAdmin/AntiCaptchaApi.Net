@@ -22,20 +22,5 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             TestCaptchaRequest(request, out TaskResultResponse<RecaptchaSolution> taskResultResponse);
             AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.GRecaptchaResponse);
         }
-        
-        [Fact]
-        public void ShouldReturnCorrectRawCaptchaResult_WhenCallingAuthenticRequest()
-        {
-            var request = new RecaptchaV3ProxylessRequest()
-            {
-                WebsiteUrl = "https://www.netflix.com/login",
-                WebsiteKey = "6Lf8hrcUAAAAAIpQAFW2VFjtiYnThOjZOA5xvLyR",
-                IsEnterprise = true
-            };
-        
-            
-            TestCaptchaRequest(request, out TaskResultResponse<RecaptchaSolution> taskResultResponse);
-            AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.GRecaptchaResponse);
-        }
     }
 }

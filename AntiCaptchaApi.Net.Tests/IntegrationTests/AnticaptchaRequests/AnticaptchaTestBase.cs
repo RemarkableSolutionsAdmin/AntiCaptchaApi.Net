@@ -33,14 +33,14 @@ public abstract class AnticaptchaTestBase
         TestCaptchaRequest(captchaRequest, out creationTaskResult, out var taskResult);
     }
     
-    protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest, out CreateTaskResponse creationTaskResult, out TaskResultResponse<TSolution> rawTaskResult)
+    protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest, out CreateTaskResponse creationTaskResult, out TaskResultResponse<TSolution> taskResult)
         where TSolution : BaseSolution, new()
     {
         creationTaskResult = AnticaptchaClient.CreateCaptchaTask(captchaRequest);
         AssertHelper.Assert(creationTaskResult);
         Assert.NotNull(creationTaskResult.TaskId);
-        rawTaskResult = AnticaptchaClient.WaitForTaskResult<TSolution>(creationTaskResult.TaskId.Value, 1800);
-        AssertHelper.Assert(rawTaskResult);
+        taskResult = AnticaptchaClient.WaitForTaskResult<TSolution>(creationTaskResult.TaskId.Value, 1800);
+        AssertHelper.Assert(taskResult);
     }
     protected void TestCaptchaRequest<TSolution>(CaptchaRequest<TSolution> captchaRequest, out TaskResultResponse<TSolution> rawTaskResult)
         where TSolution : BaseSolution, new()

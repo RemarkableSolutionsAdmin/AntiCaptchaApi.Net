@@ -30,6 +30,7 @@ internal static class CaptchaRequestPayloadBuilder
             { typeof(RecaptchaV2ProxylessRequest), () => new RecaptchaV2ProxylessRequestSerializer().Serialize(request as RecaptchaV2ProxylessRequest) },
             { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestSerializer().Serialize(request as RecaptchaV2Request) },
             { typeof(RecaptchaV3ProxylessRequest), () => new RecaptchaV3ProxylessRequestSerializer().Serialize(request as RecaptchaV3ProxylessRequest) },
+            { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3ProxylessRequestSerializer().Serialize(request as RecaptchaV3ProxylessRequest) },
         };
         return @switch[request.GetType()];
     }
@@ -54,6 +55,7 @@ internal static class CaptchaRequestPayloadBuilder
             { typeof(RecaptchaV2ProxylessRequest), () => new RecaptchaV2ProxylessRequestValidator().Validate(request as RecaptchaV2ProxylessRequest) },
             { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestValidator().Validate(request as RecaptchaV2Request) },
             { typeof(RecaptchaV3ProxylessRequest), () => new RecaptchaV3ProxylessRequestValidator().Validate(request as RecaptchaV3ProxylessRequest) },
+            { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3ProxylessRequestValidator().Validate(request as RecaptchaV3EnterpriseRequest) },
         };
         return @switch[request.GetType()];
     }
