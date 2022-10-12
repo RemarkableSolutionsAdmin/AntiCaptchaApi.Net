@@ -3,6 +3,7 @@ using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
 using AntiCaptchaApi.Net.Responses.Abstractions;
+using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Responses;
 
@@ -17,7 +18,8 @@ public class TaskResultResponse<T> : BaseResponse where T : BaseSolution
     public DateTime? EndTimeUtc { get; set; }
     public int? SolveCount { get; set; }
     
-    public CaptchaRequest<T> CaptchaRequest {get;}
+    [JsonIgnore]
+    public CaptchaRequest<T> CaptchaRequest {get; set; }
     public T Solution { get; set; }
     
     public CreateTaskResponse CreateTaskResponse { get; set; }

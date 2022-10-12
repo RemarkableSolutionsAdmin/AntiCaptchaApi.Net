@@ -77,13 +77,13 @@ namespace AntiCaptchaApi.Net
             return await GetBalanceLogic(true);
         }
 
-        public async Task<TaskResultResponse<TSolution>> GetCurrentRawTaskResultAsync<TSolution>(int taskId)
+        public async Task<TaskResultResponse<TSolution>> GetTaskResultAsync<TSolution>(int taskId)
             where TSolution : BaseSolution, new()
         {
             return await GetCurrentTaskResultLogic<TSolution>(true, taskId);
         }
 
-        public TaskResultResponse<TSolution> GetCurrentRawTaskResult<TSolution>(int taskId)
+        public TaskResultResponse<TSolution> GetTaskResult<TSolution>(int taskId)
             where TSolution : BaseSolution, new()
         {
             return GetCurrentTaskResultLogic<TSolution>(false, taskId).Result;
@@ -92,7 +92,7 @@ namespace AntiCaptchaApi.Net
         public TaskResultResponse<TSolution> SolveCaptcha<TSolution>(CaptchaRequest<TSolution> request)
             where TSolution : BaseSolution, new()
         {
-            return SolveCaptchaLogic<TSolution>(false, request).Result;
+            return SolveCaptchaLogic(false, request).Result;
         }
 
         public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120)
@@ -139,6 +139,7 @@ namespace AntiCaptchaApi.Net
             {
                 var taskResult = await WaitForTaskResultLogic<TSolution>(isAsync, createTaskResponse.TaskId.Value, maxSeconds, currentSecond);
                 taskResult.CreateTaskResponse = createTaskResponse; //TODO should be done in serializer.
+                taskResult.CaptchaRequest = request;
                 return taskResult;
             }
 
