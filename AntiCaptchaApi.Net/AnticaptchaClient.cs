@@ -170,7 +170,7 @@ namespace AntiCaptchaApi.Net
                 case TaskStatusType.Ready:
                     return taskResult;
                 case TaskStatusType.Error:
-                    return BaseTaskResultResponseBuilder.Build<TSolution>(taskResult.ErrorCode, taskResult.ErrorDescription);
+                    return taskResult;
                 case null:
                     if (string.IsNullOrEmpty(taskResult.ErrorCode) && string.IsNullOrEmpty(taskResult.ErrorDescription))
                         return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.InternalServerError.ToString(), ErrorMessages.AnticaptchaUnknownStatusError);

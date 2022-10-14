@@ -31,7 +31,12 @@ public class TaskResultConverter<T> : JsonConverter<TaskResultResponse<T>>
             taskResultResponse.CreateTimeUtc = UnixTimeStampToDateTime(createTime);
             taskResultResponse.EndTimeUtc = UnixTimeStampToDateTime(endTime);
         }
-        
+
+        if (taskResultResponse is { IsErrorResponse: true })
+        {
+            taskResultResponse.Status = TaskStatusType.Error;
+        }
+
         return taskResultResponse;
     }
 
