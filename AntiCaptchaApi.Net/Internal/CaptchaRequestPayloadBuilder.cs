@@ -17,7 +17,7 @@ internal static class CaptchaRequestPayloadBuilder
         var @switch = new Dictionary<Type, Func<JObject>> {
             { typeof(AntiGateRequest), () => new AntiGateRequestSerializer().Serialize(request as AntiGateRequest) },
             { typeof(FunCaptchaRequest), () => new FunCaptchaRequestSerializer().Serialize(request as FunCaptchaRequest) },
-            { typeof(FunCaptchaRequestProxyless), () => new FunCaptchaRequestProxylessSerializer().Serialize(request as FunCaptchaRequestProxyless) },
+            { typeof(FunCaptchaProxylessRequest), () => new FunCaptchaProxylessRequestSerializer().Serialize(request as FunCaptchaProxylessRequest) },
             { typeof(GeeTestV3Request), () => new GeeTestV3RequestSerializer().Serialize(request as GeeTestV3Request) },
             { typeof(GeeTestV3ProxylessRequest), () => new GeeTestV3ProxylessRequestSerializer().Serialize(request as GeeTestV3ProxylessRequest) },
             { typeof(GeeTestV4ProxylessRequest), () => new GeeTestV4ProxylessRequestSerializer().Serialize(request as GeeTestV4ProxylessRequest) },
@@ -42,7 +42,7 @@ internal static class CaptchaRequestPayloadBuilder
         var @switch = new Dictionary<Type, Func<ValidationResult>> {
             { typeof(AntiGateRequest), () => new AntiGateRequestValidator().Validate(request as AntiGateRequest) },
             { typeof(FunCaptchaRequest), () => new FunCaptchaRequestValidator().Validate(request as FunCaptchaRequest) },
-            { typeof(FunCaptchaRequestProxyless), () => new FunCaptchaProxylessRequestValidator().Validate(request as FunCaptchaRequestProxyless) },
+            { typeof(FunCaptchaProxylessRequest), () => new FunCaptchaProxylessRequestValidator().Validate(request as FunCaptchaProxylessRequest) },
             { typeof(GeeTestV3Request), () => new GeeTestV3RequestValidator().Validate(request as GeeTestV3Request) },
             { typeof(GeeTestV3ProxylessRequest), () => new GeeTestV3ProxylessRequestValidator().Validate(request as GeeTestV3ProxylessRequest) },
             { typeof(GeeTestV4Request), () => new GeeTestV4RequestValidator().Validate(request as GeeTestV4Request) },

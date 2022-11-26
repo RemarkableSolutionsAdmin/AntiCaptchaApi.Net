@@ -9,7 +9,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// Use this token to submit the form with the Arkose Labs captcha.
     /// Example captcha: https://anti-captcha.com/_nuxt/img/funcaptcha1.e289a39.jpg
     /// </summary>
-    public class FunCaptchaRequest : FunCaptchaRequestProxyless
+    public class FunCaptchaRequest : FunCaptchaProxylessRequest
     {
         
         /// <summary>

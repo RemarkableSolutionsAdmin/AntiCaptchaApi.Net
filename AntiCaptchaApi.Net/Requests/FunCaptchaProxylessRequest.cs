@@ -12,7 +12,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// However it's worth trying first to bypass captcha without proxy, and if it doesn't work - switch to FuncaptchaTask with proxy.
     /// Example captcha: https://anti-captcha.com/_nuxt/img/funcaptcha1.e289a39.jpg
     /// </summary>
-    public class FunCaptchaRequestProxyless : CaptchaRequest<FunCaptchaSolution>
+    public class FunCaptchaProxylessRequest : CaptchaRequest<FunCaptchaSolution>
     {
         /// <summary>
         /// [Required]

@@ -7,6 +7,8 @@
         public string ErrorDescription {  get; set; }
         
         public string RawResponse { get; set; }
+        
+        public string RawRequestPayload { get; set; }
 
         protected BaseResponse()
         {

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Internal.Converters;
 using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Responses;
 using AntiCaptchaApi.Net.Responses.Abstractions;
 using Newtonsoft.Json;
 
@@ -59,7 +60,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                     var rawResponse = await streamReader.ReadToEndAsync();
                     response = JsonConvert.DeserializeObject<T>(rawResponse, Converters.ToArray());
                     response.RawResponse = rawResponse;
-                    
+                    response.RawRequestPayload = payload;
                     webResponse.Close();
                     return response;
                 }

@@ -17,7 +17,8 @@ internal class GeeTestV3ProxylessRequestSerializer : CaptchaRequestSerializer<Ge
             .With("websiteURL", request.WebsiteUrl)
             .With("gt", request.Gt)
             .With("geetestGetLib", request.GeetestGetLib)
-            .With("challenge", request.Challenge);
+            .With("challenge", request.Challenge)
+            .With("version", 3);
         if (!string.IsNullOrEmpty(request.GeetestApiServerSubdomain))
         {
             payload["geetestApiServerSubdomain"] = request.GeetestApiServerSubdomain;

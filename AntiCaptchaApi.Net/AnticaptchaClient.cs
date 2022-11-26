@@ -95,6 +95,14 @@ namespace AntiCaptchaApi.Net
             return SolveCaptchaLogic(false, request).Result;
         }
 
+        
+        public async Task<TaskResultResponse<TSolution>> SolveCaptchaAsync<TSolution>(CaptchaRequest<TSolution> request)
+            where TSolution : BaseSolution, new()
+        {
+            return await SolveCaptchaLogic(true, request);
+        }
+
+        
         public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120)
             where TSolution : BaseSolution, new()
         {
@@ -145,7 +153,10 @@ namespace AntiCaptchaApi.Net
 
             return new TaskResultResponse<TSolution>
             {
-                CreateTaskResponse = createTaskResponse
+                CreateTaskResponse = createTaskResponse,
+                ErrorDescription = createTaskResponse.ErrorDescription,
+                ErrorCode = createTaskResponse.ErrorCode,
+                ErrorId = createTaskResponse.ErrorId
             };
         }
 

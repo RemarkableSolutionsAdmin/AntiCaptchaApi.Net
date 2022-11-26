@@ -7,11 +7,11 @@ using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Internal.Serializers;
 
-internal  class FunCaptchaRequestProxylessSerializer : CaptchaRequestSerializer<FunCaptchaRequestProxyless, FunCaptchaSolution>
+internal  class FunCaptchaProxylessRequestSerializer : CaptchaRequestSerializer<FunCaptchaProxylessRequest, FunCaptchaSolution>
 {
     public override string TypeName => "FunCaptchaTaskProxyless";
 
-    public override JObject Serialize(FunCaptchaRequestProxyless request) =>
+    public override JObject Serialize(FunCaptchaProxylessRequest request) =>
         base.Serialize(request)
             .With("websiteURL", request.WebsiteUrl)
             .With("websitePublicKey", request.WebsitePublicKey)

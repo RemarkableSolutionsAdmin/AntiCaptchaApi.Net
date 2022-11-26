@@ -10,7 +10,7 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
     {
         private const string FunCaptchaUriExample = "https://api.funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC";
 
-        private static FunCaptchaRequestProxyless CreateAuthenticFunCaptchaRequest() =>
+        private static FunCaptchaProxylessRequest CreateAuthenticFunCaptchaRequest() =>
             new()
             {
                 WebsiteUrl = FunCaptchaUriExample,
