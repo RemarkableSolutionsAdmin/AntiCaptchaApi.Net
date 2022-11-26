@@ -1,14 +1,16 @@
-﻿using AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
+﻿using System.Threading.Tasks;
+using AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
+using AntiCaptchaApi.Net.Tests.IntegrationTests.Base;
 using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests
 {
-    public class AnticaptchaGetBalanceTests : AnticaptchaTestBase
+    public class AnticaptchaRequestGetBalanceTests : AnticaptchaTestBase
     {
         [Fact]
-        public void ShouldReturnCorrectBalance_WhenCallingAuthenticRequest()
+        public async Task ShouldReturnCorrectBalance_WhenCallingAuthenticRequest()
         {
-            var balance = AnticaptchaClient.GetBalance();
+            var balance = await AnticaptchaClient.GetBalanceAsync();
             Assert.NotNull(balance);
             Assert.NotNull(balance.Balance);
         }

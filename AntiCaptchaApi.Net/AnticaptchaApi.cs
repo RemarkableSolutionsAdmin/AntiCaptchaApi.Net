@@ -27,26 +27,6 @@ namespace AntiCaptchaApi.Net
             GetSpendingStats,
             GetAppStats,
         }
-        public static CreateTaskResponse CreateTask(JObject jsonPostData)
-        {
-            return CallApiMethod<CreateTaskResponse>(ApiMethod.CreateTask, jsonPostData);
-        }
-
-        public static BalanceResponse GetBalance(JObject jsonPostData)
-        {
-            return CallApiMethod<BalanceResponse>(ApiMethod.GetBalance, jsonPostData);
-        }
-
-        public static TaskResultResponse<TSolution> GetTaskResult<TSolution>(JObject payload)
-            where TSolution : BaseSolution, new()
-        {
-            return CallApiMethod<TaskResultResponse<TSolution>>(ApiMethod.GetTaskResult, payload);
-        }
-        private static T CallApiMethod<T>(ApiMethod methodName, JObject payload)
-            where T : BaseResponse, new()
-        {
-            return CallApiMethodLogic<T>(true, methodName, payload).Result;
-        }
 
         public static async Task<CreateTaskResponse> CreateTaskAsync(JObject payload)
         {
@@ -67,15 +47,9 @@ namespace AntiCaptchaApi.Net
         public static async Task<TResponse> CallApiMethodAsync<TResponse>(ApiMethod methodName, JObject payload)
             where TResponse : BaseResponse, new()
         {
-            return await CallApiMethodLogic<TResponse>(true, methodName, payload);
-        }
-
-        private static async Task<T> CallApiMethodLogic<T>(bool isAsync, ApiMethod methodName, JObject payload)
-            where T : BaseResponse, new()
-        {
             var uri = CreateAntiCaptchaUri(methodName);
             var serializedPayload = JsonConvert.SerializeObject(payload, Formatting.Indented);
-            return isAsync ? await HttpHelper.PostAsync<T>(uri, serializedPayload) : HttpHelper.Post<T>(uri, serializedPayload);
+            return await HttpHelper.PostAsync<TResponse>(uri, serializedPayload);
         }
 
         private static Uri CreateAntiCaptchaUri(ApiMethod methodName)

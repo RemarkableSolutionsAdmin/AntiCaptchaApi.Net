@@ -1,48 +1,38 @@
 ﻿using System;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Requests.Abstractions;
 using AntiCaptchaApi.Net.Responses;
 using AntiCaptchaApi.Net.Tests.Helpers;
 using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 
-public class GeeTestProxylessV3RequestTests : GeeTestsBase
+public class GeeRequestTestProxylessV3RequestTests : GeeRequestTestsBase<GeeTestV3Solution>
 {
     [Fact]
-    public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
+    public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
     {
-        var (gt, websiteChallenge) = GetTokens();
-        var request = new GeeTestV3ProxylessRequest()
+        await TestAuthenticRequest();
+    }
+
+    protected override GeeTestV3ProxylessRequest CreateAuthenticRequest()
+    {
+        return new GeeTestV3ProxylessRequest()
         {
             WebsiteUrl = "https://www.seloger.com/",
             Gt = "1e505deed3832c02c96ca5abe70df9ab",
             Challenge = "1ea0aba2104e7366ba764f86527df09a"
         };
-
-        TestCaptchaRequest(request, out TaskResultResponse<GeeTestV3Solution> taskResultResponse);
-        AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Challenge);
-        AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Validate);
-        AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Seccode);
     }
 
-    // [Fact]
-    // public void ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequestBySolveCaptcha()
-    // {
-    //     var (gt, websiteChallenge) = GetTokens();
-    //     var request = new GeeTestV3ProxylessRequest()
-    //     {
-    //         WebsiteUrl = "http://www.supremenewyork.com",
-    //         Gt = gt,
-    //         Challenge = websiteChallenge
-    //     };
-    //     
-    //
-    //     TestCaptchaRequest(request, out TaskResultResponse<GeeTestV3Solution> taskResultResponse);
-    //     AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Challenge);
-    //     AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Validate);
-    //     AssertHelper.NotNullNotEmpty(taskResultResponse.Solution.Seccode);
-    // }
+    protected override void AssertTaskResult(TaskResultResponse<GeeTestV3Solution> taskResult)
+    {
+        AssertHelper.NotNullNotEmpty(taskResult.Solution.Challenge);
+        AssertHelper.NotNullNotEmpty(taskResult.Solution.Validate);
+        AssertHelper.NotNullNotEmpty(taskResult.Solution.Seccode);
+    }
 }

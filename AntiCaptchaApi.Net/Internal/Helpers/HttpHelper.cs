@@ -27,20 +27,8 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                 new TaskResultConverter<ImageToTextSolution>(),
             });
         }
-        
-        internal static T Post<T>(Uri url, string payload)
-            where T : BaseResponse, new()
-        {
-            return PostLogic<T>(false, url, payload).Result;
-        }
-        
-        internal static async Task<T> PostAsync<T>(Uri url, string payload)
-            where T : BaseResponse, new()
-        {
-            return await PostLogic<T>(true, url, payload);
-        }
 
-        private static async Task<T> PostLogic<T>(bool isAsync, Uri url, string payload) 
+        internal static async Task<T> PostAsync<T>(Uri url, string payload)
             where T : BaseResponse, new()
         {
             var response = new T();
@@ -54,7 +42,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                     stream.Close();
                 }
                 
-                using (var webResponse = isAsync ? await request.GetResponseAsync() : request.GetResponse())
+                using (var webResponse = await request.GetResponseAsync())
                 {
                     var streamReader = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8);
                     var rawResponse = await streamReader.ReadToEndAsync();

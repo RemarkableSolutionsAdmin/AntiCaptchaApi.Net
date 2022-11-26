@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
+using AntiCaptchaApi.Net.Tests.IntegrationTests.Base;
 using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests
 {
-    public class AnticaptchaGetQueueStatsTests : AnticaptchaTestBase
+    public class AnticaptchaRequestGetQueueStatsTests : AnticaptchaTestBase
     {
         [Fact]
         public async Task ShouldReturnCorrectStats_WhenCallingAuthenticRequest()

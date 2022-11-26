@@ -6,20 +6,28 @@ namespace AntiCaptchaApi.Net.Tests.Helpers;
 
 public static class AssertHelper
 {
-    private static void AssertBase(BaseResponse baseResponse)
+    private static void AssertBase(BaseResponse? baseResponse)
     {
-        if (!string.IsNullOrEmpty(baseResponse.ErrorDescription))
+        Xunit.Assert.NotNull(baseResponse);
+        if (baseResponse != null)
         {
-            Xunit.Assert.Null(baseResponse.ErrorDescription);
-            Xunit.Assert.Empty(baseResponse.ErrorDescription);
+            if (!string.IsNullOrEmpty(baseResponse.ErrorDescription))
+            {
+                Xunit.Assert.Null(baseResponse.ErrorDescription);
+                Xunit.Assert.Empty(baseResponse.ErrorDescription);
+            }
+
+            Xunit.Assert.False(baseResponse.IsErrorResponse);
         }
-        Xunit.Assert.False(baseResponse.IsErrorResponse);
     }
     
-    public static void Assert(CreateTaskResponse createTaskResponse)
+    public static void Assert(CreateTaskResponse? createTaskResponse)
     {
         AssertBase(createTaskResponse);
-        Xunit.Assert.NotEqual(0, createTaskResponse.TaskId);
+        if (createTaskResponse != null)
+        {
+            Xunit.Assert.NotEqual(0, createTaskResponse.TaskId);   
+        }
     }
 
     public static void Assert<TSolution>(TaskResultResponse<TSolution> rawTaskResultResponse)
