@@ -37,7 +37,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// List of domain names where we should collect cookies and localStorage data.
         /// This list can also be defined statically when editing а template.
         /// </summary>
-        public List<string> DomainsOfInterest  { get; set; }= new List<string>();
+        public List<string> DomainsOfInterest  { get; set; }= new();
         
         /// <summary>
         /// [AutomaticallySet] ProxyConfig.ProxyType : Automatically changed to https.

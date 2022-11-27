@@ -27,7 +27,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// In this example, you will notice a parameter "s" which is not documented, but obviously required.
         /// Send it to the API, so that we render the Recaptcha widget with this parameter properly.
         ///</summary>
-        public Dictionary<string, string> EnterprisePayload = new Dictionary<string, string>();
+        public Dictionary<string, string> EnterprisePayload = new();
         
         
         

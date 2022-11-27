@@ -16,6 +16,7 @@ public class GeeRequestTestProxylessV3RequestTests : GeeRequestTestsBase<GeeTest
     [Fact]
     public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
     {
+        Assert.False(true, "Unsolvable request"); //TODO!
         await TestAuthenticRequest();
     }
 

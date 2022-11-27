@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Internal.Converters;
 using AntiCaptchaApi.Net.Models.Solutions;
@@ -15,8 +17,13 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
     internal static class HttpHelper
     {
         private static readonly List<JsonConverter> Converters = new();
+        private static readonly HttpClient HttpClient;
+        private const int HttpClientTimeout = 30;
+
         static HttpHelper()
         {
+            HttpClient = new HttpClient();
+            HttpClient.Timeout = TimeSpan.FromSeconds(HttpClientTimeout);
             Converters.AddRange(new JsonConverter[]{ 
                 new TaskResultConverter<FunCaptchaSolution>(),
                 new AntiGateTaskResultConverter(),
@@ -28,49 +35,35 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
             });
         }
 
-        internal static async Task<T> PostAsync<T>(Uri url, string payload)
+        internal static async Task<T> PostAsync<T>(Uri url, string payload, CancellationToken cancellationToken)
             where T : BaseResponse, new()
         {
             var response = new T();
-            var payloadBody = Encoding.UTF8.GetBytes(payload);
-            var request = CreatePostRequest(url, payload);
+            var rawResponse = string.Empty;
             try
             {
-                using (var stream = request.GetRequestStream())
+                var data = new StringContent(payload, Encoding.UTF8, "application/json");
+                var postResponse = await HttpClient.PostAsync(url, data, cancellationToken);
+                rawResponse = await postResponse.Content.ReadAsStringAsync();
+                response = JsonConvert.DeserializeObject<T>(rawResponse, Converters.ToArray());
+                if (response != null)
                 {
-                    await stream.WriteAsync(payloadBody, 0, payloadBody.Length);
-                    stream.Close();
-                }
-                
-                using (var webResponse = await request.GetResponseAsync())
-                {
-                    var streamReader = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8);
-                    var rawResponse = await streamReader.ReadToEndAsync();
-                    response = JsonConvert.DeserializeObject<T>(rawResponse, Converters.ToArray());
                     response.RawResponse = rawResponse;
                     response.RawRequestPayload = payload;
-                    webResponse.Close();
-                    return response;
                 }
-
+                return response;
             }
             catch (Exception ex)
             {
-                response.ErrorDescription = ex.Message;
+                if (response == null)
+                {
+                    return null;
+                }
+                response.ErrorDescription = ex.Message; 
+                response.RawResponse = rawResponse;
+                response.RawRequestPayload = payload;
                 return response;
             }
-        }
-        
-        private static HttpWebRequest CreatePostRequest(Uri url, string post)
-        {
-            var postBody = Encoding.UTF8.GetBytes(post);
-            var request = (HttpWebRequest)WebRequest.Create(url);
-
-            request.Method = "POST";
-            request.ContentType = "application/json";
-            request.ContentLength = postBody.Length;
-            request.Timeout = 30000;
-            return request;
         }
     }
 }

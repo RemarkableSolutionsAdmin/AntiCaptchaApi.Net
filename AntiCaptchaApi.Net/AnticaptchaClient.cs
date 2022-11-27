@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Internal;
@@ -16,75 +17,75 @@ namespace AntiCaptchaApi.Net
     public class AnticaptchaClient
     {
         private readonly PostRequestPayloadBuilder _postRequestPayloadBuilder;
-        public string ClientKey => _postRequestPayloadBuilder.ClientKey;
 
         public AnticaptchaClient(string clientKey)
         {
             _postRequestPayloadBuilder = new PostRequestPayloadBuilder(clientKey);
         }
-        public async Task<GetQueueStatsResponse> GetQueueStatsAsync(QueueType queueType)
+        public async Task<GetQueueStatsResponse> GetQueueStatsAsync(QueueType queueType, CancellationToken cancellationToken = default)
         {
             var payload = _postRequestPayloadBuilder.BuildGetQueueStatsPayload(queueType);
-            return await AnticaptchaApi.CallApiMethodAsync<GetQueueStatsResponse>(AnticaptchaApi.ApiMethod.GetQueueStats, payload);
+            return await AnticaptchaApi.CallApiMethodAsync<GetQueueStatsResponse>(ApiMethod.GetQueueStats, payload, cancellationToken);
         }
 
-        public async Task<GetAppStatsResponse> GetAppStatsAsync(int softId, AppStatsMode? mode = null)
+        public async Task<GetAppStatsResponse> GetAppStatsAsync(int softId, AppStatsMode? mode = null, CancellationToken cancellationToken = default)
         {
             var payload = _postRequestPayloadBuilder.BuildGetAppStatsPayload(softId, mode);
-            return await AnticaptchaApi.CallApiMethodAsync<GetAppStatsResponse>(AnticaptchaApi.ApiMethod.GetAppStats, payload);
+            return await AnticaptchaApi.CallApiMethodAsync<GetAppStatsResponse>(ApiMethod.GetAppStats, payload, cancellationToken);
         }
 
-        public async Task<GetSpendingStatsResponse> GetSpendingStatsAsync(int date, string queue, int? softId = null, string ip = null)
+        public async Task<GetSpendingStatsResponse> GetSpendingStatsAsync(int date, string queue, int? softId = null, string ip = null, CancellationToken cancellationToken = default)
         {
             var payload = _postRequestPayloadBuilder.BuildGetSpendingStatsPayload(date, queue, softId, ip);
-            return await AnticaptchaApi.CallApiMethodAsync<GetSpendingStatsResponse>(AnticaptchaApi.ApiMethod.GetSpendingStats, payload);
+            return await AnticaptchaApi.CallApiMethodAsync<GetSpendingStatsResponse>(ApiMethod.GetSpendingStats, payload, cancellationToken);
         }
 
-        public async Task<ActionResponse> PushAntiGateVariableAsync(int taskId, string name, object value)
+        public async Task<ActionResponse> PushAntiGateVariableAsync(int taskId, string name, object value, CancellationToken cancellationToken = default)
         {
             var payload = _postRequestPayloadBuilder.BuildPushAntiGateVariablePayload(taskId, name, value);
-            return await AnticaptchaApi.CallApiMethodAsync<ActionResponse>(AnticaptchaApi.ApiMethod.PushAntiGateVariable, payload);
+            return await AnticaptchaApi.CallApiMethodAsync<ActionResponse>(ApiMethod.PushAntiGateVariable, payload, cancellationToken);
         }
 
-        public async Task<ActionResponse> ReportIncorrectImageCaptchaAsync(int taskId) =>
-            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportIncorrectImageCaptcha);
+        public async Task<ActionResponse> ReportIncorrectImageCaptchaAsync(int taskId, CancellationToken cancellationToken = default) =>
+            await ReportCaptcha(taskId, ApiMethod.ReportIncorrectImageCaptcha, cancellationToken);
 
-        public async Task<ActionResponse> ReportIncorrectImageRecaptchaAsync(int taskId) =>
-            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportIncorrectRecaptcha);
-
-
-        public async Task<ActionResponse> ReportCorrectRecaptchaAsync(int taskId) =>
-            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportCorrectRecaptcha);
+        public async Task<ActionResponse> ReportIncorrectImageRecaptchaAsync(int taskId, CancellationToken cancellationToken = default) =>
+            await ReportCaptcha(taskId, ApiMethod.ReportIncorrectRecaptcha, cancellationToken);
 
 
-        public async Task<ActionResponse> ReportIncorrectImageHCaptchaAsync(int taskId) =>
-            await ReportCaptcha(taskId, AnticaptchaApi.ApiMethod.ReportIncorrectHCaptcha);
+        public async Task<ActionResponse> ReportCorrectRecaptchaAsync(int taskId, CancellationToken cancellationToken = default) =>
+            await ReportCaptcha(taskId, ApiMethod.ReportCorrectRecaptcha, cancellationToken);
 
 
-        private async Task<ActionResponse> ReportCaptcha(int taskId, AnticaptchaApi.ApiMethod method)
+        public async Task<ActionResponse> ReportIncorrectImageHCaptchaAsync(int taskId, CancellationToken cancellationToken = default) =>
+            await ReportCaptcha(taskId, ApiMethod.ReportIncorrectHCaptcha, cancellationToken);
+
+
+        private async Task<ActionResponse> ReportCaptcha(int taskId, ApiMethod method, CancellationToken cancellationToken)
         {
             var payload = _postRequestPayloadBuilder.BuildGetTaskPayload(taskId);
-            return await AnticaptchaApi.CallApiMethodAsync<ActionResponse>(method, payload);
+            return await AnticaptchaApi.CallApiMethodAsync<ActionResponse>(method, payload, cancellationToken);
         }
 
-        public async Task<BalanceResponse> GetBalanceAsync()
+        public async Task<BalanceResponse> GetBalanceAsync(CancellationToken cancellationToken = default)
         {
-            return await GetBalanceLogicAsync();
+            return await GetBalanceLogicAsync(cancellationToken);
         }
 
-        public async Task<TaskResultResponse<TSolution>> GetTaskResultAsync<TSolution>(int taskId)
+        public async Task<TaskResultResponse<TSolution>> GetTaskResultAsync<TSolution>(int taskId, CancellationToken cancellationToken = default)
             where TSolution : BaseSolution, new()
         {
-            return await GetCurrentTaskResultAsync<TSolution>(taskId);
+            return await GetCurrentTaskResultAsync<TSolution>(taskId, cancellationToken);
         }
 
-        public async Task<TaskResultResponse<TSolution>> SolveCaptchaAsync<TSolution>(CaptchaRequest<TSolution> request, int maxSeconds = 120, int currentSecond = 0)
+        public async Task<TaskResultResponse<TSolution>> SolveCaptchaAsync<TSolution>(
+            CaptchaRequest<TSolution> request, int maxSeconds = 120, int currentSecond = 0, CancellationToken cancellationToken = default)
             where TSolution : BaseSolution, new()
         {
-            var createTaskResponse = await CreateCaptchaTaskLogic(request);
+            var createTaskResponse = await CreateCaptchaTaskLogic(request, cancellationToken);
             if (!createTaskResponse.IsErrorResponse && createTaskResponse.TaskId.HasValue)
             {
-                var taskResult = await WaitForTaskResultAsync<TSolution>(createTaskResponse.TaskId.Value, maxSeconds, currentSecond);
+                var taskResult = await WaitForTaskResultAsync<TSolution>(createTaskResponse.TaskId.Value, maxSeconds, currentSecond, cancellationToken);
                 taskResult.CreateTaskResponse = createTaskResponse; //TODO should be done in serializer.
                 taskResult.CaptchaRequest = request;
                 return taskResult;
@@ -100,32 +101,34 @@ namespace AntiCaptchaApi.Net
         }
 
         
-        public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120)
+        public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120, CancellationToken cancellationToken = default)
             where TSolution : BaseSolution, new()
         {
-            return await WaitForTaskResultAsync<TSolution>(taskId, maxSeconds, 0);
+            return await WaitForTaskResultAsync<TSolution>(taskId, maxSeconds, 0, cancellationToken);
         }
 
 
-        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(CaptchaRequest<T> request) where T : BaseSolution
+        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(CaptchaRequest<T> request, CancellationToken cancellationToken = default) 
+            where T : BaseSolution
         {
-            return await CreateCaptchaTaskLogic(request);
+            return await CreateCaptchaTaskLogic(request, cancellationToken);
         }
 
-        private async Task<BalanceResponse> GetBalanceLogicAsync()
+        private async Task<BalanceResponse> GetBalanceLogicAsync(CancellationToken cancellationToken)
         {
             var payload = _postRequestPayloadBuilder.BuildBasePayload();
-            return await AnticaptchaApi.GetBalanceAsync(payload);
+            return await AnticaptchaApi.GetBalanceAsync(payload, cancellationToken);
         }
 
-        private async Task<TaskResultResponse<TSolution>> GetCurrentTaskResultAsync<TSolution>(int taskId)
+        private async Task<TaskResultResponse<TSolution>> GetCurrentTaskResultAsync<TSolution>(int taskId,
+            CancellationToken cancellationToken)
             where TSolution : BaseSolution, new()
         {
             var payload = _postRequestPayloadBuilder.BuildGetTaskPayload(taskId);
-            return await AnticaptchaApi.GetTaskResultAsync<TSolution>(payload);
+            return await AnticaptchaApi.GetTaskResultAsync<TSolution>(payload, cancellationToken);
         }
 
-        private async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds, int currentSecond)
+        private async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds, int currentSecond, CancellationToken cancellationToken)
             where TSolution : BaseSolution, new()
         {
             if (currentSecond >= maxSeconds)
@@ -135,12 +138,12 @@ namespace AntiCaptchaApi.Net
 
             await Waiter.Wait(currentSecond);
 
-            var taskResult = await GetCurrentTaskResultAsync<TSolution>(taskId);
+            var taskResult = await GetCurrentTaskResultAsync<TSolution>(taskId, cancellationToken);
 
             switch (taskResult.Status)
             {
                 case TaskStatusType.Processing:
-                        return await WaitForTaskResultAsync<TSolution>(taskId, maxSeconds, currentSecond + 1);
+                        return await WaitForTaskResultAsync<TSolution>(taskId, maxSeconds, currentSecond + 1, cancellationToken);
                 case TaskStatusType.Ready:
                     return taskResult;
                 case TaskStatusType.Error:
@@ -155,7 +158,7 @@ namespace AntiCaptchaApi.Net
             }
         }
 
-        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(CaptchaRequest<T> request) 
+        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(CaptchaRequest<T> request, CancellationToken cancellationToken) 
             where T : BaseSolution
         {
             var validationResult = request.Validate();
@@ -168,7 +171,7 @@ namespace AntiCaptchaApi.Net
                 return new CreateTaskResponse(HttpStatusCode.BadRequest.ToString(), ErrorMessages.AnticaptchaPayloadBuildValidationFailedError);
 
             var payload = _postRequestPayloadBuilder.BuildTaskCreationPayload(requestPayload);
-            return await AnticaptchaApi.CreateTaskAsync(payload);
+            return await AnticaptchaApi.CreateTaskAsync(payload, cancellationToken);
         }
     }
 }

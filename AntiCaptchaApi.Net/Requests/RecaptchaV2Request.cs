@@ -15,7 +15,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// </summary>
     public class RecaptchaV2Request : RecaptchaV2ProxylessRequest
     {
-        
+
         /// <summary>
         /// [Required] ProxyConfig.ProxyType : Type of proxy http http/socks4/socks4.
         /// [Required] ProxyConfig.proxyAddress : Proxy IP address ipv4/ipv6. No host names or IP addresses from local networks.
@@ -24,7 +24,8 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
         /// 
-        public ProxyConfig ProxyConfig = new ProxyConfig();
+        public ProxyConfig ProxyConfig { get; set; } = new();
+
         /// <summary>
         /// [Required]
         /// Browser's User-Agent used in emulation.

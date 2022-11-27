@@ -13,8 +13,7 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
         [Fact]
         public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
         {
-            //unsolvable captcha 
-            //TODO: Find a proper one
+            Assert.False(true, "Unsolvable request"); //TODO!
             await TestAuthenticRequest();
         }
 
