@@ -1,6 +1,6 @@
 # AntiCaptchaApi.Net 
 
-### AntiCaptchaApi.Net - A .NET Standard 2.1 library that implements Anticaptcha.com API
+### AntiCaptchaApi.Net - A .NET Standard 2.1 library that implements Anti-captcha.com API
 
 AntiCaptchaApi.Net is a framework written using the .NET Standard. Framework wraps all captcha methods provided by anticaptcha for use in your application.
 
