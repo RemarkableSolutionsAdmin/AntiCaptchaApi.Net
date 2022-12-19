@@ -35,12 +35,12 @@ To run the build, a Visual Studio 2022 compatible environment should be setup.
 
 ## Usage
 
-1. First, you have to initialize your AnticaptchaClient:
+### Initialize AnticaptchaClient and create your CaptchaRequest
+
 ```csharp
 var client = new AntiCaptchaClient("API_KEY");
 ```
 
-2. Create your request:
 ```csharp
 var request = new HCaptchaRequest()
             {
@@ -51,16 +51,27 @@ var request = new HCaptchaRequest()
             }; 
 ```
 
-3. Create your captcha task:
+### Get your solution
+
+At this point you have 2 options:
+
+#### Simplified way:
+
 ```csharp
-client.CreateCaptchaTask(request);
+var result = client.SolveCaptcha(request);
 ```
 
-4. Get your captcha solution:
+#### Manual way:
+
 ```csharp
-client.WaitForRawTaskResult(creationTaskResult.TaskId.Value);
+var task = client.CreateCaptchaTask(request);
 ```
 
+```csharp
+var result = client.WaitForTaskResult(task.TaskId.Value);
+```
+
+## Get Balance 
 You can get your remaining balance like this
 ```csharp
 var balance = await client.GetBalanceAsync();
