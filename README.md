@@ -35,7 +35,9 @@ To run the build, a Visual Studio 2022 compatible environment should be setup.
 
 ## Usage
 
-### Initialize AnticaptchaClient and create your CaptchaRequest
+### Solving Captcha
+
+#### Initialize AnticaptchaClient and create your CaptchaRequest
 
 ```csharp
 var client = new AntiCaptchaClient("API_KEY");
@@ -51,17 +53,17 @@ var request = new HCaptchaRequest()
             }; 
 ```
 
-### Get your solution
+#### Get your solution
 
 At this point you have 2 options:
 
-#### Simplified way:
+##### Simplified way:
 
 ```csharp
 var result = client.SolveCaptcha(request);
 ```
 
-#### Manual way:
+##### Manual way:
 
 ```csharp
 var task = client.CreateCaptchaTask(request);
@@ -71,10 +73,63 @@ var task = client.CreateCaptchaTask(request);
 var result = client.WaitForTaskResult(task.TaskId.Value);
 ```
 
-## Get Balance 
-You can get your remaining balance like this
+### All AntiCaptchaClient Methods
+
+[GetAppStatsAsync](https://anti-captcha.com/apidoc/methods/getAppStats)
+
+```csharp
+var appStats = await AnticaptchaClient.GetAppStatsAsync(TestEnvironment.SoftId, AppStatsMode.Errors);
+```
+[GetBalanceAsync](https://anti-captcha.com/apidoc/methods/getBalance)
+
 ```csharp
 var balance = await client.GetBalanceAsync();
+```
+[GetQueueStatsAsync](https://anti-captcha.com/apidoc/methods/getQueueStats)
+
+```csharp
+var queueStats = await AnticaptchaClient.GetQueueStatsAsync(QueueType.RecaptchaV3s07);
+```
+
+[GetSpendingStatsAsync](https://anti-captcha.com/apidoc/methods/getSpendingStats)
+
+```csharp
+var spendingStats = await AnticaptchaClient.GetSpendingStatsAsync(date, queue, softId, ip);
+```
+
+[GetTaskResultAsync](https://anti-captcha.com/apidoc/methods/getTaskResult)
+
+```csharp
+var result = await AnticaptchaClient.GetTaskResultAsync(taskId);
+```
+[PushAntiGateVariableAsync](https://anti-captcha.com/apidoc/methods/pushAntiGateVariable)
+
+```csharp
+var response = await AnticaptchaClient.PushAntiGateVariableAsync(taskId, variableName, variableValue);
+```
+
+[ReportCorrectRecaptchaAsync](https://anti-captcha.com/apidoc/methods/reportCorrectRecaptcha)
+
+```csharp
+var response = await AnticaptchaClient.ReportCorrectRecaptchaAsync(taskId);
+```
+
+[ReportIncorrectImageRecaptchaAsync](https://anti-captcha.com/apidoc/methods/reportIncorrectRecaptcha)
+
+```csharp
+var response = await AnticaptchaClient.ReportIncorrectImageRecaptchaAsync(taskId);
+```
+
+[ReportIncorrectImageCaptchaAsync](https://anti-captcha.com/apidoc/methods/reportIncorrectImageCaptcha)
+
+```csharp
+var response = await AnticaptchaClient.ReportIncorrectImageCaptchaAsync(taskId);
+```
+
+[ReportIncorrectImageHCaptchaAsync](https://anti-captcha.com/apidoc/methods/reportIncorrectHcaptcha)
+
+```csharp
+var response = await AnticaptchaClient.ReportIncorrectImageHCaptchaAsync(taskId);
 ```
 
 # CREDITS
