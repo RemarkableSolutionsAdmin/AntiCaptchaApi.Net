@@ -30,6 +30,9 @@ internal static class RequestTaskNameHelper
             { typeof(RecaptchaV2Request), "RecaptchaV2Task" },
             { typeof(RecaptchaV3Request), "RecaptchaV3TaskProxyless" },
             { typeof(RecaptchaV3EnterpriseRequest), "RecaptchaV3TaskProxyless" },
+            { typeof(TurnstileCaptchaProxylessRequest), "TurnstileTaskProxyless" },
+            { typeof(TurnstileCaptchaRequest), "TurnstileTask" },
+
         };
         return @switch[request.GetType()];
     }

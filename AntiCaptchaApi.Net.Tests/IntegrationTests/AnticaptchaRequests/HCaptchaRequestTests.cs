@@ -7,30 +7,29 @@ using AntiCaptchaApi.Net.Tests.Helpers;
 using AntiCaptchaApi.Net.Tests.IntegrationTests.Base;
 using Xunit;
 
-namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
+namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
+
+public class HCaptchaRequestTests : AnticaptchaRequestTestBase<HCaptchaSolution>
 {
-    public class HCaptchaRequestTests : AnticaptchaRequestTestBase<HCaptchaSolution>
+    [Fact]
+    public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
     {
-        [Fact]
-        public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
-        {
-            await TestAuthenticRequest();
-        }
+        await TestAuthenticRequest();
+    }
 
-        protected override HCaptchaRequest CreateAuthenticRequest()
+    protected override HCaptchaRequest CreateAuthenticRequest()
+    {
+        return new HCaptchaRequest()
         {
-            return new HCaptchaRequest()
-            {
-                WebsiteUrl = "https://democaptcha.com/demo-form-eng/hcaptcha.html/",
-                WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc",
-                UserAgent = TestEnvironment.UserAgent,
-                ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig()
-            };
-        }
+            WebsiteUrl = "https://democaptcha.com/demo-form-eng/hcaptcha.html/",
+            WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc",
+            UserAgent = TestEnvironment.UserAgent,
+            ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig()
+        };
+    }
 
-        protected override void AssertTaskResult(TaskResultResponse<HCaptchaSolution> taskResult)
-        {
-            AssertHelper.NotNullNotEmpty(taskResult.Solution.GRecaptchaResponse);
-        }
+    protected override void AssertTaskResult(TaskResultResponse<HCaptchaSolution> taskResult)
+    {
+        AssertHelper.NotNullNotEmpty(taskResult.Solution.GRecaptchaResponse);
     }
 }

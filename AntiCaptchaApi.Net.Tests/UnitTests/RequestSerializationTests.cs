@@ -35,7 +35,7 @@ public class RequestSerializationTests
                 Data = expectedPayload["data"]!.ToString(),
             };
 
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -57,7 +57,7 @@ public class RequestSerializationTests
                 WebsitePublicKey = expectedPayload["websitePublicKey"]!.ToString(),
             };
     
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -97,7 +97,7 @@ public class RequestSerializationTests
         };
 
     
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -128,7 +128,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
         
@@ -158,7 +158,7 @@ public class RequestSerializationTests
             },
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -205,7 +205,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -295,7 +295,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -329,7 +329,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -356,7 +356,7 @@ public class RequestSerializationTests
             GeetestApiServerSubdomain = expectedPayload["geetestApiServerSubdomain"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -379,7 +379,7 @@ public class RequestSerializationTests
             Challenge = expectedPayload["challenge"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -416,7 +416,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -439,7 +439,7 @@ public class RequestSerializationTests
             Challenge = expectedPayload["challenge"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
     
@@ -481,7 +481,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
     
@@ -515,7 +515,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -549,7 +549,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
     
@@ -571,7 +571,7 @@ public class RequestSerializationTests
             UserAgent = expectedPayload["userAgent"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
     
@@ -618,7 +618,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -649,7 +649,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -683,7 +683,7 @@ public class RequestSerializationTests
             MaxLength = int.Parse(expectedPayload["maxLength"]!.ToString()),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -703,7 +703,7 @@ public class RequestSerializationTests
             BodyBase64 = expectedPayload["body"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -736,7 +736,7 @@ public class RequestSerializationTests
             }
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -757,7 +757,7 @@ public class RequestSerializationTests
             WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -807,7 +807,7 @@ public class RequestSerializationTests
             Cookies = expectedPayload["cookies"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -839,7 +839,7 @@ public class RequestSerializationTests
             UserAgent = expectedPayload["userAgent"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -863,7 +863,7 @@ public class RequestSerializationTests
             IsInvisible = bool.Parse(expectedPayload["isInvisible"]!.ToString()),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -883,7 +883,94 @@ public class RequestSerializationTests
             WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
+        AssertSame(expectedPayload, requestPayload);
+    }
+    
+    [Fact]
+    public void TurnstileProxylessRequestSerializationTest()
+    {
+        var expectedPayload = new JObject
+        {
+            ["type"] = "TurnstileTaskProxyless",
+            ["websiteURL"] = "https://api.funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+            ["websiteKey"] = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC"
+        };
+        
+        var request = new TurnstileCaptchaProxylessRequest()
+        {
+            WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
+            WebsiteKey = expectedPayload["websiteKey"]!.ToString()
+        };
+        
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
+        AssertSame(expectedPayload, requestPayload);
+    }
+    
+    [Fact]
+    public void TurnstileRequestSerializationTest()
+    {
+        var expectedPayload = new JObject
+        {
+            ["type"] = "TurnstileTask",
+            ["websiteURL"] = "https://api.funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+            ["websiteKey"] = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+            ["proxyType"] = "socks4",
+            ["proxyAddress"] = "proxyAddressTest",
+            ["proxyPort"] = 1080,
+            ["proxyLogin"] = "proxyLoginTest",
+            ["proxyPassword"] = "proxyPasswordTest",
+            ["userAgent"] = "userAgentTest",
+        };
+        
+        var request = new TurnstileCaptchaRequest()
+        {
+            WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
+            WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
+            ProxyConfig = new TypedProxyConfig
+            {
+                ProxyType = ProxyTypeOption.Socks4,
+                ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
+                ProxyLogin = expectedPayload["proxyLogin"]!.ToString(),
+                ProxyPassword = expectedPayload["proxyPassword"]!.ToString(),
+                ProxyPort = int.Parse(expectedPayload["proxyPort"]!.ToString()),
+            },
+            UserAgent = expectedPayload["userAgent"]!.ToString(),
+        };
+        
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
+        AssertSame(expectedPayload, requestPayload);
+    }
+
+
+    [Fact]
+    public void TurnstileRequestSerializationTest_OnlyRequiredArguments()
+    {
+        var expectedPayload = new JObject
+        {
+            ["type"] = "TurnstileTask",
+            ["websiteURL"] = "https://api.funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+            ["websiteKey"] = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+            ["proxyType"] = "socks4",
+            ["proxyAddress"] = "proxyAddressTest",
+            ["proxyPort"] = 1080,
+            ["userAgent"] = "userAgentTest",
+        };
+        
+        var request = new TurnstileCaptchaRequest()
+        {
+            WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
+            WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
+            ProxyConfig = new TypedProxyConfig
+            {
+                ProxyType = ProxyTypeOption.Socks4,
+                ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
+                ProxyPort = int.Parse(expectedPayload["proxyPort"]!.ToString()),
+            },
+            UserAgent = expectedPayload["userAgent"]!.ToString(),
+        };
+        
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -905,7 +992,7 @@ public class RequestSerializationTests
             MinScore = double.Parse(expectedPayload["minScore"]!.ToString()),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -933,7 +1020,7 @@ public class RequestSerializationTests
             IsEnterprise = bool.Parse(expectedPayload["isEnterprise"]!.ToString()),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -960,7 +1047,7 @@ public class RequestSerializationTests
             MinScore = double.Parse(expectedPayload["minScore"]!.ToString()),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 
@@ -983,7 +1070,7 @@ public class RequestSerializationTests
             MinScore = double.Parse(expectedPayload["minScore"]!.ToString()),
         };
         
-        var requestPayload = CaptchaRequestPayloadBuilder.BuildNew(request);
+        var requestPayload = CaptchaRequestPayloadBuilder.Build(request);
         AssertSame(expectedPayload, requestPayload);
     }
 

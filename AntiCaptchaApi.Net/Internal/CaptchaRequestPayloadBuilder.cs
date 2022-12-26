@@ -52,6 +52,8 @@ internal static class CaptchaRequestPayloadBuilder
             { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestValidator().Validate(request as RecaptchaV2Request) },
             { typeof(RecaptchaV3Request), () => new RecaptchaV3RequestValidator().Validate(request as RecaptchaV3Request) },
             { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3RequestValidator().Validate(request as RecaptchaV3EnterpriseRequest) },
+            { typeof(TurnstileCaptchaProxylessRequest), () => new TurnstileProxylessRequestValidator().Validate(request as TurnstileCaptchaProxylessRequest) },
+            { typeof(TurnstileCaptchaRequest), () => new TurnstileProxylessRequestValidator().Validate(request as TurnstileCaptchaProxylessRequest) },
         };
         return @switch[request.GetType()];
     }
@@ -62,7 +64,7 @@ internal static class CaptchaRequestPayloadBuilder
         return GetCaptchaRequestCreationValidator(request).Invoke();
     }
 
-    internal static JObject BuildNew<TSolution>(CaptchaRequest<TSolution> request)
+    internal static JObject Build<TSolution>(CaptchaRequest<TSolution> request)
         where TSolution : BaseSolution
     {
         if (request == null)

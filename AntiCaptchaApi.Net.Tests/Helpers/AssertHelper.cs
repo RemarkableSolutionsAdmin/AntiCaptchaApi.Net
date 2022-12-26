@@ -30,16 +30,16 @@ public static class AssertHelper
         }
     }
 
-    public static void Assert<TSolution>(TaskResultResponse<TSolution> rawTaskResultResponse)
+    public static void Assert<TSolution>(TaskResultResponse<TSolution> taskResultResponse)
         where TSolution : BaseSolution, new()
     {
-        AssertBase(rawTaskResultResponse);
-        Xunit.Assert.NotNull(rawTaskResultResponse.Status);
-        Xunit.Assert.NotNull(rawTaskResultResponse.Cost);
-        Xunit.Assert.NotNull(rawTaskResultResponse.Ip);
-        Xunit.Assert.NotNull(rawTaskResultResponse.CreateTimeUtc);
-        Xunit.Assert.NotNull(rawTaskResultResponse.EndTimeUtc);
-        Xunit.Assert.NotNull(rawTaskResultResponse.SolveCount);
+        AssertBase(taskResultResponse);
+        Xunit.Assert.NotNull(taskResultResponse.Status);
+        Xunit.Assert.NotNull(taskResultResponse.Cost);
+        Xunit.Assert.NotNull(taskResultResponse.Ip);
+        Xunit.Assert.NotNull(taskResultResponse.CreateTimeUtc);
+        Xunit.Assert.NotNull(taskResultResponse.EndTimeUtc);
+        Xunit.Assert.NotNull(taskResultResponse.SolveCount);
     }
 
     public static void NotNullNotEmpty(string value)

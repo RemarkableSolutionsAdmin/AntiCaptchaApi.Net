@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
-using AntiCaptchaApi.Net.Requests.Abstractions;
 using AntiCaptchaApi.Net.Responses;
 using AntiCaptchaApi.Net.Tests.Helpers;
 using AntiCaptchaApi.Net.Tests.IntegrationTests.Base;
@@ -9,7 +8,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 
-public class HCaptchaProxylessRequestTests : AnticaptchaRequestTestBase<HCaptchaSolution>
+public class TurnstileCaptchaRequestTests : AnticaptchaRequestTestBase<TurnstileSolution>
 {
     [Fact]
     public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
@@ -17,18 +16,19 @@ public class HCaptchaProxylessRequestTests : AnticaptchaRequestTestBase<HCaptcha
         await TestAuthenticRequest();
     }
 
-    protected override HCaptchaProxylessRequest CreateAuthenticRequest()
+    protected override TurnstileCaptchaRequest CreateAuthenticRequest()
     {
-        return new HCaptchaProxylessRequest()
+        return new TurnstileCaptchaRequest()
         {
-            WebsiteUrl = "https://entwickler.ebay.de/signin?tab=register",
-            WebsiteKey = "195eeb9f-8f50-4a9c-abfc-a78ceaa3cdde",
+            WebsiteUrl = "https://react-turnstile.vercel.app/",
+            WebsiteKey = "3x00000000000000000000FF",
+            ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig(),
             UserAgent = TestEnvironment.UserAgent
         };
     }
 
-    protected override void AssertTaskResult(TaskResultResponse<HCaptchaSolution> taskResult)
+    protected override void AssertTaskResult(TaskResultResponse<TurnstileSolution> taskResult)
     {
-        AssertHelper.NotNullNotEmpty(taskResult.Solution.GRecaptchaResponse);
+        AssertHelper.NotNullNotEmpty(taskResult.Solution.Token);
     }
 }
