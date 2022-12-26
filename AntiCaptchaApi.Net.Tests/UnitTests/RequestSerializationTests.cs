@@ -247,7 +247,6 @@ public class RequestSerializationTests
                 return;
             }
             
-            //TODO. Proper message.
             Assert.False(true, $"Payloads do not match.");
         }
     }

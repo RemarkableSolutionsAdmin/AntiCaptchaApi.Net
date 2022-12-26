@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
 using AntiCaptchaApi.Net.Requests.Abstractions;
@@ -23,11 +24,13 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             var request = new RecaptchaV2EnterpriseProxylessRequest
             {
                 WebsiteUrl = "https://store.steampowered.com/join",
-                WebsiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH"
+                WebsiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH",
+                EnterprisePayload = new Dictionary<string, string>
+                {
+                    { "test", "qwerty" },
+                    { "secret", "AB_12345" }
+                }
             };
-
-            request.EnterprisePayload.Add("test", "qwerty");
-            request.EnterprisePayload.Add("secret", "AB_12345");
 
             var taskResult = await AnticaptchaClient.SolveCaptchaAsync(request);
             Assert.NotNull(taskResult);
@@ -42,12 +45,14 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             var request = new RecaptchaV2EnterpriseProxylessRequest
             {
                 WebsiteUrl = "https://store.steampowered.com/join",
-                WebsiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH"
+                WebsiteKey = "6LdIFr0ZAAAAAO3vz0O0OQrtAefzdJcWQM2TMYQH",
+                EnterprisePayload = new Dictionary<string, string>
+                {
+                    { "test", "qwerty" },
+                    { "secret", "AB_12345" }
+                }
             };
 
-            request.EnterprisePayload.Add("test", "qwerty");
-            request.EnterprisePayload.Add("secret", "AB_12345");
-            
             return request;
         }
 

@@ -9,7 +9,7 @@ public class GetAppStatsResponseConverter : JsonConverter<GetAppStatsResponse>
 {
     public override void WriteJson(JsonWriter writer, GetAppStatsResponse value, JsonSerializer serializer)
     {
-        throw new NotImplementedException();
+        // ignore
     }
 
     public override GetAppStatsResponse ReadJson(JsonReader reader, Type objectType, GetAppStatsResponse existingValue, bool hasExistingValue,

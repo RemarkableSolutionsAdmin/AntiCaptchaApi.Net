@@ -97,7 +97,7 @@ internal static class CaptchaRequestPayloadBuilder
             serialized["isEnterprise"] = true;
         }
 
-        if (serialized.ContainsKey("proxyConfig")) // TODO. Default values, safe parsing.
+        if (serialized.ContainsKey("proxyConfig"))
         {
             if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyType"]?.ToString()))
                 serialized["proxyType"] = ((ProxyTypeOption)int.Parse(serialized["proxyConfig"]?["proxyType"]?.ToString())).ToString().ToLower();
