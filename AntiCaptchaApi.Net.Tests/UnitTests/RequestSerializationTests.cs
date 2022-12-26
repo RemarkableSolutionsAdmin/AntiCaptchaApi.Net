@@ -665,7 +665,7 @@ public class RequestSerializationTests
             ["phrase"] = true,
             ["case"] = true,
             ["numeric"] = 2,
-            ["math"] = 3,
+            ["math"] = true,
             ["minLength"] = 4,
             ["maxLength"] = 5,
         };
@@ -678,7 +678,7 @@ public class RequestSerializationTests
             Phrase = bool.Parse(expectedPayload["phrase"]!.ToString()),
             Case = bool.Parse(expectedPayload["case"]!.ToString()),
             Numeric = (NumericOption)int.Parse(expectedPayload["numeric"]!.ToString()),
-            Math = int.Parse(expectedPayload["math"]!.ToString()),
+            Math = bool.Parse(expectedPayload["math"]!.ToString()),
             MinLength = int.Parse(expectedPayload["minLength"]!.ToString()),
             MaxLength = int.Parse(expectedPayload["maxLength"]!.ToString()),
         };

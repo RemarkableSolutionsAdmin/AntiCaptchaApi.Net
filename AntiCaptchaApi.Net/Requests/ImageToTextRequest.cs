@@ -59,7 +59,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// false - no requirements
         /// true - workers see a special mark telling them the answer must be calculated
         /// </summary>
-        public int? Math { get; set; }
+        public bool? Math { get; set; }
         
         
         /// <summary>
