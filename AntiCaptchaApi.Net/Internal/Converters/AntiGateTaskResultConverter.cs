@@ -17,15 +17,15 @@ public class AntiGateTaskResultConverter : TaskResultConverter<AntiGateSolution>
     public override TaskResultResponse<AntiGateSolution> ReadJson(JsonReader reader, Type objectType, TaskResultResponse<AntiGateSolution> existingValue, bool hasExistingValue,
         JsonSerializer serializer)
     {
-        var AntiGateTaskResultResponse = base.ReadJson(reader, objectType, existingValue, hasExistingValue, serializer);
+        var antiGateTaskResultResponse = base.ReadJson(reader, objectType, existingValue, hasExistingValue, serializer);
         
-        if (AntiGateTaskResultResponse is { Status: TaskStatusType.Ready })
+        if (antiGateTaskResultResponse is { Status: TaskStatusType.Ready })
         {
-            AntiGateTaskResultResponse.Solution ??= new AntiGateSolution();
-            ParseJObjects(jObject, AntiGateTaskResultResponse);
+            antiGateTaskResultResponse.Solution ??= new AntiGateSolution();
+            ParseJObjects(jObject, antiGateTaskResultResponse);
         }
         
-        return AntiGateTaskResultResponse;
+        return antiGateTaskResultResponse;
     }
 
     private static void ParseJObjects(JObject jObject, TaskResultResponse<AntiGateSolution> AntiGateTaskResultResponse)

@@ -21,12 +21,12 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional]
         /// Value of 'data-s' parameter. Applies only to captchas on Google web sites.
         /// </summary>
-        public string RecaptchaDataSValue { internal get; set; }
+        public string RecaptchaDataSValue { get; set; }
         
         /// <summary>
         /// [Optional]
         /// Specify whether or not Recaptcha is invisible. This will render an appropriate widget for our workers.
         /// </summary>
-        public bool IsInvisible { internal get; set; }
+        public bool? IsInvisible { get; set; }
     }
 }

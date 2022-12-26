@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests
 {
@@ -19,25 +20,26 @@ namespace AntiCaptchaApi.Net.Requests
         /// Address of a target web page. Can be located anywhere on the web site, even in a member area.
         /// Our workers don't navigate there but simulate the visit instead.
         /// </summary>
+        [JsonProperty("websiteURL")]
         public string WebsiteUrl { get; set; }
         
         /// <summary>
         /// [Required]
         /// The domain public key, rarely updated.
         /// </summary>
-        public string Gt { internal get; set; }
+        public string Gt { get; set; }
         
         /// <summary>
         /// [Optional]
         /// Changing token key. Make sure you grab a fresh one for each captcha; otherwise, you'll be charged for an error task.
         /// </summary>
-        public string Challenge { internal get; set; }
+        public string Challenge { get; set; }
         
         /// <summary>
         /// Optional API subdomain. May be required for some implementations.
         /// https://anti-captcha.com/_nuxt/img/geetest_subdomain.ab5ed5e.png
         /// </summary>
-        public string GeetestApiServerSubdomain { internal get; set; }
+        public string GeetestApiServerSubdomain { get; set; }
         
         /// <summary>
         /// [Optional]
@@ -45,12 +47,12 @@ namespace AntiCaptchaApi.Net.Requests
         /// Put a breakpoint before calling the "initGeetest" function
         /// https://anti-captcha.com/_nuxt/img/geetest_lib.2a8ba99.png
         /// </summary>
-        public string GeetestGetLib { internal get; set; }
+        public string GeetestGetLib { get; set; }
         
         /// <summary>
         /// [Optional
         /// Additional initialization parameters
         /// </summary>
-        public Dictionary<string, string> InitParameters = new();
+        public Dictionary<string, string> InitParameters { get; set; }
     }
 }

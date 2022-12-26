@@ -5,9 +5,9 @@ using AntiCaptchaApi.Net.Requests;
 
 namespace AntiCaptchaApi.Net.Internal.Validation.Validators;
 
-public class RecaptchaV3ProxylessRequestValidator : WebsiteCaptchaRequestValidator<RecaptchaV3ProxylessRequest, RecaptchaSolution>
+public class RecaptchaV3RequestValidator : WebsiteCaptchaRequestValidator<RecaptchaV3Request, RecaptchaSolution>
 {
-    public override ValidationResult Validate(RecaptchaV3ProxylessRequest request)
+    public override ValidationResult Validate(RecaptchaV3Request request)
     {
         return base.Validate(request)
             .ValidateIsOneOfTheValues(nameof(request.MinScore), request.MinScore, new []{0.3, 0.5, 0.7})

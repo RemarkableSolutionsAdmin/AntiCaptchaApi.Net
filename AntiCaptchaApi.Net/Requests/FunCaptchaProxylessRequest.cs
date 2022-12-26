@@ -1,5 +1,6 @@
 ﻿using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests
 {
@@ -19,25 +20,27 @@ namespace AntiCaptchaApi.Net.Requests
         /// Address of a target web page. Can be located anywhere on the web site, even in a member area.
         /// Our workers don't navigate there but simulate the visit instead.
         /// </summary>
+        [JsonProperty("websiteURL")]
         public string WebsiteUrl { get; set; }
         
         /// <summary>
         /// [Required]
         /// Arkose Labs public key
         /// </summary>
-        public string WebsitePublicKey { internal get; set; }
+        public string WebsitePublicKey { get; set; }
         
         /// <summary>
         /// [Optional]
         /// Custom Arkose Labs subdomain from which the Javascript widget is loaded. Required for some cases, but most Arkose Labs integrations run without it.
         /// </summary>
-        public string FunCaptchaApiJsSubdomain { internal get; set; }
+        [JsonProperty("funcaptchaApiJSSubdomain")]
+        public string FunCaptchaApiJsSubdomain { get; set; }
         
         /// <summary>
         /// [Optional]
         /// An additional parameter that may be required by Arkose Labs implementation.
         /// Use this property to send "blob" value as an object converted to a string. See an example of what it might look like.{"\blob\":\"HERE_COMES_THE_blob_VALUE\"}
         /// </summary>
-        public string Data { internal get; set; }
+        public string Data { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class HCaptchaProxylessRequestRequestTests : AnticaptchaRequestTestBase<HCaptchaSolution>
+    public class HCaptchaRequestTests : AnticaptchaRequestTestBase<HCaptchaSolution>
     {
         [Fact]
         public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
@@ -17,13 +17,14 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             await TestAuthenticRequest();
         }
 
-        protected override HCaptchaProxylessRequest CreateAuthenticRequest()
+        protected override HCaptchaRequest CreateAuthenticRequest()
         {
-            return new HCaptchaProxylessRequest()
+            return new HCaptchaRequest()
             {
-                WebsiteUrl = "https://entwickler.ebay.de/signin?tab=register",
-                WebsiteKey = "195eeb9f-8f50-4a9c-abfc-a78ceaa3cdde",
-                UserAgent = TestEnvironment.UserAgent
+                WebsiteUrl = "https://democaptcha.com/demo-form-eng/hcaptcha.html/",
+                WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc",
+                UserAgent = TestEnvironment.UserAgent,
+                ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig()
             };
         }
 

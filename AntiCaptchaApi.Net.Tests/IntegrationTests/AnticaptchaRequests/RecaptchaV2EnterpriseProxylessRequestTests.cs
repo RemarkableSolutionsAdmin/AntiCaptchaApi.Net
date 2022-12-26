@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class RecaptchaV2EnterpriseProxylessRequestRequestTests : AnticaptchaRequestTestBase <RecaptchaSolution>
+    public class RecaptchaV2EnterpriseProxylessRequestTests : AnticaptchaRequestTestBase <RecaptchaSolution>
     {
          [Fact]
          public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()

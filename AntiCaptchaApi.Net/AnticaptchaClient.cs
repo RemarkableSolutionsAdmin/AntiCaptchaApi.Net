@@ -79,13 +79,13 @@ namespace AntiCaptchaApi.Net
         }
 
         public async Task<TaskResultResponse<TSolution>> SolveCaptchaAsync<TSolution>(
-            CaptchaRequest<TSolution> request, int maxSeconds = 120, int currentSecond = 0, CancellationToken cancellationToken = default)
+            CaptchaRequest<TSolution> request, int maxSeconds = 120, CancellationToken cancellationToken = default)
             where TSolution : BaseSolution, new()
         {
             var createTaskResponse = await CreateCaptchaTaskLogic(request, cancellationToken);
             if (!createTaskResponse.IsErrorResponse && createTaskResponse.TaskId.HasValue)
             {
-                var taskResult = await WaitForTaskResultAsync<TSolution>(createTaskResponse.TaskId.Value, maxSeconds, currentSecond, cancellationToken);
+                var taskResult = await WaitForTaskResultAsync<TSolution>(createTaskResponse.TaskId.Value, maxSeconds, cancellationToken);
                 taskResult.CreateTaskResponse = createTaskResponse; //TODO should be done in serializer.
                 taskResult.CaptchaRequest = request;
                 return taskResult;
@@ -99,14 +99,6 @@ namespace AntiCaptchaApi.Net
                 ErrorId = createTaskResponse.ErrorId
             };
         }
-
-        
-        public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120, CancellationToken cancellationToken = default)
-            where TSolution : BaseSolution, new()
-        {
-            return await WaitForTaskResultAsync<TSolution>(taskId, maxSeconds, 0, cancellationToken);
-        }
-
 
         public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(CaptchaRequest<T> request, CancellationToken cancellationToken = default) 
             where T : BaseSolution
@@ -128,33 +120,37 @@ namespace AntiCaptchaApi.Net
             return await AnticaptchaApi.GetTaskResultAsync<TSolution>(payload, cancellationToken);
         }
 
-        private async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds, int currentSecond, CancellationToken cancellationToken)
+        public async Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, int maxSeconds = 120, CancellationToken cancellationToken = default) 
             where TSolution : BaseSolution, new()
         {
-            if (currentSecond >= maxSeconds)
+            var currentSecond = 0;
+            while (true)
             {
-                return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.RequestTimeout.ToString(), ErrorMessages.AnticaptchaTimeoutError);
-            }
+                if (currentSecond >= maxSeconds)
+                {
+                    return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.RequestTimeout.ToString(), ErrorMessages.AnticaptchaTimeoutError);
+                }
 
-            await Waiter.Wait(currentSecond);
+                await Waiter.Wait(currentSecond);
 
-            var taskResult = await GetCurrentTaskResultAsync<TSolution>(taskId, cancellationToken);
+                var taskResult = await GetCurrentTaskResultAsync<TSolution>(taskId, cancellationToken);
 
-            switch (taskResult.Status)
-            {
-                case TaskStatusType.Processing:
-                        return await WaitForTaskResultAsync<TSolution>(taskId, maxSeconds, currentSecond + 1, cancellationToken);
-                case TaskStatusType.Ready:
-                    return taskResult;
-                case TaskStatusType.Error:
-                    return taskResult;
-                case null:
-                    if (string.IsNullOrEmpty(taskResult.ErrorCode) && string.IsNullOrEmpty(taskResult.ErrorDescription))
-                        return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.InternalServerError.ToString(), ErrorMessages.AnticaptchaUnknownStatusError);
-                    else
+                switch (taskResult.Status)
+                {
+                    case TaskStatusType.Processing:
+                        currentSecond += 1;
+                        continue;
+                    case TaskStatusType.Ready:
+                        return taskResult;
+                    case TaskStatusType.Error:
+                        return taskResult;
+                    case null:
+                        if (string.IsNullOrEmpty(taskResult.ErrorCode) && string.IsNullOrEmpty(taskResult.ErrorDescription))
+                            return BaseTaskResultResponseBuilder.Build<TSolution>(HttpStatusCode.InternalServerError.ToString(), ErrorMessages.AnticaptchaUnknownStatusError);
                         return BaseTaskResultResponseBuilder.Build<TSolution>(taskResult.ErrorCode, taskResult.ErrorDescription);
-                default:
-                    throw new ArgumentOutOfRangeException();
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 

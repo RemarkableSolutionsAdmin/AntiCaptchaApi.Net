@@ -2,6 +2,7 @@
 using AntiCaptchaApi.Net.Models;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -15,6 +16,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// 
         /// Note that there are optional proxy parameters. Only HTTPS proxies are accepted, "proxyAddress" must be an IP address
         /// </summary>
+        [JsonProperty("websiteURL")]
         public string WebsiteUrl { get; set; }
         
         /// <summary>
@@ -37,15 +39,14 @@ namespace AntiCaptchaApi.Net.Requests
         /// List of domain names where we should collect cookies and localStorage data.
         /// This list can also be defined statically when editing а template.
         /// </summary>
-        public List<string> DomainsOfInterest  { get; set; }= new();
+        public List<string> DomainsOfInterest  { get; set; }
         
         /// <summary>
-        /// [AutomaticallySet] ProxyConfig.ProxyType : Automatically changed to https.
         /// [Optional] ProxyConfig.proxyAddress : Proxy IP address ipv4/ipv6. No host names or IP addresses from local networks.
         /// [Optional] ProxyConfig.proxyPort : Proxy port.
         /// [Optional] ProxyConfig.proxyLogin : Login for proxy which requires authorization (basic)
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
-        public ProxyConfig ProxyConfig { get; set; } = new();
+        public ProxyConfig ProxyConfig { get; set; }
     }
 }

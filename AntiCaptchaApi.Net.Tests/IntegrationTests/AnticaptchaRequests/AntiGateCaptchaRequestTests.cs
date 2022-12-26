@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class AntiGateCaptchaRequestRequestTests : AnticaptchaRequestTestBase <AntiGateSolution>
+    public class AntiGateCaptchaRequestTests : AnticaptchaRequestTestBase <AntiGateSolution>
     {
         private const string UriExample = "https://anti-captcha.com/tutorials/v2-textarea";
 

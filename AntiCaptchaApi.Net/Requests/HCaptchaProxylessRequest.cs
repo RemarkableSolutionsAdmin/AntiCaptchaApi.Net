@@ -19,13 +19,13 @@ namespace AntiCaptchaApi.Net.Requests
         /// Browser's User-Agent used in emulation.
         /// You must use a modern-browser signature; otherwise, Google will ask you to "update your browser".
         /// </summary>
-        public string UserAgent { internal get; set; }
+        public string UserAgent { get; set; }
         
         /// <summary>
         /// [Optional]
         /// Specify whether or not HCaptcha is invisible. This will render an appropriate widget for our workers.
         /// </summary>
-        public bool IsInvisible { internal get; set; }
+        public bool? IsInvisible { get; set; }
         
         /// <summary>
         /// [Optional]
@@ -39,6 +39,6 @@ namespace AntiCaptchaApi.Net.Requests
         ///  assethost	 String	    No
         ///  imghost	 String	    No
         /// </summary>
-        public Dictionary<string, string> EnterprisePayload = new();
+        public Dictionary<string, string> EnterprisePayload { get; set; }
     }
 }

@@ -5,15 +5,6 @@ namespace AntiCaptchaApi.Net.Internal.Extensions
 {
     internal static class JObjectExtensions
     {
-        internal static void Add(this JObject @jObject, ProxyConfig proxyConfig)
-        {
-            jObject.Add("proxyType", proxyConfig.ProxyType.ToString().ToLower());
-            jObject.Add("proxyAddress", proxyConfig.ProxyAddress);
-            jObject.Add("proxyPort", proxyConfig.ProxyPort);
-            jObject.Add("proxyLogin", proxyConfig.ProxyLogin);
-            jObject.Add("proxyPassword", proxyConfig.ProxyPassword);
-        }
-
         internal static JObject WithUserAgent(this JObject @jObject, JToken value)
         {
             return jObject.With("userAgent", value);
@@ -36,24 +27,33 @@ namespace AntiCaptchaApi.Net.Internal.Extensions
                 @jObject.Add(key, value);
             return @jObject;
         }
-
+        
         internal static JObject With(this JObject @jObject, ProxyConfig proxyConfig)
         {
-            jObject.Add("proxyType", proxyConfig.ProxyType.ToString().ToLower());
-            jObject.Add("proxyAddress", proxyConfig.ProxyAddress);
-            jObject.Add("proxyPort", proxyConfig.ProxyPort);
-            jObject.Add("proxyLogin", proxyConfig.ProxyLogin);
-            jObject.Add("proxyPassword", proxyConfig.ProxyPassword);
+            if(proxyConfig is TypedProxyConfig typedProxyConfig)
+                if(!string.IsNullOrEmpty(typedProxyConfig.ProxyType.ToString()))
+                    jObject.Add("proxyType", typedProxyConfig.ProxyType.ToString().ToLower());
+            
+            if(!string.IsNullOrEmpty(proxyConfig.ProxyAddress))
+                jObject.Add("proxyAddress", proxyConfig.ProxyAddress);
+            
+            if(!string.IsNullOrEmpty(proxyConfig.ProxyPort.ToString()))
+                jObject.Add("proxyPort", proxyConfig.ProxyPort);
+            
+            if(!string.IsNullOrEmpty(proxyConfig.ProxyLogin))
+                jObject.Add("proxyLogin", proxyConfig.ProxyLogin);
+            
+            if(!string.IsNullOrEmpty(proxyConfig.ProxyPassword))
+                jObject.Add("proxyPassword", proxyConfig.ProxyPassword);
             return @jObject;
         }
-
+        
         internal static JObject WithIf(this JObject @jObject, ProxyConfig proxyConfig, bool condition)
         {
-            jObject.Add("proxyType", proxyConfig.ProxyType.ToString().ToLower());
-            jObject.Add("proxyAddress", proxyConfig.ProxyAddress);
-            jObject.Add("proxyPort", proxyConfig.ProxyPort);
-            jObject.Add("proxyLogin", proxyConfig.ProxyLogin);
-            jObject.Add("proxyPassword", proxyConfig.ProxyPassword);
+            if (condition)
+            {
+                jObject.With(proxyConfig);
+            }
             return @jObject;
         }
 

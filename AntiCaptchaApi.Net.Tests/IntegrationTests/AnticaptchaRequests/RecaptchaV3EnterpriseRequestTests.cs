@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class HCaptchaRequestRequestTests : AnticaptchaRequestTestBase<HCaptchaSolution>
+    public class RecaptchaV3EnterpriseRequestTests : AnticaptchaRequestTestBase<RecaptchaSolution>
     {
         [Fact]
         public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
@@ -17,18 +17,17 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             await TestAuthenticRequest();
         }
 
-        protected override HCaptchaRequest CreateAuthenticRequest()
+        protected override RecaptchaV3EnterpriseRequest CreateAuthenticRequest()
         {
-            return new HCaptchaRequest()
+            return new RecaptchaV3EnterpriseRequest()
             {
-                WebsiteUrl = "https://democaptcha.com/demo-form-eng/hcaptcha.html/",
-                WebsiteKey = "51829642-2cda-4b09-896c-594f89d700cc",
-                UserAgent = TestEnvironment.UserAgent,
-                ProxyConfig = TestEnvironment.GetCurrentTestProxyConfig()
+                WebsiteUrl = "https://www.netflix.com/login",
+                WebsiteKey = "6Lf8hrcUAAAAAIpQAFW2VFjtiYnThOjZOA5xvLyR",
+                IsEnterprise = false
             };
         }
 
-        protected override void AssertTaskResult(TaskResultResponse<HCaptchaSolution> taskResult)
+        protected override void AssertTaskResult(TaskResultResponse<RecaptchaSolution> taskResult)
         {
             AssertHelper.NotNullNotEmpty(taskResult.Solution.GRecaptchaResponse);
         }

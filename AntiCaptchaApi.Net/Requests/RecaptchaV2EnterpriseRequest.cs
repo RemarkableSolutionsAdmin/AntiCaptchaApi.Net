@@ -22,18 +22,18 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyLogin : Login for proxy which requires authorization (basic)
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
-        public ProxyConfig ProxyConfig { internal get; set; } = new();
+        public TypedProxyConfig ProxyConfig { get; set; }
         
         /// <summary>
         /// [Required]
         /// Browser's User-Agent used in emulation.
         /// You must use a modern-browser signature; otherwise, Google will ask you to "update your browser".
         /// </summary>
-        public string UserAgent { internal get; set; }
+        public string UserAgent { get; set; }
         
         /// <summary>
         /// [Optional] 	Additional cookies that we should use in Google domains.
         /// </summary>
-        public string Cookies { internal get; set; }
+        public string Cookies { get; set; }
     }
 }

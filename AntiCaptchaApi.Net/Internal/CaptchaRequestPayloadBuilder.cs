@@ -1,43 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using AntiCaptchaApi.Net.Internal.Serializers;
+using System.Linq;
+using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Internal.Helpers;
 using AntiCaptchaApi.Net.Internal.Validation;
 using AntiCaptchaApi.Net.Internal.Validation.Validators;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace AntiCaptchaApi.Net.Internal;
+public class KnownTypesBinder : ISerializationBinder
+{
+    public IList<Type> KnownTypes { get; set; }
+
+    public Type BindToType(string assemblyName, string typeName)
+    {
+        return KnownTypes.SingleOrDefault(t => t.Name == typeName);
+    }
+
+    public void BindToName(Type serializedType, out string assemblyName, out string typeName)
+    {
+        assemblyName = null;
+        typeName = serializedType.Name;
+    }
+}
 
 internal static class CaptchaRequestPayloadBuilder
 {
-    private static Func<JObject> GetCaptchaRequestCreationHandler<T>(CaptchaRequest<T> request) where T : BaseSolution
-    {
-        var @switch = new Dictionary<Type, Func<JObject>> {
-            { typeof(AntiGateRequest), () => new AntiGateRequestSerializer().Serialize(request as AntiGateRequest) },
-            { typeof(FunCaptchaRequest), () => new FunCaptchaRequestSerializer().Serialize(request as FunCaptchaRequest) },
-            { typeof(FunCaptchaProxylessRequest), () => new FunCaptchaProxylessRequestSerializer().Serialize(request as FunCaptchaProxylessRequest) },
-            { typeof(GeeTestV3Request), () => new GeeTestV3RequestSerializer().Serialize(request as GeeTestV3Request) },
-            { typeof(GeeTestV3ProxylessRequest), () => new GeeTestV3ProxylessRequestSerializer().Serialize(request as GeeTestV3ProxylessRequest) },
-            { typeof(GeeTestV4ProxylessRequest), () => new GeeTestV4ProxylessRequestSerializer().Serialize(request as GeeTestV4ProxylessRequest) },
-            { typeof(GeeTestV4Request), () => new GeeTestV4RequestSerializer().Serialize(request as GeeTestV4Request) },
-            { typeof(HCaptchaProxylessRequest), () => new HCaptchaProxylessRequestSerializer().Serialize(request as HCaptchaProxylessRequest) },
-            { typeof(HCaptchaRequest), () => new HCaptchaRequestSerializer().Serialize(request as HCaptchaRequest) },
-            { typeof(ImageToTextRequest), () => new ImageToTextRequestSerializer().Serialize(request as ImageToTextRequest) },
-            { typeof(RecaptchaV2EnterpriseProxylessRequest), () => new RecaptchaV2EnterpriseProxylessRequestSerializer().Serialize(request as RecaptchaV2EnterpriseProxylessRequest) },
-            { typeof(RecaptchaV2EnterpriseRequest), () => new RecaptchaV2EnterpriseRequestSerializer().Serialize(request as RecaptchaV2EnterpriseRequest) },
-            { typeof(RecaptchaV2ProxylessRequest), () => new RecaptchaV2ProxylessRequestSerializer().Serialize(request as RecaptchaV2ProxylessRequest) },
-            { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestSerializer().Serialize(request as RecaptchaV2Request) },
-            { typeof(RecaptchaV3ProxylessRequest), () => new RecaptchaV3ProxylessRequestSerializer().Serialize(request as RecaptchaV3ProxylessRequest) },
-            { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3ProxylessRequestSerializer().Serialize(request as RecaptchaV3ProxylessRequest) },
-        };
-        return @switch[request.GetType()];
-    }
     
-    
-    private static Func<ValidationResult> GetCaptchaRequestCreationValidator<T>(CaptchaRequest<T> request) 
-        where T : BaseSolution
+    private static Func<ValidationResult> GetCaptchaRequestCreationValidator<TSolution>(CaptchaRequest<TSolution> request) 
+        where TSolution : BaseSolution
     {
         var @switch = new Dictionary<Type, Func<ValidationResult>> {
             { typeof(AntiGateRequest), () => new AntiGateRequestValidator().Validate(request as AntiGateRequest) },
@@ -54,28 +50,73 @@ internal static class CaptchaRequestPayloadBuilder
             { typeof(RecaptchaV2EnterpriseRequest), () => new RecaptchaV2EnterpriseRequestValidator().Validate(request as RecaptchaV2EnterpriseRequest) },
             { typeof(RecaptchaV2ProxylessRequest), () => new RecaptchaV2ProxylessRequestValidator().Validate(request as RecaptchaV2ProxylessRequest) },
             { typeof(RecaptchaV2Request), () => new RecaptchaV2RequestValidator().Validate(request as RecaptchaV2Request) },
-            { typeof(RecaptchaV3ProxylessRequest), () => new RecaptchaV3ProxylessRequestValidator().Validate(request as RecaptchaV3ProxylessRequest) },
-            { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3ProxylessRequestValidator().Validate(request as RecaptchaV3EnterpriseRequest) },
+            { typeof(RecaptchaV3Request), () => new RecaptchaV3RequestValidator().Validate(request as RecaptchaV3Request) },
+            { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3RequestValidator().Validate(request as RecaptchaV3EnterpriseRequest) },
         };
         return @switch[request.GetType()];
     }
 
-    internal static ValidationResult Validate<T>(CaptchaRequest<T> request)  
-        where T : BaseSolution
+    internal static ValidationResult Validate<TSolution>(CaptchaRequest<TSolution> request)  
+        where TSolution : BaseSolution
     {
         return GetCaptchaRequestCreationValidator(request).Invoke();
     }
 
-    internal static JObject Build<T>(CaptchaRequest<T> request) 
-        where T : BaseSolution
+    internal static JObject BuildNew<TSolution>(CaptchaRequest<TSolution> request)
+        where TSolution : BaseSolution
     {
         if (request == null)
         {
             throw new ArgumentNullException(nameof(request));
         }
+        var jsonSerializer = new JsonSerializer
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = Formatting.Indented,
+            ContractResolver = new DefaultContractResolver()
+            {
+                NamingStrategy = new CamelCaseNamingStrategy()
+            }
+        };
+        
+        var serialized = JObject.FromObject(request, jsonSerializer);
+        serialized["type"] = RequestTaskNameHelper.GetTaskName<CaptchaRequest<TSolution>, TSolution>(request);
 
-        var handler = GetCaptchaRequestCreationHandler(request);
-        var payload = handler.Invoke();
-        return payload;
+        if (request is GeeTestV3ProxylessRequest or GeeTestV3Request)
+        {
+            serialized["version"] = 3;
+        }
+
+        if (request is GeeTestV4ProxylessRequest or GeeTestV4Request)
+        {
+            serialized["version"] = 4;
+        }
+        
+        if (request is RecaptchaV3EnterpriseRequest)
+        {
+            serialized["isEnterprise"] = true;
+        }
+
+        if (serialized.ContainsKey("proxyConfig")) // TODO. Default values, safe parsing.
+        {
+            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyType"]?.ToString()))
+                serialized["proxyType"] = ((ProxyTypeOption)int.Parse(serialized["proxyConfig"]?["proxyType"]?.ToString())).ToString().ToLower();
+            
+            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyAddress"]?.ToString()))
+                serialized["proxyAddress"] = serialized["proxyConfig"]?["proxyAddress"];
+            
+            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyPort"]?.ToString()))
+                serialized["proxyPort"] = serialized["proxyConfig"]?["proxyPort"];
+            
+            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyLogin"]?.ToString()))
+                serialized["proxyLogin"] = serialized["proxyConfig"]?["proxyLogin"];
+            
+            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyPassword"]?.ToString()))
+                serialized["proxyPassword"] = serialized["proxyConfig"]?["proxyPassword"];
+
+            serialized.Remove("proxyConfig");
+        }
+        
+        return serialized;
     }
 }

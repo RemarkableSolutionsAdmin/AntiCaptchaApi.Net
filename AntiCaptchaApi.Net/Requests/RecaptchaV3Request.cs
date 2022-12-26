@@ -21,7 +21,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// 
     /// /// Example captcha: https://anti-captcha.com/_nuxt/img/recaptchav3.1b1650f.jpg
     /// </summary>
-    public class RecaptchaV3ProxylessRequest : WebsiteCaptchaRequest<RecaptchaSolution>
+    public class RecaptchaV3Request : WebsiteCaptchaRequest<RecaptchaSolution>
     {
         /// <summary>
         /// [Required]
@@ -35,7 +35,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// Example:
         ///     grecaptcha.execute('site_key', {action:'login_test'})
         /// </summary>
-        public string PageAction { internal get; set; }
+        public string PageAction { get; set; }
         
         /// <summary>
         /// [Optional]
@@ -45,7 +45,7 @@ namespace AntiCaptchaApi.Net.Requests
         ///
         /// grecaptcha.enterprise.execute('site_key', {..})
         /// </summary>
-        public bool IsEnterprise { internal get; set; }
+        public bool? IsEnterprise { get; set; }
         
         /// <summary>
         /// [Optional]
@@ -53,6 +53,6 @@ namespace AntiCaptchaApi.Net.Requests
         /// Can have only one of two values: "www.google.com" or "www.recaptcha.net".
         /// Do not use this parameter unless you understand what you are doing.
         /// </summary>
-        public string ApiDomain { internal get; set; }
+        public string ApiDomain { get; set; }
     }
 }

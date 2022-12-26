@@ -27,7 +27,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// In this example, you will notice a parameter "s" which is not documented, but obviously required.
         /// Send it to the API, so that we render the Recaptcha widget with this parameter properly.
         ///</summary>
-        public Dictionary<string, string> EnterprisePayload = new();
+        public Dictionary<string, string> EnterprisePayload { get; set; }
         
         
         
@@ -37,6 +37,6 @@ namespace AntiCaptchaApi.Net.Requests
         /// Can have only one of two values: "www.google.com" or "www.recaptcha.net".
         /// Do not use this parameter unless you understand what you are doing.
         /// </summary>
-        public string ApiDomain { internal get; set; }
+        public string ApiDomain { get; set; }
     }
 }

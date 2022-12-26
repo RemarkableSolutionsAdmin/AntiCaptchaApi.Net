@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using AntiCaptchaApi.Net.Internal.Validation.Validators;
+using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests;
+using AntiCaptchaApi.Net.Requests.Abstractions;
+
+namespace AntiCaptchaApi.Net.Internal.Helpers;
+
+internal static class RequestTaskNameHelper
+{
+    public static string GetTaskName<TRequest, TSolution>(TRequest request)
+        where TRequest : CaptchaRequest<TSolution>
+        where TSolution : BaseSolution
+    {
+        var @switch = new Dictionary<Type, string> {
+            { typeof(AntiGateRequest), "AntiGateTask" },
+            { typeof(FunCaptchaRequest), "FunCaptchaTask" },
+            { typeof(FunCaptchaProxylessRequest), "FunCaptchaTaskProxyless" },
+            { typeof(GeeTestV3Request), "GeeTestTask" },
+            { typeof(GeeTestV3ProxylessRequest), "GeeTestTaskProxyless" },
+            { typeof(GeeTestV4Request), "GeeTestTask" },
+            { typeof(GeeTestV4ProxylessRequest), "GeeTestTaskProxyless" },
+            { typeof(HCaptchaProxylessRequest), "HCaptchaTaskProxyless" },
+            { typeof(HCaptchaRequest), "HCaptchaTask" },
+            { typeof(ImageToTextRequest), "ImageToTextTask" },
+            { typeof(RecaptchaV2EnterpriseProxylessRequest), "RecaptchaV2EnterpriseTaskProxyless" },
+            { typeof(RecaptchaV2EnterpriseRequest), "RecaptchaV2EnterpriseTask" },
+            { typeof(RecaptchaV2ProxylessRequest), "RecaptchaV2TaskProxyless" },
+            { typeof(RecaptchaV2Request), "RecaptchaV2Task" },
+            { typeof(RecaptchaV3Request), "RecaptchaV3TaskProxyless" },
+            { typeof(RecaptchaV3EnterpriseRequest), "RecaptchaV3TaskProxyless" },
+        };
+        return @switch[request.GetType()];
+    }
+}

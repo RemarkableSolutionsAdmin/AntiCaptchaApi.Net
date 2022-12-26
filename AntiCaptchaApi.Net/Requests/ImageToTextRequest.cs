@@ -3,6 +3,7 @@ using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Internal.Helpers;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests
 {
@@ -24,14 +25,16 @@ namespace AntiCaptchaApi.Net.Requests
         /// !IMPORTANT
         /// Is written to while FilePath is set. The file from the file path is read and the body is written here.
         /// </summary>
-        public string BodyBase64 { internal get; set; }
+        
+        [JsonProperty("body")]
+        public string BodyBase64 { get; set; }
         
         /// <summary>
         /// [Optional]
         /// false - no requirements
         /// true - requires workers to enter an answer with at least one "space". If there are no spaces, they will skip the task, so use it with caution.
         /// </summary>
-        public bool Phrase { internal get; set; } = false;
+        public bool? Phrase { get; set; }
         
         
         /// <summary>
@@ -39,7 +42,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// false - no requirements
         /// true - workers see a special mark indicating that the answer must be entered with case sensitivity.
         /// </summary>
-        public bool Case { internal get; set; } = false;
+        public bool? Case { get; set; }
         
         
         /// <summary>
@@ -48,7 +51,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// 1 - only numbers are allowed
         /// 2 - any letters are allowed except numbers
         /// </summary>
-        public NumericOption Numeric { internal get; set; } = NumericOption.NoRequirements;
+        public NumericOption? Numeric { get; set; }
         
         
         /// <summary>
@@ -56,7 +59,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// false - no requirements
         /// true - workers see a special mark telling them the answer must be calculated
         /// </summary>
-        public int Math { internal get; set; } = 0;
+        public int? Math { get; set; }
         
         
         /// <summary>
@@ -64,7 +67,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// 0 - no requirements
         /// >1 - defines minimum length of the answer
         /// </summary>
-        public int MinLength { internal get; set; } = 0;
+        public int? MinLength { get; set; }
         
         
         /// <summary>
@@ -72,7 +75,7 @@ namespace AntiCaptchaApi.Net.Requests
         ///  0 - no requirements
         ///  >1 - defines maximum length of the answer
         /// </summary>
-        public int MaxLength { internal get; set; } = 0;
+        public int? MaxLength { get; set; }
         
         
         /// <summary>
@@ -80,13 +83,14 @@ namespace AntiCaptchaApi.Net.Requests
         /// Additional comments for workers like "enter red text".
         /// The result is not guaranteed and is totally up to the worker.
         /// </summary>
-        public string Comment { internal get; set; }
+        public string Comment { get; set; }
         
         /// <summary>
         /// [Optional]
         /// Optional parameter to distinguish source of image captchas in spending statistics.
         /// </summary>
-        public string WebsiteUrl { internal get; set; }
+        [JsonProperty("websiteURL")]
+        public string WebsiteUrl { get; set; }
 
         /// <summary>
         /// [Optional]

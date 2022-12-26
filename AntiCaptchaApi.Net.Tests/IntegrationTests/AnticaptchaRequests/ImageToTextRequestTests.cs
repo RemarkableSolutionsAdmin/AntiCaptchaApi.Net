@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class ImageToTextRequestRequestTests : AnticaptchaRequestTestBase<ImageToTextSolution>
+    public class ImageToTextRequestTests : AnticaptchaRequestTestBase<ImageToTextSolution>
     {
         private const string ExpectedCaptchaResult = "W68HP";
 

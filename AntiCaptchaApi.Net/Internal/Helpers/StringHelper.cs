@@ -16,7 +16,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                     {
                         image.Save(m, image.RawFormat);
                         var imageBytes = m.ToArray();
-                        return  Convert.ToBase64String(imageBytes);
+                        return Convert.ToBase64String(imageBytes);
                     }
                 }
             }

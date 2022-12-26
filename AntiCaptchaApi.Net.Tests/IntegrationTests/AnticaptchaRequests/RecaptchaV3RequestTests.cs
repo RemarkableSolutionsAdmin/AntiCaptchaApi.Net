@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
 {
-    public class RecaptchaV3ProxylessRequestRequestTests : AnticaptchaRequestTestBase<RecaptchaSolution>
+    public class RecaptchaV3RequestTests : AnticaptchaRequestTestBase<RecaptchaSolution>
     {
         [Fact]
         public async Task ShouldReturnCorrectCaptchaResult_WhenCallingAuthenticRequest()
@@ -17,9 +17,9 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests
             await TestAuthenticRequest();
         }
 
-        protected override RecaptchaV3ProxylessRequest CreateAuthenticRequest()
+        protected override RecaptchaV3Request CreateAuthenticRequest()
         {
-            return new RecaptchaV3ProxylessRequest()
+            return new RecaptchaV3Request()
             {
                 WebsiteUrl = "https://www.netflix.com/login",
                 WebsiteKey = "6Lf8hrcUAAAAAIpQAFW2VFjtiYnThOjZOA5xvLyR",

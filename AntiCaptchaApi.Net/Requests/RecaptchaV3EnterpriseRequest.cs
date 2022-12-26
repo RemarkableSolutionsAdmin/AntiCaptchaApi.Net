@@ -29,7 +29,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// 
     /// /// Example captcha: https://anti-captcha.com/_nuxt/img/recaptchav3.1b1650f.jpg
     /// </summary>
-    public class RecaptchaV3EnterpriseRequest : RecaptchaV3ProxylessRequest
+    public class RecaptchaV3EnterpriseRequest : RecaptchaV3Request
     {
         
     }

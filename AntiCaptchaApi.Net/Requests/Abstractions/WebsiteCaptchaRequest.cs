@@ -1,4 +1,5 @@
 ﻿using AntiCaptchaApi.Net.Models.Solutions;
+using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests.Abstractions
 {
@@ -9,6 +10,7 @@ namespace AntiCaptchaApi.Net.Requests.Abstractions
         /// [Required]
         /// Address of a target web page where our worker will navigate.
         /// </summary>
+        [JsonProperty("websiteURL")]
         public string WebsiteUrl { get; set; }
         /// <summary>
         /// [Required]
