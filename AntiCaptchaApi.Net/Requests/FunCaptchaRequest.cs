@@ -1,4 +1,6 @@
 ﻿using AntiCaptchaApi.Net.Models;
+using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -10,7 +12,7 @@ namespace AntiCaptchaApi.Net.Requests
     /// Use this token to submit the form with the Arkose Labs captcha.
     /// Example captcha: https://anti-captcha.com/_nuxt/img/funcaptcha1.e289a39.jpg
     /// </summary>
-    public class FunCaptchaRequest : FunCaptchaProxylessRequest
+    public class FunCaptchaRequest : FunCaptchaProxylessRequest, IFunCaptchaRequest
     {
         
         /// <summary>

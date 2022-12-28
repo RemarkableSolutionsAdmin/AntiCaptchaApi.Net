@@ -1,6 +1,7 @@
 ﻿using AntiCaptchaApi.Net.Models;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 
 namespace AntiCaptchaApi.Net.Requests;
 
@@ -16,7 +17,7 @@ namespace AntiCaptchaApi.Net.Requests;
 /// Solving captchas with proxies also requires super high quality of your proxies which you should install yourself on your own VPS servers and never use purchased proxy services.
 /// </summary>
 
-public class TurnstileCaptchaRequest : TurnstileCaptchaProxylessRequest
+public class TurnstileCaptchaRequest : TurnstileCaptchaProxylessRequest, ITurnstileCaptchaRequest
 {
     /// <summary>
     /// [Required] ProxyConfig.ProxyType : Type of proxy http http/socks4/socks4.

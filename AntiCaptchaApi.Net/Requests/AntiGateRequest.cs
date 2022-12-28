@@ -2,23 +2,14 @@
 using AntiCaptchaApi.Net.Models;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Requests
 {
-    public class AntiGateRequest : CaptchaRequest<AntiGateSolution>
+    public class AntiGateRequest : CaptchaRequest<AntiGateSolution>, IAntiGateRequest
     {
-        /// <summary>
-        /// [Required]
-        /// Address of a target web page. Can be located anywhere on the web site, even in a member area.
-        /// Our workers don't navigate there but simulate the visit instead.
-        /// 
-        /// Note that there are optional proxy parameters. Only HTTPS proxies are accepted, "proxyAddress" must be an IP address
-        /// </summary>
-        [JsonProperty("websiteURL")]
-        public string WebsiteUrl { get; set; }
-        
         /// <summary>
         /// [Required]
         /// Name of a scenario template from our database.

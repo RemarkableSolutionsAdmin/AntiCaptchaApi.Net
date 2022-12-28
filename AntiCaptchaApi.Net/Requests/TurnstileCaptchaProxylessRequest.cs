@@ -1,5 +1,6 @@
 ﻿using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 
 namespace AntiCaptchaApi.Net.Requests;
 
@@ -12,7 +13,7 @@ namespace AntiCaptchaApi.Net.Requests;
 /// Also providing your own custom User-Agent is not necessary and won't work at all.
 /// </summary>
 
-public class TurnstileCaptchaProxylessRequest : WebsiteCaptchaRequest<TurnstileSolution>
+public class TurnstileCaptchaProxylessRequest : WebsiteCaptchaRequest<TurnstileSolution>, ITurnstileCaptchaProxylessRequest
 {
     
 }

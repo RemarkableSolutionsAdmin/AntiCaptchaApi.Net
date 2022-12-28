@@ -1,17 +1,12 @@
 ﻿using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests.Abstractions
 {
-    public abstract class WebsiteCaptchaRequest<TSolution> : CaptchaRequest<TSolution>
+    public abstract class WebsiteCaptchaRequest<TSolution> : CaptchaRequest<TSolution>, IWebCaptchaRequest
         where TSolution : BaseSolution  
     {
-        /// <summary>
-        /// [Required]
-        /// Address of a target web page where our worker will navigate.
-        /// </summary>
-        [JsonProperty("websiteURL")]
-        public string WebsiteUrl { get; set; }
         /// <summary>
         /// [Required]
         /// Recaptcha website key. Learn how to find it in this article.

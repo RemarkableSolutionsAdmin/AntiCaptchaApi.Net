@@ -1,5 +1,6 @@
 ﻿using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests
@@ -11,16 +12,8 @@ namespace AntiCaptchaApi.Net.Requests
     ///
     /// Example captcha: https://anti-captcha.com/_nuxt/img/geetest_example3.8c80ec3.png
     /// </summary>
-    public class GeeTestV3ProxylessRequest : CaptchaRequest<GeeTestV3Solution>
+    public class GeeTestV3ProxylessRequest : CaptchaRequest<GeeTestV3Solution>, IGeeTestV3ProxylessRequest
     {
-        /// <summary>
-        /// [Required]
-        /// Address of a target web page. Can be located anywhere on the web site, even in a member area.
-        /// Our workers don't navigate there but simulate the visit instead.
-        /// </summary>
-        [JsonProperty("websiteURL")]
-        public string WebsiteUrl { get; set; }
-        
         /// <summary>
         /// [Required]
         /// The domain public key, rarely updated.
