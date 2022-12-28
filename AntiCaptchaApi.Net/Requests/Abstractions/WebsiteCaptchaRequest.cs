@@ -13,5 +13,16 @@ namespace AntiCaptchaApi.Net.Requests.Abstractions
         /// https://anti-captcha.com/apidoc/articles/how-to-find-the-sitekey
         /// </summary>
         public string WebsiteKey { get; set; }
+
+        public WebsiteCaptchaRequest()
+        {
+            
+        }
+
+        public WebsiteCaptchaRequest(IWebCaptchaRequest<TSolution> request)
+        {
+            WebsiteUrl = request.WebsiteUrl;
+        }
+
     }
 }

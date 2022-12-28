@@ -35,5 +35,17 @@ namespace AntiCaptchaApi.Net.Requests
         /// Use this property to send "blob" value as an object converted to a string. See an example of what it might look like.{"\blob\":\"HERE_COMES_THE_blob_VALUE\"}
         /// </summary>
         public string Data { get; set; }
+
+        public FunCaptchaProxylessRequest()
+        {
+            
+        }
+        
+        public FunCaptchaProxylessRequest(IFunCaptchaProxylessRequest request) : base(request)
+        {
+            WebsitePublicKey = request.WebsitePublicKey;
+            FunCaptchaApiJsSubdomain = request.FunCaptchaApiJsSubdomain;
+            Data = request.Data;
+        }
     }
 }

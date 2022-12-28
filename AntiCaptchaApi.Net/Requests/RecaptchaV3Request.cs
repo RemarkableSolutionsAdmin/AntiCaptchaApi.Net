@@ -55,5 +55,20 @@ namespace AntiCaptchaApi.Net.Requests
         /// Do not use this parameter unless you understand what you are doing.
         /// </summary>
         public string ApiDomain { get; set; }
+        
+        
+
+        public RecaptchaV3Request()
+        {
+            
+        }
+        
+        public RecaptchaV3Request(IRecaptchaV3Request request) : base(request)
+        {
+            ApiDomain = request.ApiDomain;
+            IsEnterprise = request.IsEnterprise;
+            PageAction = request.PageAction;
+            MinScore = request.MinScore;
+        }
     }
 }

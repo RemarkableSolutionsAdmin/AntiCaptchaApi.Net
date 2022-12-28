@@ -16,4 +16,12 @@ namespace AntiCaptchaApi.Net.Requests;
 public class TurnstileCaptchaProxylessRequest : WebsiteCaptchaRequest<TurnstileSolution>, ITurnstileCaptchaProxylessRequest
 {
     
+    public TurnstileCaptchaProxylessRequest()
+    {
+            
+    }
+        
+    public TurnstileCaptchaProxylessRequest(ITurnstileCaptchaProxylessRequest request) : base(request)
+    {
+    }
 }

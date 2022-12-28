@@ -1,8 +1,9 @@
 ﻿using AntiCaptchaApi.Net.Enums;
+using AntiCaptchaApi.Net.Models.Solutions;
 
 namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 
-public interface IImageToTextRequest : IWebsiteUrlArg
+public interface IImageToTextRequest : ICaptchaRequest<ImageToTextSolution>
 {
     public string BodyBase64 { get; set; }
     public bool? Phrase { get; set; }

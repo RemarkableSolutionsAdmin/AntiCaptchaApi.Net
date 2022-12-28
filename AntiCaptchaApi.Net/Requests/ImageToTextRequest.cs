@@ -100,5 +100,22 @@ namespace AntiCaptchaApi.Net.Requests
                 }
             }
         }
+
+        public ImageToTextRequest()
+        {
+            
+        }
+        
+        public ImageToTextRequest(IImageToTextRequest request) : base(request)
+        {
+            BodyBase64 = request.BodyBase64;
+            Phrase = request.Phrase;
+            Case = request.Case;
+            Numeric = request.Numeric;
+            Math = request.Math;
+            MinLength = request.MinLength;
+            MaxLength = request.MaxLength;
+            Comment = request.Comment;
+        }
     }
 }

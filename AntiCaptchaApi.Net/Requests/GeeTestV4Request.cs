@@ -30,5 +30,16 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
         public TypedProxyConfig ProxyConfig { get; set; }
+
+        public GeeTestV4Request()
+        {
+            
+        }
+        
+        public GeeTestV4Request(IGeeTestV4Request request) : base(request)
+        {
+            UserAgent = request.UserAgent;
+            ProxyConfig = request.ProxyConfig;
+        }
     }
 }

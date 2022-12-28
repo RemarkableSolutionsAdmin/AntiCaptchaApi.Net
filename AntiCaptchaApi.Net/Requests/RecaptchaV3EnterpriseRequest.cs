@@ -33,5 +33,14 @@ namespace AntiCaptchaApi.Net.Requests
     public class RecaptchaV3EnterpriseRequest : RecaptchaV3Request, IRecaptchaV3EnterpriseRequest
     {
         
+        public RecaptchaV3EnterpriseRequest()
+        {
+        }
+
+        public RecaptchaV3EnterpriseRequest(IRecaptchaV3EnterpriseRequest request) : base(request)
+        {
+            
+        }
+
     }
 }

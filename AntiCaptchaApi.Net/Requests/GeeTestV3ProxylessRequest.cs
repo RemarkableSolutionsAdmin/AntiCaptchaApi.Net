@@ -39,5 +39,19 @@ namespace AntiCaptchaApi.Net.Requests
         /// https://anti-captcha.com/_nuxt/img/geetest_lib.2a8ba99.png
         /// </summary>
         public string GeetestGetLib { get; set; }
+        
+
+        public GeeTestV3ProxylessRequest()
+        {
+            
+        }
+        
+        public GeeTestV3ProxylessRequest(IGeeTestV3ProxylessRequest request) : base(request)
+        {
+            Gt = request.Gt;
+            Challenge = request.Challenge;
+            GeetestApiServerSubdomain = request.GeetestApiServerSubdomain;
+            GeetestGetLib = request.GeetestGetLib;
+        }
     }
 }

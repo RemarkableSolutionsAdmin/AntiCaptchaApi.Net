@@ -29,5 +29,16 @@ namespace AntiCaptchaApi.Net.Requests
         /// Specify whether or not Recaptcha is invisible. This will render an appropriate widget for our workers.
         /// </summary>
         public bool? IsInvisible { get; set; }
+
+        public RecaptchaV2ProxylessRequest()
+        {
+            
+        }
+        
+        public RecaptchaV2ProxylessRequest(IRecaptchaV2ProxylessRequest request) : base(request)
+        {
+            RecaptchaDataSValue = request.RecaptchaDataSValue;
+            IsInvisible = request.IsInvisible;
+        }
     }
 }

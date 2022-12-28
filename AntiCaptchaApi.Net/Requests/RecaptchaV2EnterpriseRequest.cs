@@ -37,5 +37,16 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] 	Additional cookies that we should use in Google domains.
         /// </summary>
         public string Cookies { get; set; }
+        public RecaptchaV2EnterpriseRequest()
+        {
+            
+        }
+        
+        public RecaptchaV2EnterpriseRequest(IRecaptchaV2EnterpriseRequest request) : base(request)
+        {
+            ProxyConfig = request.ProxyConfig;
+            UserAgent = request.UserAgent;
+            Cookies = request.Cookies;
+        }
     }
 }

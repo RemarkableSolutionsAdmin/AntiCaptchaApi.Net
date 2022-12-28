@@ -10,6 +10,19 @@ namespace AntiCaptchaApi.Net.Requests
 {
     public class AntiGateRequest : CaptchaRequest<AntiGateSolution>, IAntiGateRequest
     {
+        public AntiGateRequest()
+        {
+            
+        }
+        
+        public AntiGateRequest(IAntiGateRequest request) : base(request)
+        {
+            TemplateName = request.TemplateName;
+            Variables = request.Variables;
+            DomainsOfInterest = request.DomainsOfInterest;
+            ProxyConfig = request.ProxyConfig;
+        }
+        
         /// <summary>
         /// [Required]
         /// Name of a scenario template from our database.

@@ -36,4 +36,15 @@ public class TurnstileCaptchaRequest : TurnstileCaptchaProxylessRequest, ITurnst
     /// </summary>
     /// 
     public string UserAgent { get; set; }
+
+    public TurnstileCaptchaRequest()
+    {
+            
+    }
+        
+    public TurnstileCaptchaRequest(ITurnstileCaptchaRequest request) : base(request)
+    {
+        ProxyConfig = request.ProxyConfig;
+        UserAgent = request.UserAgent;
+    }
 }

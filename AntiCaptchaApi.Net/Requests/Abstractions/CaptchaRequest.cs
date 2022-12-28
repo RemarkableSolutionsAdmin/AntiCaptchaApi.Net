@@ -14,5 +14,15 @@ namespace AntiCaptchaApi.Net.Requests.Abstractions
         /// </summary>
         [JsonProperty("websiteURL")]
         public string WebsiteUrl { get; set; }
+
+        public CaptchaRequest()
+        {
+            
+        }
+
+        public CaptchaRequest(ICaptchaRequest<TSolution> request)
+        {
+            WebsiteUrl = request.WebsiteUrl;
+        }
     }
 }

@@ -41,5 +41,15 @@ namespace AntiCaptchaApi.Net.Requests
         ///  imghost	 String	    No
         /// </summary>
         public Dictionary<string, string> EnterprisePayload { get; set; }
+        
+        
+        public HCaptchaProxylessRequest() { }
+        
+        public HCaptchaProxylessRequest(IHCaptchaProxylessRequest request) : base(request)
+        {
+            UserAgent = request.UserAgent;
+            IsInvisible = request.IsInvisible;
+            EnterprisePayload = request.EnterprisePayload;
+        }
     }
 }

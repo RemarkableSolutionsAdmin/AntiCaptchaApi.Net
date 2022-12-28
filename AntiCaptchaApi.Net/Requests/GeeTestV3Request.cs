@@ -1,4 +1,5 @@
 ﻿using AntiCaptchaApi.Net.Models;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 
 namespace AntiCaptchaApi.Net.Requests
 {
@@ -9,7 +10,7 @@ namespace AntiCaptchaApi.Net.Requests
     ///
     /// Example captcha: https://anti-captcha.com/_nuxt/img/geetest_example3.8c80ec3.png
     /// </summary>
-    public class GeeTestV3Request : GeeTestV3ProxylessRequest
+    public class GeeTestV3Request : GeeTestV3ProxylessRequest, IGeeTestV3Request
     {
         
         /// <summary>
@@ -27,5 +28,16 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
         public TypedProxyConfig ProxyConfig { get; set; }
+
+        public GeeTestV3Request()
+        {
+            
+        }
+        
+        public GeeTestV3Request(IGeeTestV3Request request) : base(request)
+        {
+            UserAgent = request.UserAgent;
+            ProxyConfig = request.ProxyConfig;
+        }
     }
 }

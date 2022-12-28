@@ -25,5 +25,12 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
         public TypedProxyConfig ProxyConfig { get; set; }
+
+        public HCaptchaRequest() { }
+        
+        public HCaptchaRequest(IHCaptchaRequest request) : base(request)
+        {
+            ProxyConfig = request.ProxyConfig;
+        }
     }
 }

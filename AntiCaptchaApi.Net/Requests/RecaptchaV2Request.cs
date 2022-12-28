@@ -17,6 +17,16 @@ namespace AntiCaptchaApi.Net.Requests
     /// </summary>
     public class RecaptchaV2Request : RecaptchaV2ProxylessRequest, IRecaptchaV2Request
     {
+        public RecaptchaV2Request()
+        {
+        }
+
+        public RecaptchaV2Request(IRecaptchaV2Request request) : base(request)
+        {
+            ProxyConfig = request.ProxyConfig;
+            UserAgent = request.UserAgent;
+            Cookies = request.Cookies;
+        }
 
         /// <summary>
         /// [Required] ProxyConfig.ProxyType : Type of proxy http http/socks4/socks4.

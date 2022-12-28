@@ -39,5 +39,16 @@ namespace AntiCaptchaApi.Net.Requests
         /// Do not use this parameter unless you understand what you are doing.
         /// </summary>
         public string ApiDomain { get; set; }
+
+        public RecaptchaV2EnterpriseProxylessRequest()
+        {
+            
+        }
+        
+        public RecaptchaV2EnterpriseProxylessRequest(IRecaptchaV2EnterpriseProxylessRequest request) : base(request)
+        {
+            EnterprisePayload = request.EnterprisePayload;
+            ApiDomain = request.ApiDomain;
+        }
     }
 }

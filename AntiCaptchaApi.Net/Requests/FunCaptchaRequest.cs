@@ -30,5 +30,18 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
         public TypedProxyConfig ProxyConfig { get; set; }
+        
+        
+
+        public FunCaptchaRequest()
+        {
+            
+        }
+        
+        public FunCaptchaRequest(IFunCaptchaRequest request) : base(request)
+        {
+            UserAgent = request.UserAgent;
+            ProxyConfig = request.ProxyConfig;
+        }
     }
 }

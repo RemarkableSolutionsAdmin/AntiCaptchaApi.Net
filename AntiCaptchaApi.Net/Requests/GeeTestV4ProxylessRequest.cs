@@ -47,5 +47,19 @@ namespace AntiCaptchaApi.Net.Requests
         /// Additional initialization parameters
         /// </summary>
         public Dictionary<string, string> InitParameters { get; set; }
+
+        public GeeTestV4ProxylessRequest()
+        {
+            
+        }
+        
+        public GeeTestV4ProxylessRequest(IGeeTestV4ProxylessRequest request) : base(request)
+        {
+            Gt = request.Gt;
+            Challenge = request.Challenge;
+            GeetestApiServerSubdomain = request.GeetestApiServerSubdomain;
+            GeetestGetLib = request.GeetestGetLib;
+            InitParameters = request.InitParameters;
+        }
     }
 }
