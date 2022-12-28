@@ -10,6 +10,7 @@ using AntiCaptchaApi.Net.Internal.Extensions;
 using AntiCaptchaApi.Net.Internal.Helpers;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using AntiCaptchaApi.Net.Responses;
 
 namespace AntiCaptchaApi.Net
@@ -79,7 +80,7 @@ namespace AntiCaptchaApi.Net
         }
 
         public async Task<TaskResultResponse<TSolution>> SolveCaptchaAsync<TSolution>(
-            CaptchaRequest<TSolution> request, int maxSeconds = 120, CancellationToken cancellationToken = default)
+            ICaptchaRequest<TSolution> request, int maxSeconds = 120, CancellationToken cancellationToken = default)
             where TSolution : BaseSolution, new()
         {
             var createTaskResponse = await CreateCaptchaTaskLogic(request, cancellationToken);
@@ -100,7 +101,7 @@ namespace AntiCaptchaApi.Net
             };
         }
 
-        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(CaptchaRequest<T> request, CancellationToken cancellationToken = default) 
+        public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(ICaptchaRequest<T> request, CancellationToken cancellationToken = default) 
             where T : BaseSolution
         {
             return await CreateCaptchaTaskLogic(request, cancellationToken);
@@ -154,7 +155,7 @@ namespace AntiCaptchaApi.Net
             }
         }
 
-        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(CaptchaRequest<T> request, CancellationToken cancellationToken) 
+        private async Task<CreateTaskResponse> CreateCaptchaTaskLogic<T>(ICaptchaRequest<T> request, CancellationToken cancellationToken) 
             where T : BaseSolution
         {
             var validationResult = request.Validate();

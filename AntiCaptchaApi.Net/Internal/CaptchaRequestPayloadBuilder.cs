@@ -8,6 +8,7 @@ using AntiCaptchaApi.Net.Internal.Validation.Validators;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -32,7 +33,7 @@ public class KnownTypesBinder : ISerializationBinder
 internal static class CaptchaRequestPayloadBuilder
 {
     
-    private static Func<ValidationResult> GetCaptchaRequestCreationValidator<TSolution>(CaptchaRequest<TSolution> request) 
+    private static Func<ValidationResult> GetCaptchaRequestCreationValidator<TSolution>(ICaptchaRequest<TSolution> request) 
         where TSolution : BaseSolution
     {
         var @switch = new Dictionary<Type, Func<ValidationResult>> {
@@ -58,13 +59,13 @@ internal static class CaptchaRequestPayloadBuilder
         return @switch[request.GetType()];
     }
 
-    internal static ValidationResult Validate<TSolution>(CaptchaRequest<TSolution> request)  
+    internal static ValidationResult Validate<TSolution>(ICaptchaRequest<TSolution> request)  
         where TSolution : BaseSolution
     {
         return GetCaptchaRequestCreationValidator(request).Invoke();
     }
 
-    internal static JObject Build<TSolution>(CaptchaRequest<TSolution> request)
+    internal static JObject Build<TSolution>(ICaptchaRequest<TSolution> request)
         where TSolution : BaseSolution
     {
         if (request == null)
@@ -82,7 +83,7 @@ internal static class CaptchaRequestPayloadBuilder
         };
         
         var serialized = JObject.FromObject(request, jsonSerializer);
-        serialized["type"] = RequestTaskNameHelper.GetTaskName<CaptchaRequest<TSolution>, TSolution>(request);
+        serialized["type"] = RequestTaskNameHelper.GetTaskName<ICaptchaRequest<TSolution>, TSolution>(request);
 
         if (request is GeeTestV3ProxylessRequest or GeeTestV3Request)
         {

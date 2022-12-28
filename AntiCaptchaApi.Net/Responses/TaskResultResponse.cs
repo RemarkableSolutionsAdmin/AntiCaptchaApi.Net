@@ -2,6 +2,7 @@
 using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 using AntiCaptchaApi.Net.Responses.Abstractions;
 using Newtonsoft.Json;
 
@@ -19,7 +20,7 @@ public class TaskResultResponse<T> : BaseResponse where T : BaseSolution
     public int? SolveCount { get; set; }
     
     [JsonIgnore]
-    public CaptchaRequest<T> CaptchaRequest {get; set; }
+    public ICaptchaRequest<T> CaptchaRequest {get; set; }
     public T Solution { get; set; }
     
     public CreateTaskResponse CreateTaskResponse { get; set; }
