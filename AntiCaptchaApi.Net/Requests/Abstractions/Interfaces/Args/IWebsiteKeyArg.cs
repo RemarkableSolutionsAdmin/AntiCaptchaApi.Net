@@ -1,4 +1,4 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces.Args;
 
 public interface IWebsiteKeyArg : IRequestArg
 {

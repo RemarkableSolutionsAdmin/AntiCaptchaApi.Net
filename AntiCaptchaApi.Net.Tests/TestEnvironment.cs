@@ -20,9 +20,9 @@ namespace AntiCaptchaApi.Net.Tests
         
         
         
-        internal static TypedProxyConfig GetCurrentTestProxyConfig()
+        internal static ProxyConfig GetCurrentTestProxyConfig()
         {
-            return new TypedProxyConfig()
+            return new ProxyConfig()
             {
                 ProxyType = ProxyTypeOption.Http,
                 ProxyAddress = ProxyAddress,

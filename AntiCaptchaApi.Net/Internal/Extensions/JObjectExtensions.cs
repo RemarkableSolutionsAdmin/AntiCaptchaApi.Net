@@ -30,9 +30,9 @@ namespace AntiCaptchaApi.Net.Internal.Extensions
         
         internal static JObject With(this JObject @jObject, ProxyConfig proxyConfig)
         {
-            if(proxyConfig is TypedProxyConfig typedProxyConfig)
-                if(!string.IsNullOrEmpty(typedProxyConfig.ProxyType.ToString()))
-                    jObject.Add("proxyType", typedProxyConfig.ProxyType.ToString().ToLower());
+            if(proxyConfig is ProxyConfig ProxyConfig)
+                if(!string.IsNullOrEmpty(ProxyConfig.ProxyType.ToString()))
+                    jObject.Add("proxyType", ProxyConfig.ProxyType.ToString().ToLower());
             
             if(!string.IsNullOrEmpty(proxyConfig.ProxyAddress))
                 jObject.Add("proxyAddress", proxyConfig.ProxyAddress);

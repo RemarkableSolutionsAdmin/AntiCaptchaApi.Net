@@ -1,6 +1,8 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces.Args;
 
-public interface IHCaptchaRequest : IHCaptchaProxylessRequest, ITypedProxyConfigArg
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IHCaptchaRequest : IHCaptchaProxylessRequest, IProxyConfigArg
 {
     
 }

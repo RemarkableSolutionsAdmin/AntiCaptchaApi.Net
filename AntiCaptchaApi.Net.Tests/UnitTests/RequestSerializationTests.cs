@@ -86,7 +86,7 @@ public class RequestSerializationTests
             FunCaptchaApiJsSubdomain = expectedPayload["funcaptchaApiJSSubdomain"]!.ToString(),
             Data = expectedPayload["data"]!.ToString(),
             UserAgent = expectedPayload["userAgent"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Http,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -120,7 +120,7 @@ public class RequestSerializationTests
             WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
             WebsitePublicKey = expectedPayload["websitePublicKey"]!.ToString(),
             UserAgent = expectedPayload["userAgent"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Http,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -285,7 +285,7 @@ public class RequestSerializationTests
             UserAgent = expectedPayload["userAgent"]!.ToString(),
             GeetestGetLib = expectedPayload["geetestGetLib"]!.ToString(),
             GeetestApiServerSubdomain = expectedPayload["geetestApiServerSubdomain"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -321,7 +321,7 @@ public class RequestSerializationTests
             Gt = expectedPayload["gt"]!.ToString(),
             Challenge = expectedPayload["challenge"]!.ToString(),
             UserAgent = expectedPayload["userAgent"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -471,7 +471,7 @@ public class RequestSerializationTests
             UserAgent = expectedPayload["userAgent"]!.ToString(),
             GeetestGetLib = expectedPayload["geetestGetLib"]!.ToString(),
             GeetestApiServerSubdomain = expectedPayload["geetestApiServerSubdomain"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -507,7 +507,7 @@ public class RequestSerializationTests
             Gt = expectedPayload["gt"]!.ToString(),
             Challenge = expectedPayload["challenge"]!.ToString(),
             UserAgent = expectedPayload["userAgent"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -608,7 +608,7 @@ public class RequestSerializationTests
                 ["enterprisePayloadParam1"] = "enterprisePayloadParam1Value",
                 ["enterprisePayloadParam2"] = "enterprisePayloadParam2Value"
             },
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -641,7 +641,7 @@ public class RequestSerializationTests
             WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
             WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
             UserAgent = expectedPayload["userAgent"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -795,7 +795,7 @@ public class RequestSerializationTests
                 ["enterprisePayloadParam1"] = "enterprisePayloadParam1Value",
                 ["enterprisePayloadParam2"] = "enterprisePayloadParam2Value"
             },
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -830,7 +830,7 @@ public class RequestSerializationTests
         {
             WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
             WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -927,7 +927,7 @@ public class RequestSerializationTests
         {
             WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
             WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),
@@ -961,7 +961,7 @@ public class RequestSerializationTests
         {
             WebsiteUrl = expectedPayload["websiteURL"]!.ToString(),
             WebsiteKey = expectedPayload["websiteKey"]!.ToString(),
-            ProxyConfig = new TypedProxyConfig
+            ProxyConfig = new ProxyConfig
             {
                 ProxyType = ProxyTypeOption.Socks4,
                 ProxyAddress = expectedPayload["proxyAddress"]!.ToString(),

@@ -27,7 +27,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Optional] ProxyConfig.proxyLogin : Login for proxy which requires authorization (basic)
         /// [Optional] ProxyConfig.proxyPassword : Proxy password
         /// </summary>
-        public TypedProxyConfig ProxyConfig { get; set; }
+        public ProxyConfig ProxyConfig { get; set; }
 
         public GeeTestV3Request()
         {

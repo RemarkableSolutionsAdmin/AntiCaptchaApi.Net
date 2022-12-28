@@ -27,7 +27,7 @@ public class TurnstileCaptchaRequest : TurnstileCaptchaProxylessRequest, ITurnst
     /// [Optional] ProxyConfig.proxyPassword : Proxy password
     /// </summary>
     /// 
-    public TypedProxyConfig ProxyConfig { get; set; }
+    public ProxyConfig ProxyConfig { get; set; }
     
     /// <summary>
     /// [Required]

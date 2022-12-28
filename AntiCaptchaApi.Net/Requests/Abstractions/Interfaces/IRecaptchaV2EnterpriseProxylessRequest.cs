@@ -1,4 +1,5 @@
 ﻿using AntiCaptchaApi.Net.Models.Solutions;
+using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces.Args;
 
 namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 

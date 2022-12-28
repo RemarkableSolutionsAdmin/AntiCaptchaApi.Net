@@ -60,8 +60,8 @@ public static class ValidationResultExtensions
         else
         {
             result.ValidateIsNotNullOrEmpty(nameof(proxyConfig.ProxyAddress), proxyConfig.ProxyAddress);
-            if(proxyConfig is TypedProxyConfig typedProxyConfig)
-                result.ValidateIsNotNull(nameof(typedProxyConfig.ProxyType), typedProxyConfig.ProxyType);
+            if(proxyConfig is ProxyConfig ProxyConfig)
+                result.ValidateIsNotNull(nameof(ProxyConfig.ProxyType), ProxyConfig.ProxyType);
             if (proxyConfig.ProxyPort is null or < 1 or >= 65535)
             {
                 result.Errors.Add(new ValidationError(nameof(proxyConfig.ProxyPort), "must have value between 1 and 65534"));
@@ -84,8 +84,8 @@ public static class ValidationResultExtensions
         {
             
             result.ValidateIsNotNullOrEmpty(nameof(proxyConfig.ProxyAddress), proxyConfig.ProxyAddress);
-            if(proxyConfig is TypedProxyConfig typedProxyConfig)
-                result.ValidateIsNotNull(nameof(typedProxyConfig.ProxyType), typedProxyConfig.ProxyType);
+            if(proxyConfig is ProxyConfig ProxyConfig)
+                result.ValidateIsNotNull(nameof(ProxyConfig.ProxyType), ProxyConfig.ProxyType);
             if (proxyConfig.ProxyPort is null or < 1 or >= 65535)
             {
                 result.Errors.Add(new ValidationError(nameof(proxyConfig.ProxyPort), "must have value between 1 and 65534"));

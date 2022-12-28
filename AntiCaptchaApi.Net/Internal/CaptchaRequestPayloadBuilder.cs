@@ -102,7 +102,7 @@ internal static class CaptchaRequestPayloadBuilder
 
         if (serialized.ContainsKey("proxyConfig"))
         {
-            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyType"]?.ToString()))
+            if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyType"]?.ToString()) && request is not AntiGateRequest)
                 serialized["proxyType"] = ((ProxyTypeOption)int.Parse(serialized["proxyConfig"]?["proxyType"]?.ToString())).ToString().ToLower();
             
             if(!string.IsNullOrEmpty(serialized["proxyConfig"]?["proxyAddress"]?.ToString()))

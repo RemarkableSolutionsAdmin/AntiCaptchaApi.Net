@@ -1,6 +1,8 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces.Args;
 
-public interface IGeeTestV4Request : IGeeTestV4ProxylessRequest, ITypedProxyConfigWithUserAgentArgs
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IGeeTestV4Request : IGeeTestV4ProxylessRequest, IProxyConfigWithUserAgentArgs
 {
     
 }
