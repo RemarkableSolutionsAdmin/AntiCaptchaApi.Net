@@ -1,6 +1,8 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
 
-public interface IRecaptchaV2EnterpriseProxylessRequest : IEnterprisePayloadArg, IWebCaptchaRequest, IApiDomainArg
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IRecaptchaV2EnterpriseProxylessRequest : IEnterprisePayloadArg, IWebCaptchaRequest<RecaptchaSolution>, IApiDomainArg
 {
     
 }

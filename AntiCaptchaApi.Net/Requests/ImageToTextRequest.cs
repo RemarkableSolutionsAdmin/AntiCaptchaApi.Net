@@ -85,13 +85,6 @@ namespace AntiCaptchaApi.Net.Requests
         /// The result is not guaranteed and is totally up to the worker.
         /// </summary>
         public string Comment { get; set; }
-        
-        /// <summary>
-        /// [Optional]
-        /// Optional parameter to distinguish source of image captchas in spending statistics.
-        /// </summary>
-        [JsonProperty("websiteURL")]
-        public string WebsiteUrl { get; set; }
 
         /// <summary>
         /// [Optional]

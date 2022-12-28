@@ -1,6 +1,9 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
 
-public interface IWebCaptchaRequest : IWebsiteKeyArg, IWebsiteUrlArg
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IWebCaptchaRequest<TSolution> : ICaptchaRequest<TSolution>, IWebsiteKeyArg
+    where TSolution : BaseSolution  
 {
     
 }

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using AntiCaptchaApi.Net.Models.Solutions;
 using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 
-public interface IAntiGateRequest : IWebsiteUrlArg, IProxyConfigArg
+public interface IAntiGateRequest : ICaptchaRequest<AntiGateSolution>, IProxyConfigArg
 {
     public string TemplateName { get; set; }
     public JObject Variables { get; set; }

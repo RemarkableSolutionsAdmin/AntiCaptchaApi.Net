@@ -1,6 +1,8 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
 
-public interface IRecaptchaV3Request : IWebCaptchaRequest, IApiDomainArg, IIsEnterprise
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IRecaptchaV3Request : IWebCaptchaRequest<RecaptchaSolution>, IApiDomainArg, IIsEnterprise
 {
     public string PageAction { get; set; }
     public double MinScore { get; set; }

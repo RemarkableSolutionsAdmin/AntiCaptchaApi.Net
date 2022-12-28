@@ -1,6 +1,6 @@
 ﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
 
-public interface IGeeTestArgs : IWebsiteUrlArg, IRequestArg
+public interface IGeeTestArgs : IRequestArg
 {
     public string Gt { get; set; }
     public string Challenge { get; set; }

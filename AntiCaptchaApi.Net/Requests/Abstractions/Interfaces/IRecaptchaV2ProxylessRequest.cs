@@ -1,6 +1,8 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
 
-public interface IRecaptchaV2ProxylessRequest : IWebCaptchaRequest, IIsInvisibleArg
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IRecaptchaV2ProxylessRequest : IWebCaptchaRequest<RecaptchaSolution>, IIsInvisibleArg
 {
     public string RecaptchaDataSValue { get; set; }
 }

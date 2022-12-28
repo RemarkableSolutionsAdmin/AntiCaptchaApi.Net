@@ -2,5 +2,5 @@
 
 public interface IWebsiteKeyArg : IRequestArg
 {
-    public string WebsiteUrl { get; set; }
+    public string WebsiteKey { get; set; }
 }

@@ -1,6 +1,8 @@
-﻿namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+﻿using AntiCaptchaApi.Net.Models.Solutions;
 
-public interface IGeeTestV3ProxylessRequest : IGeeTestArgs
+namespace AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
+
+public interface IGeeTestV3ProxylessRequest : ICaptchaRequest<GeeTestV3Solution>, IGeeTestArgs
 {
     
 }
