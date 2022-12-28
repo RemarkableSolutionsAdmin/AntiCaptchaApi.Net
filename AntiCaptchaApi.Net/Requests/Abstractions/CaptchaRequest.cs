@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AntiCaptchaApi.Net.Requests.Abstractions
 {
-    public abstract class CaptchaRequest<TSolution> : ICaptchaRequest 
+    public abstract class CaptchaRequest<TSolution> : ICaptchaRequest<TSolution> 
         where TSolution : BaseSolution  
     {
         /// <summary>
