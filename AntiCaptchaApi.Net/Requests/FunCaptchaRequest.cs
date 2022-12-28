@@ -14,7 +14,6 @@ namespace AntiCaptchaApi.Net.Requests
     /// </summary>
     public class FunCaptchaRequest : FunCaptchaProxylessRequest, IFunCaptchaRequest
     {
-        
         /// <summary>
         /// [Required]
         /// Browser's User-Agent used in emulation.

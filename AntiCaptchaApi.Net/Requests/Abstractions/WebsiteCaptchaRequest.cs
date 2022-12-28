@@ -19,9 +19,9 @@ namespace AntiCaptchaApi.Net.Requests.Abstractions
             
         }
 
-        public WebsiteCaptchaRequest(IWebCaptchaRequest<TSolution> request)
+        public WebsiteCaptchaRequest(IWebCaptchaRequest<TSolution> request) : base(request)
         {
-            WebsiteUrl = request.WebsiteUrl;
+            WebsiteKey = request.WebsiteKey;
         }
 
     }
