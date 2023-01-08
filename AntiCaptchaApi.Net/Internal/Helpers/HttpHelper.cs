@@ -18,7 +18,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
     {
         private static readonly List<JsonConverter> Converters = new();
         private static readonly HttpClient HttpClient;
-        private const int HttpClientTimeout = 30;
+        private const int HttpClientTimeout = 300;
 
         static HttpHelper()
         {
@@ -40,16 +40,16 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
             where T : BaseResponse, new()
         {
             var response = new T();
-            var rawResponse = string.Empty;
+            var responseContent = string.Empty;
             try
             {
-                var data = new StringContent(payload, Encoding.UTF8, "application/json");
-                var postResponse = await HttpClient.PostAsync(url, data, cancellationToken);
-                rawResponse = await postResponse.Content.ReadAsStringAsync();
-                response = JsonConvert.DeserializeObject<T>(rawResponse, Converters.ToArray());
+                var content = new StringContent(payload, Encoding.UTF8, "application/json");
+                var httpResponseMessage = await HttpClient.PostAsync(url, content, cancellationToken);
+                responseContent = await httpResponseMessage.Content.ReadAsStringAsync();
+                response = JsonConvert.DeserializeObject<T>(responseContent, Converters.ToArray());
                 if (response != null)
                 {
-                    response.RawResponse = rawResponse;
+                    response.RawResponse = responseContent;
                     response.RawRequestPayload = payload;
                 }
                 return response;
@@ -61,7 +61,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                     return null;
                 }
                 response.ErrorDescription = ex.Message; 
-                response.RawResponse = rawResponse;
+                response.RawResponse = responseContent;
                 response.RawRequestPayload = payload;
                 return response;
             }
