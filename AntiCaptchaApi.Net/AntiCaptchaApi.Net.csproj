@@ -11,7 +11,7 @@
     <PackageTags>DotNet AntiCaptcha Captcha Recaptcha GeeCaptcha RecaptchaV2 Anti-captcha RemarkableSolutions </PackageTags>
     <LangVersion>10</LangVersion>
     <Title>Anticaptcha.NetStandard</Title>
-    <Description>Library for captcha solving using anticaptcha.com api</Description>
+    <Description>Library for captcha solving using anti-captcha.com api</Description>
     <Copyright>Copyright (c) Remarkable Solutions 2022</Copyright>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <PublishRepositoryUrl>True</PublishRepositoryUrl>
