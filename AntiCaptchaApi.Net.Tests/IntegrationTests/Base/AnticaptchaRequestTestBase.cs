@@ -18,7 +18,7 @@ public abstract class AnticaptchaRequestTestBase <TSolution> : AnticaptchaTestBa
         var creationTaskResult = await AnticaptchaClient.CreateCaptchaTaskAsync(captchaRequest);
         AssertHelper.Assert(creationTaskResult);
         Assert.NotNull(creationTaskResult.TaskId);
-        var taskResult = await AnticaptchaClient.WaitForTaskResultAsync<TSolution>(creationTaskResult.TaskId!.Value, 1800);
+        var taskResult = await AnticaptchaClient.WaitForTaskResultAsync<TSolution>(creationTaskResult.TaskId!.Value);
         AssertHelper.Assert(taskResult);
         return (creationTaskResult, taskResult);
     }

@@ -1,6 +1,8 @@
-﻿using AntiCaptchaApi.Net.Models.Solutions;
+﻿using System;
+using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Responses;
 using AntiCaptchaApi.Net.Responses.Abstractions;
+using Xunit.Sdk;
 
 namespace AntiCaptchaApi.Net.Tests.Helpers;
 
@@ -9,18 +11,23 @@ public static class AssertHelper
     private static void AssertBase(BaseResponse? baseResponse)
     {
         Xunit.Assert.NotNull(baseResponse);
-        if (baseResponse != null)
+        if (baseResponse!.IsErrorResponse)
         {
-            if (!string.IsNullOrEmpty(baseResponse.ErrorDescription))
-            {
-                Xunit.Assert.Null(baseResponse.ErrorDescription);
-                Xunit.Assert.Empty(baseResponse.ErrorDescription);
-            }
-
-            Xunit.Assert.False(baseResponse.IsErrorResponse);
+            Fail(BuildErrorMessage(baseResponse));
         }
     }
+
+    private static void Fail(string message)
+    {
+        throw new XunitException(message);
+    }
     
+    private static string BuildErrorMessage(BaseResponse baseResponse)
+    {
+        var taskResultResponse = baseResponse as TaskResultResponse<BaseSolution>;
+        return $"ErrorId: {baseResponse.ErrorId} | ErrorCode: {baseResponse.ErrorCode} | ErrorDescription: {baseResponse.ErrorDescription}"
+            + (taskResultResponse != null ? $"{Environment.NewLine} taskId: {taskResultResponse.CreateTaskResponse?.TaskId}" : string.Empty);
+    }
     public static void Assert(CreateTaskResponse? createTaskResponse)
     {
         AssertBase(createTaskResponse);

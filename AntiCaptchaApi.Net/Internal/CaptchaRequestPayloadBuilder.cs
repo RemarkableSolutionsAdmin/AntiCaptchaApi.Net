@@ -30,7 +30,7 @@ public class KnownTypesBinder : ISerializationBinder
     }
 }
 
-internal static class CaptchaRequestPayloadBuilder
+internal static class CaptchaPayloadBuilder
 {
     
     private static Func<ValidationResult> GetCaptchaRequestCreationValidator<TSolution>(ICaptchaRequest<TSolution> request) 
@@ -72,15 +72,8 @@ internal static class CaptchaRequestPayloadBuilder
         {
             throw new ArgumentNullException(nameof(request));
         }
-        var jsonSerializer = new JsonSerializer
-        {
-            NullValueHandling = NullValueHandling.Ignore,
-            Formatting = Formatting.Indented,
-            ContractResolver = new DefaultContractResolver()
-            {
-                NamingStrategy = new CamelCaseNamingStrategy()
-            }
-        };
+
+        var jsonSerializer = JsonSerializerHelper.GetJsonSerializer();
         
         var serialized = JObject.FromObject(request, jsonSerializer);
         serialized["type"] = RequestTaskNameHelper.GetTaskName<ICaptchaRequest<TSolution>, TSolution>(request);

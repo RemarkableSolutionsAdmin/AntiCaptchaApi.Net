@@ -8,9 +8,9 @@ namespace AntiCaptchaApi.Net.Internal.Extensions
 {
     internal static class CaptchaRequestExtensions
     {
-        internal static JObject ToPayload<T>(this ICaptchaRequest<T> request) where T : BaseSolution => CaptchaRequestPayloadBuilder.Build(request);
+        internal static JObject ToPayload<T>(this ICaptchaRequest<T> request) where T : BaseSolution => CaptchaPayloadBuilder.Build(request);
 
 
-        internal static ValidationResult Validate<T>(this ICaptchaRequest<T> request) where T : BaseSolution => CaptchaRequestPayloadBuilder.Validate(request);
+        internal static ValidationResult Validate<T>(this ICaptchaRequest<T> request) where T : BaseSolution => CaptchaPayloadBuilder.Validate(request);
     }
 }

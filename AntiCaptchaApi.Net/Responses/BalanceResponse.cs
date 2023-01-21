@@ -2,7 +2,7 @@
 
 namespace AntiCaptchaApi.Net.Responses
 {
-    public sealed class BalanceResponse : BaseResponse
+    public class BalanceResponse : BaseResponse
     {
         public double? Balance { get; set; }
 

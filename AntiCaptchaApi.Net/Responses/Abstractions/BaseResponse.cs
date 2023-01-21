@@ -8,7 +8,7 @@
         
         public string RawResponse { get; set; }
         
-        public string RawRequestPayload { get; set; }
+        public string RawPayload { get; set; }
 
         protected BaseResponse()
         {
@@ -21,8 +21,7 @@
             ErrorDescription = errorDescription;
         }
         
-        public bool IsErrorResponse => !string.IsNullOrEmpty(ErrorDescription) || 
-                                   !string.IsNullOrEmpty(ErrorCode) ||
-                                   ErrorId is not 0;
+        public bool IsErrorResponse => 
+            !string.IsNullOrEmpty(ErrorDescription) || !string.IsNullOrEmpty(ErrorCode) || ErrorId is not 0;
     }
 }

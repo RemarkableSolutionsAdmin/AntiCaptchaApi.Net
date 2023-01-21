@@ -28,7 +28,7 @@ namespace AntiCaptchaApi.Net.Requests
         /// [Required]
         /// Filters workers with a particular score. It can have one of the following values: 0.3, 0.5, 0.7
         /// </summary>
-        public double MinScore { get; set; } = 0.3;
+        public decimal MinScore { get; set; } = 0.3m;
 
         /// <summary>
         /// [Optional]

@@ -50,7 +50,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                 if (response != null)
                 {
                     response.RawResponse = responseContent;
-                    response.RawRequestPayload = payload;
+                    response.RawPayload = payload;
                 }
                 return response;
             }
@@ -62,7 +62,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                 }
                 response.ErrorDescription = ex.Message; 
                 response.RawResponse = responseContent;
-                response.RawRequestPayload = payload;
+                response.RawPayload = payload;
                 return response;
             }
         }

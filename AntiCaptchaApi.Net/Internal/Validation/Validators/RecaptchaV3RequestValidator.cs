@@ -10,7 +10,7 @@ public class RecaptchaV3RequestValidator : WebsiteCaptchaRequestValidator<Recapt
     public override ValidationResult Validate(RecaptchaV3Request request)
     {
         return base.Validate(request)
-            .ValidateIsOneOfTheValues(nameof(request.MinScore), request.MinScore, new []{0.3, 0.5, 0.7})
+            .ValidateIsOneOfTheValues(nameof(request.MinScore), request.MinScore, new []{0.3m, 0.5m, 0.7m})
             .ValidateIsNotNull(nameof(request.IsEnterprise), request.IsEnterprise);
     }
 }
