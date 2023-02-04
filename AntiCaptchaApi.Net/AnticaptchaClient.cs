@@ -9,6 +9,8 @@ using AntiCaptchaApi.Net.Internal;
 using AntiCaptchaApi.Net.Internal.Common;
 using AntiCaptchaApi.Net.Internal.Extensions;
 using AntiCaptchaApi.Net.Internal.Helpers;
+using AntiCaptchaApi.Net.Internal.Models;
+using AntiCaptchaApi.Net.Internal.Services;
 using AntiCaptchaApi.Net.Models;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
@@ -21,9 +23,19 @@ namespace AntiCaptchaApi.Net
         public ClientConfig ClientConfig { get; private set; }
 
         public string ClientKey { get; }
+        
+        private IAnticaptchaApi AnticaptchaApi { get; set; }
 
         public AnticaptchaClient(string clientKey, ClientConfig clientConfig = null)
         {
+            AnticaptchaApi = new AnticaptchaApi();
+            ClientConfig = clientConfig ?? new ClientConfig();
+            ClientKey = clientKey;
+        }
+
+        internal AnticaptchaClient(IAnticaptchaApi anticaptchaApi, string clientKey, ClientConfig clientConfig = null)
+        {
+            AnticaptchaApi = anticaptchaApi;
             ClientConfig = clientConfig ?? new ClientConfig();
             ClientKey = clientKey;
         }
@@ -118,11 +130,11 @@ namespace AntiCaptchaApi.Net
         public async Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(ICaptchaRequest<T> request, string languagePool = null, string callbackUrl = null, CancellationToken cancellationToken = default) 
             where T : BaseSolution
         {
-            var validationResult = request.Validate();
+            var validationResult = CreateCaptchaRequestHelper.Validate(request);
             if (!validationResult.IsValid)
                 return new CreateTaskResponse(HttpStatusCode.BadRequest.ToString(), string.Join('\n', validationResult.Errors.Select(x => x.ToString())));
 
-            var taskPayload = request.ToPayload();
+            var taskPayload = CreateCaptchaRequestHelper.Build(request);
 
             if (taskPayload == null)
                 return new CreateTaskResponse(HttpStatusCode.BadRequest.ToString(), ErrorMessages.AnticaptchaPayloadBuildValidationFailedError);

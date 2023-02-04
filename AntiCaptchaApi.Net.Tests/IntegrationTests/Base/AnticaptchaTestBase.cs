@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using AntiCaptchaApi.Net.Internal.Common;
+using Xunit;
 
 namespace AntiCaptchaApi.Net.Tests.IntegrationTests.Base;
 

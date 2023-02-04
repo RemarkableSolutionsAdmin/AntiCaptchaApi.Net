@@ -29,8 +29,7 @@ public interface IAnticaptchaClient
     Task<CreateTaskResponse> CreateCaptchaTaskAsync<T>(ICaptchaRequest<T> request, string languagePool = null, string callbackUrl = null, CancellationToken cancellationToken = default) 
         where T : BaseSolution;
 
-    Task<TaskResultResponse<TSolution>> GetTaskResultAsync<TSolution>(int taskId,
-        CancellationToken cancellationToken)
+    Task<TaskResultResponse<TSolution>> GetTaskResultAsync<TSolution>(int taskId, CancellationToken cancellationToken)
         where TSolution : BaseSolution, new();
 
     Task<TaskResultResponse<TSolution>> WaitForTaskResultAsync<TSolution>(int taskId, CancellationToken cancellationToken = default) 

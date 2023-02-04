@@ -17,7 +17,7 @@ public class AntiGateCaptchaRequestTests : AnticaptchaRequestTestBase <AntiGateS
         new()
         {
             WebsiteUrl = UriExample,
-            TemplateName = "CloudFlare cookies for a proxy",
+            TemplateName = "Sign-in and wait for control text",
             Variables = new JObject(),
             DomainsOfInterest = new List<string>
             {

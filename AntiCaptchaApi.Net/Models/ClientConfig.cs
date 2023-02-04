@@ -2,9 +2,9 @@
 
 public class ClientConfig
 {
-    public int MaxWaitingTimeInSeconds { get; init; } = 120;
+    public int MaxWaitingTimeInSeconds { get; set; } = 120;
     
-    public int SolveAsyncMaxRetries { get; init; } = 1;
+    public int SolveAsyncMaxRetries { get; set; } = 1;
     
-    public int StepWaitingTimeInMilliseconds { get; init; } = 1000;
+    public int StepWaitingTimeInMilliseconds { get; set; } = 1000;
 }

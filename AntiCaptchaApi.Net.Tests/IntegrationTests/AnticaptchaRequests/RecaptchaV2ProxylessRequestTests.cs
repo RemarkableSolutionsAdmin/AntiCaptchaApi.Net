@@ -16,6 +16,12 @@ public class RecaptchaV2ProxylessRequestTests : AnticaptchaRequestTestBase<Recap
     {
         await TestAuthenticRequest();
     }
+    //
+    // [Fact]
+    // public async Task CancellationTokenTest()
+    // {
+    //     var request = CreateAuthenticRequest();
+    // }
 
     protected override RecaptchaV2EnterpriseProxylessRequest CreateAuthenticRequest()
     {

@@ -1,7 +1,12 @@
 ﻿namespace AntiCaptchaApi.Net.Internal.Validation.ValidationErrors;
 
-internal record MustNotBeNullError(string PropertyName) : ValidationError(PropertyName, "must not be null!")
+internal class MustNotBeNullError : ValidationError
 {
+    internal MustNotBeNullError(string propertyName) : base(propertyName, "must not be null!")
+    {
+        
+    }
+    
     public override string ToString()
     {
         return base.ToString();

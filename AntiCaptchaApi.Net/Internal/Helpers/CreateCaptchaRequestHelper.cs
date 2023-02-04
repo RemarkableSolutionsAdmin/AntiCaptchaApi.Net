@@ -1,38 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AntiCaptchaApi.Net.Enums;
 using AntiCaptchaApi.Net.Internal.Helpers;
 using AntiCaptchaApi.Net.Internal.Validation;
 using AntiCaptchaApi.Net.Internal.Validation.Validators;
 using AntiCaptchaApi.Net.Models.Solutions;
 using AntiCaptchaApi.Net.Requests;
-using AntiCaptchaApi.Net.Requests.Abstractions;
 using AntiCaptchaApi.Net.Requests.Abstractions.Interfaces;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 
 namespace AntiCaptchaApi.Net.Internal;
-public class KnownTypesBinder : ISerializationBinder
+
+internal static class CreateCaptchaRequestHelper
 {
-    public IList<Type> KnownTypes { get; set; }
-
-    public Type BindToType(string assemblyName, string typeName)
-    {
-        return KnownTypes.SingleOrDefault(t => t.Name == typeName);
-    }
-
-    public void BindToName(Type serializedType, out string assemblyName, out string typeName)
-    {
-        assemblyName = null;
-        typeName = serializedType.Name;
-    }
-}
-
-internal static class CaptchaPayloadBuilder
-{
-    
     private static Func<ValidationResult> GetCaptchaRequestCreationValidator<TSolution>(ICaptchaRequest<TSolution> request) 
         where TSolution : BaseSolution
     {
@@ -78,19 +58,17 @@ internal static class CaptchaPayloadBuilder
         var serialized = JObject.FromObject(request, jsonSerializer);
         serialized["type"] = RequestTaskNameHelper.GetTaskName<ICaptchaRequest<TSolution>, TSolution>(request);
 
-        if (request is GeeTestV3ProxylessRequest or GeeTestV3Request)
+        switch (request)
         {
-            serialized["version"] = 3;
-        }
-
-        if (request is GeeTestV4ProxylessRequest or GeeTestV4Request)
-        {
-            serialized["version"] = 4;
-        }
-        
-        if (request is RecaptchaV3EnterpriseRequest)
-        {
-            serialized["isEnterprise"] = true;
+            case GeeTestV3ProxylessRequest or GeeTestV3Request:
+                serialized["version"] = 3;
+                break;
+            case GeeTestV4ProxylessRequest or GeeTestV4Request:
+                serialized["version"] = 4;
+                break;
+            case RecaptchaV3EnterpriseRequest:
+                serialized["isEnterprise"] = true;
+                break;
         }
 
         if (serialized.ContainsKey("proxyConfig"))
