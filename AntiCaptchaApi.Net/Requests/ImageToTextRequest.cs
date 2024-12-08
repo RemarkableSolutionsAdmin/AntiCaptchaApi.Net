@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Requests
 {
-    
     /// <summary>
     /// Solve image captcha.
     /// Post an image body and receive text from it.

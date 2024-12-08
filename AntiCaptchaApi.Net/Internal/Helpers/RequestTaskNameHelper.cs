@@ -33,7 +33,7 @@ internal static class RequestTaskNameHelper
             { typeof(RecaptchaV3EnterpriseRequest), "RecaptchaV3TaskProxyless" },
             { typeof(TurnstileCaptchaProxylessRequest), "TurnstileTaskProxyless" },
             { typeof(TurnstileCaptchaRequest), "TurnstileTask" },
-
+            { typeof(ImageToCoordinatesRequest), "ImageToCoordinatesTask" },
         };
         return @switch[request.GetType()];
     }

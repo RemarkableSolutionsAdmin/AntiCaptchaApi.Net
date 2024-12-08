@@ -35,6 +35,7 @@ internal static class CreateCaptchaRequestHelper
             { typeof(RecaptchaV3EnterpriseRequest), () => new RecaptchaV3RequestValidator().Validate(request as RecaptchaV3EnterpriseRequest) },
             { typeof(TurnstileCaptchaProxylessRequest), () => new TurnstileProxylessRequestValidator().Validate(request as TurnstileCaptchaProxylessRequest) },
             { typeof(TurnstileCaptchaRequest), () => new TurnstileProxylessRequestValidator().Validate(request as TurnstileCaptchaProxylessRequest) },
+            { typeof(ImageToCoordinatesRequest), () => new ImageToCoordinatesRequestValidator().Validate(request as ImageToCoordinatesRequest) },
         };
         return @switch[request.GetType()];
     }

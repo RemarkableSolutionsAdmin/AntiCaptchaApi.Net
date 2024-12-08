@@ -32,6 +32,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
                 new TaskResultConverter<HCaptchaSolution>(),
                 new TaskResultConverter<RecaptchaSolution>(),
                 new TaskResultConverter<ImageToTextSolution>(),
+                new TaskResultConverter<ImageToCoordinatesSolution>(),
                 new TaskResultConverter<TurnstileSolution>(),
             });
         }
