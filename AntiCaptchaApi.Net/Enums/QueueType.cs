@@ -13,8 +13,6 @@ public enum QueueType
     RecaptchaV3s03 = 18,
     RecaptchaV3s07 = 19,
     RecaptchaV3s09 = 20,
-    hCaptchaWithProxy = 21,
-    hCaptchaWithoutProxy = 22,
     RecaptchaEnterpriseV2WithProxy = 23,
     RecaptchaEnterpriseV2WithoutProxy = 24,
     AntiGateTask  = 25,

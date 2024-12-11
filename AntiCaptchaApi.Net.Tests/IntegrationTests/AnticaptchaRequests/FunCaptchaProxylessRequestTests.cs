@@ -10,13 +10,13 @@ namespace AntiCaptchaApi.Net.Tests.IntegrationTests.AnticaptchaRequests;
 
 public class FunCaptchaProxylessRequestTests : AnticaptchaRequestTestBase<FunCaptchaSolution>
 {
-    private const string FunCaptchaUriExample = "https://api.funcaptcha.com/fc/api/nojs/?pkey=69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC";
+    private const string FunCaptchaUriExample = "https://demo.arkoselabs.com/?key=DF9C4D87-CB7B-4062-9FEB-BADB6ADA61E6";
 
     protected override FunCaptchaProxylessRequest CreateAuthenticRequest() =>
         new()
         {
             WebsiteUrl = FunCaptchaUriExample,
-            WebsitePublicKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
+            WebsitePublicKey = "DF9C4D87-CB7B-4062-9FEB-BADB6ADA61E6",
             FunCaptchaApiJsSubdomain = "test",
             Data = "test",
         };

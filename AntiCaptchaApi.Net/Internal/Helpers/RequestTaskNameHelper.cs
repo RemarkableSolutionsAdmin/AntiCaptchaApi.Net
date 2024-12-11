@@ -22,8 +22,6 @@ internal static class RequestTaskNameHelper
             { typeof(GeeTestV3ProxylessRequest), "GeeTestTaskProxyless" },
             { typeof(GeeTestV4Request), "GeeTestTask" },
             { typeof(GeeTestV4ProxylessRequest), "GeeTestTaskProxyless" },
-            { typeof(HCaptchaProxylessRequest), "HCaptchaTaskProxyless" },
-            { typeof(HCaptchaRequest), "HCaptchaTask" },
             { typeof(ImageToTextRequest), "ImageToTextTask" },
             { typeof(RecaptchaV2EnterpriseProxylessRequest), "RecaptchaV2EnterpriseTaskProxyless" },
             { typeof(RecaptchaV2EnterpriseRequest), "RecaptchaV2EnterpriseTask" },

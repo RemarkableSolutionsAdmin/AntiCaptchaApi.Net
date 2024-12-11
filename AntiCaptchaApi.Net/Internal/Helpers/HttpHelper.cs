@@ -14,22 +14,19 @@ using Newtonsoft.Json;
 
 namespace AntiCaptchaApi.Net.Internal.Helpers
 {
-    internal static class HttpHelper
+    internal class HttpHelper
     {
         private static readonly List<JsonConverter> Converters = new();
-        private static readonly HttpClient HttpClient;
-        private const int HttpClientTimeout = 300;
-
-        static HttpHelper()
+        private readonly HttpClient _httpClient;
+        
+        internal HttpHelper(HttpClient httpClient)
         {
-            HttpClient = new HttpClient();
-            HttpClient.Timeout = TimeSpan.FromSeconds(HttpClientTimeout);
+            _httpClient = httpClient;
             Converters.AddRange(new JsonConverter[]{ 
                 new TaskResultConverter<FunCaptchaSolution>(),
                 new AntiGateTaskResultConverter(),
                 new TaskResultConverter<GeeTestV3Solution>(),
                 new TaskResultConverter<GeeTestV4Solution>(),
-                new TaskResultConverter<HCaptchaSolution>(),
                 new TaskResultConverter<RecaptchaSolution>(),
                 new TaskResultConverter<ImageToTextSolution>(),
                 new TaskResultConverter<ImageToCoordinatesSolution>(),
@@ -37,7 +34,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
             });
         }
 
-        internal static async Task<T> PostAsync<T>(Uri url, string payload, CancellationToken cancellationToken)
+        internal async Task<T> PostAsync<T>(Uri url, string payload, CancellationToken cancellationToken)
             where T : BaseResponse, new()
         {
             var response = new T();
@@ -45,7 +42,7 @@ namespace AntiCaptchaApi.Net.Internal.Helpers
             try
             {
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
-                var httpResponseMessage = await HttpClient.PostAsync(url, content, cancellationToken);
+                var httpResponseMessage = await _httpClient.PostAsync(url, (HttpContent) content, cancellationToken);
                 responseContent = await httpResponseMessage.Content.ReadAsStringAsync();
                 response = JsonConvert.DeserializeObject<T>(responseContent, Converters.ToArray());
                 if (response != null)

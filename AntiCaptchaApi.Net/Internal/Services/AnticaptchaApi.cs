@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using AntiCaptchaApi.Net.Enums;
@@ -14,6 +15,9 @@ namespace AntiCaptchaApi.Net.Internal.Services
     internal class AnticaptchaApi : IAnticaptchaApi
     {
         private const string Host = "api.anti-captcha.com";
+        private readonly HttpHelper _httpHelper;
+
+        internal AnticaptchaApi(HttpClient httpClient) => _httpHelper = new HttpHelper(httpClient);
 
         public async Task<CreateTaskResponse> CreateTaskAsync<TPayload>(TPayload payload, CancellationToken cancellationToken)
             where TPayload : Payload<CreateTaskResponse>
@@ -39,14 +43,12 @@ namespace AntiCaptchaApi.Net.Internal.Services
             var uri = CreateAntiCaptchaUri(methodName);
             var jsonSerializer = JsonSerializerHelper.GetJsonSerializer();
             var serializedPayload = JObject.FromObject(payload, jsonSerializer).ToString();
-            return await HttpHelper.PostAsync<TResponse>(uri, serializedPayload, cancellationToken);
+            return await _httpHelper.PostAsync<TResponse>(uri, serializedPayload, cancellationToken);
         }
 
         private static Uri CreateAntiCaptchaUri(ApiMethod methodName)
         {
-            var methodNameStr = char.ToLowerInvariant(methodName.ToString()[0]) + methodName.ToString().Substring(1);
-            return new Uri("https://" + Host + "/" + methodNameStr);
+            return new Uri("https://api.anti-captcha.com/" + (char.ToLowerInvariant(methodName.ToString()[0]) + methodName.ToString().Substring(1)));
         }
-
     }
 }
