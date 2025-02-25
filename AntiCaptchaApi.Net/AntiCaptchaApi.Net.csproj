@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.7.0</Version>
+    <Version>1.7.1</Version>
     <Authors>RemarkableSolutions</Authors>
     <PackageProjectUrl>https://github.com/RemarkableSolutionsAdmin/AntiCaptchaApi.Net</PackageProjectUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/RemarkableSolutionsAdmin/AntiCaptchaApi.Net</RepositoryUrl>
-    <PackageTags>DotNet AntiCaptcha Captcha Recaptcha GeeCaptcha RecaptchaV2 Anti-captcha RemarkableSolutions CaptchaSolver </PackageTags>
+    <PackageTags>AntiCaptcha Captcha Recaptcha GeeCaptcha RecaptchaV2 Anti-captcha RemarkableSolutions CaptchaSolver Solver</PackageTags>
     <LangVersion>10</LangVersion>
     <Title>Anticaptcha.NetStandard</Title>
     <Description>Library for captcha solving using anti-captcha.com api</Description>
@@ -17,7 +17,7 @@
     <PublishRepositoryUrl>True</PublishRepositoryUrl>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageVersion>1.7.0</PackageVersion>
+    <PackageVersion>1.7.1</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
